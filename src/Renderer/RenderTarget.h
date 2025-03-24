@@ -8,7 +8,7 @@
 
 
 class RenderTarget {
-public:
+  public:
     // Constructor
     RenderTarget(int width, int height);
 
@@ -19,7 +19,7 @@ public:
     // Methods
     void WriteToFile(const std::string& filename);
 
-private:
+  private:
     // Attributes
     int width, height;
     std::vector<std::vector<glm::vec3>> colors;
