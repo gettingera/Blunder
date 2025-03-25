@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include "RenderTarget.h"
 #include "Geometry/HitRecord.h"
+#include "Materials/Material.h"
 #include "Scene/Scene.h"
 
 
@@ -109,14 +110,20 @@ public:
         HitRecord record{};
 
         if (world->Hit(ray, Interval(0.001, infinity), record)) {
-            const dvec3 direction = record.get_normal() + random_unit_vector();
-            return 0.5 * GetRayColor(Ray(record.get_point(), direction), world, depth-1);
+            Ray scattered;
+            dvec3 attenuation;
+
+            if (record.get_material()->Scatter(ray, record, attenuation, scattered)) {
+                return attenuation * GetRayColor(scattered, world, depth - 1);
+            }
+
+            return dvec3(0);
         }
 
         // Sky rendering
         const dvec3 unit_direction = normalize(ray.Direction());
-        const auto a = 0.5 * (unit_direction.z + 1.0);
-        return (1.0 - a) * dvec3(1) + a * dvec3(0.5, 0.7, 1);
+        const auto a = 0.5 * (unit_direction.z + 1);
+        return (1.0 - a) * dvec3(0.8, 0.9, 1.0) + a * dvec3(0.4, 0.8, 1.0);
     }
 
 private:

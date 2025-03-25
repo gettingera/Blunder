@@ -9,9 +9,10 @@
 class Sphere final : public Hittable {
 public:
     // Constructors
-    Sphere(const dvec3 &center, const double radius) {
+    Sphere(const dvec3 &center, const double radius, const shared_ptr<Material> &material) {
         set_center(center);
         set_radius(radius);
+        set_material(material);
     }
 
     // Methods
@@ -39,6 +40,7 @@ public:
         record.set_point(ray.At(record.get_time()));
         const dvec3 outward_normal = (record.get_point() - center) / radius;
         record.SetFaceNormal(ray, outward_normal);
+        record.set_material(material);
 
         return true;
     }
@@ -52,6 +54,10 @@ public:
         return radius;
     }
 
+    [[nodiscard]] shared_ptr<Material> get_material() const {
+        return material;
+    }
+
     // Setters
     void set_center(const dvec3 &center) {
         this->center = center;
@@ -61,10 +67,15 @@ public:
         this->radius = radius;
     }
 
+    void set_material(const shared_ptr<Material> &material) {
+        this->material = material;
+    }
+
 private:
     // Attributes
     dvec3 center {};
     double radius {};
+    shared_ptr<Material> material;
 };
 
 

@@ -25,6 +25,12 @@ const double pi = 3.1415926535897932385;
 
 // Utility Functions
 
+inline bool near_zero(const dvec3 &vec) {
+    // Return true if the vector is close to zero in all dimensions.
+    const auto s = 1e-8;
+    return (std::fabs(vec.x) < s) && (std::fabs(vec.y) < s) && (std::fabs(vec.z) < s);
+}
+
 inline double linear_to_gamma(double linear_component)
 {
     if (linear_component > 0)

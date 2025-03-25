@@ -2,6 +2,9 @@
 #define HITRECORD_H
 
 
+class Material;
+
+
 class HitRecord {
 public:
     // Constructors
@@ -22,6 +25,10 @@ public:
         return normal;
     }
 
+    [[nodiscard]] shared_ptr<Material> get_material() const {
+        return material;
+    }
+
     [[nodiscard]] double get_time() const {
         return time;
     }
@@ -39,6 +46,10 @@ public:
         this->normal = normal;
     }
 
+    void set_material(const shared_ptr<Material> &material) {
+        this->material = material;
+    }
+
     void set_time(const double time) {
         this->time = time;
     }
@@ -50,6 +61,7 @@ public:
 private:
     dvec3 point;
     dvec3 normal;
+    shared_ptr<Material> material;
     double time;
     bool frontFace;
 

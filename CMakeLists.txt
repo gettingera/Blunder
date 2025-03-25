@@ -13,7 +13,11 @@ set(LIB_DIR "${CMAKE_SOURCE_DIR}/lib")
 file(GLOB_RECURSE SRC_FILES src/*.cpp src/*.h)
 
 # Create executable
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES}
+        src/Materials/Material.h
+        src/Materials/Lambertian.h
+        src/Materials/Metal.h
+        src/Materials/Dielectric.h)
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/src)  # Your source files
