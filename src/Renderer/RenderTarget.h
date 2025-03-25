@@ -9,55 +9,73 @@
 class RenderTarget {
 public:
     // Constructor
-    RenderTarget(int width, int height) {
-        this->width = width;
-        this->height = height;
+    RenderTarget(const int width, const int height) {
+        set_width(width);
+        set_height(height);
 
-        this->Initialize();
-    }
-
-    // Accessors
-    glm::vec3 GetPixel(int x, int y) {
-        return this->colors[y][x];
-    }
-
-    void SetPixel(int x, int y, glm::vec3 color) {
-        this->colors[y][x] = color;
+        Initialize();
     }
 
     // Methods
-    void WriteToFile(const std::string &filename) {
+    void Initialize() {
+        pixels = std::vector(height, std::vector<glm::dvec3>(width, glm::dvec3(0)));
+    }
+
+    void WriteToFile(const std::string &filename) const {
         std::ofstream file(filename);
 
         // PPM Header
-        file << "P3\n" << this->width << " " << this->height << "\n255\n";
+        file << "P3\n" << width << " " << height << "\n255\n";
 
         // Generate PPM contents
-        for (int y = 0; y < this->height; y++) {
-            for (int x = 0; x < this->width; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 // Get pixel
-                glm::vec3 color = this->GetPixel(x, y);
+                const auto pixel = GetPixel(x, y);
 
                 // Write integer converted color data to file
                 file <<
-                        static_cast<int>(color.x * 255.999) << " " <<
-                        static_cast<int>(color.y * 255.999) << " " <<
-                        static_cast<int>(color.z * 255.999) << "\n";
+                        static_cast<int>(pixel.x * 255.999) << " " <<
+                        static_cast<int>(pixel.y * 255.999) << " " <<
+                        static_cast<int>(pixel.z * 255.999) << "\n";
             }
         }
 
+        // Close file
         file.close();
+    }
+
+    // Accessors
+    [[nodiscard]] glm::dvec3 GetPixel(const int x, const int y) const {
+        return pixels[y][x];
+    }
+
+    void SetPixel(const int x, const int y, const glm::dvec3 &pixel) {
+        pixels[y][x] = pixel;
+    }
+
+    // Getters
+    [[nodiscard]] int get_width() const {
+        return width;
+    }
+
+    [[nodiscard]] int get_height() const {
+        return height;
+    }
+
+    // Setters
+    void set_width(const int width) {
+        this->width = width;
+    }
+
+    void set_height(const int height) {
+        this->height = height;
     }
 
 private:
     // Attributes
-    int width, height;
-    std::vector<std::vector<glm::vec3> > colors;
-
-    // Methods
-    void Initialize() {
-        this->colors = std::vector(height, std::vector<glm::vec3>(width, glm::vec3(0)));
-    }
+    int width{}, height{};
+    std::vector<std::vector<glm::dvec3> > pixels;
 };
 
 

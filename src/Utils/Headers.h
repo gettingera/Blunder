@@ -13,6 +13,7 @@
 
 using std::make_shared;
 using std::shared_ptr;
+using namespace glm;
 
 // Constants
 
@@ -35,11 +36,11 @@ inline double random_double(double min, double max) {
     return min + (max-min)*random_double();
 }
 
-static glm::dvec3 random_dvec3() {
+static dvec3 random_dvec3() {
     return {random_double(), random_double(), random_double()};
 }
 
-static glm::dvec3 random_dvec3(double min, double max) {
+static dvec3 random_dvec3(double min, double max) {
     return {random_double(min,max), random_double(min,max), random_double(min,max)};
 }
 

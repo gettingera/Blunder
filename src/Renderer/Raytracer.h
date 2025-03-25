@@ -8,29 +8,22 @@
 #include "Scene/Scene.h"
 
 
-class Raytracer : public Renderer {
+class Raytracer final : public Renderer {
 public:
-    std::shared_ptr<RenderTarget> Render(std::shared_ptr<Scene> scene) override {
-        // Future, pass pointer to rendertarget
-        auto image = std::make_shared<RenderTarget>(scene->camera->width, scene->camera->height);
-
+    void Render(const shared_ptr<Scene> &scene, const shared_ptr<RenderTarget> &render_target) override {
         // Time to die
-        for (int j = 0; j < scene->camera->height; j++) {
-            for (int i = 0; i < scene->camera->width; i++) {
-                auto color = glm::dvec3(0);
+        for (int j = 0; j < render_target->get_height(); j++) {
+            for (int i = 0; i < render_target->get_width(); i++) {
+                auto color = dvec3(0);
 
                 for (int k = 0; k < scene->camera->samples; k++) {
                     Ray ray = scene->camera->GetRay(i, j);
                     color += RayColor(ray, *scene->world);
                 }
 
-                image->SetPixel(i, j, color * (1.0 / scene->camera->samples));
-
+                render_target->SetPixel(i, j, color * (1.0 / scene->camera->samples));
             }
         }
-
-        // Return
-        return image;
     }
 
 private:
@@ -47,7 +40,7 @@ private:
 
         glm::dvec3 unitDirection = glm::normalize(ray.Direction());
         auto a = 0.5 * (unitDirection.y + 1.0);
-        return (1.0-a)*glm::dvec3(1.0); + a*glm::dvec3(0.5, 0.7, 1.0);
+        return (1.0 - a) * glm::dvec3(1.0) + a * glm::dvec3(0.5, 0.7, 1.0);
     }
 };
 

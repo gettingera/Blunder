@@ -7,8 +7,8 @@
 
 
 struct Scene {
-    std::shared_ptr<HittableList> world;
-    std::shared_ptr<Camera> camera;
+    shared_ptr<HittableList> world;
+    shared_ptr<Camera> camera;
 };
 
 

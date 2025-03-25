@@ -4,17 +4,55 @@
 
 class HitRecord {
 public:
-    // Public attributes
-    glm::dvec3 point;
-    glm::dvec3 normal;
+    // Constructors
+    HitRecord() = default;
+
+    // Methods
+    void SetFaceNormal(const Ray &ray, const dvec3 &outwardNormal) {
+        frontFace = dot(ray.Direction(), outwardNormal) < 0;
+        normal = frontFace ? outwardNormal : -outwardNormal;
+    }
+
+    // Getters
+    [[nodiscard]] dvec3 get_point() const {
+        return point;
+    }
+
+    [[nodiscard]] dvec3 get_normal() const {
+        return normal;
+    }
+
+    [[nodiscard]] double get_time() const {
+        return time;
+    }
+
+    [[nodiscard]] bool is_front_face() const {
+        return frontFace;
+    }
+
+    // Setters
+    void set_point(const dvec3 &point) {
+        this->point = point;
+    }
+
+    void set_normal(const dvec3 &normal) {
+        this->normal = normal;
+    }
+
+    void set_time(const double time) {
+        this->time = time;
+    }
+
+    void set_front_face(const bool front_face) {
+        frontFace = front_face;
+    }
+
+private:
+    dvec3 point;
+    dvec3 normal;
     double time;
     bool frontFace;
 
-    // Methods
-    void SetFaceNormal(const Ray &ray, const glm::dvec3 &outwardNormal) {
-        this->frontFace = glm::dot(ray.Direction(), outwardNormal) < 0;
-        this->normal = this->frontFace ? outwardNormal : -outwardNormal;
-    }
 };
 
 

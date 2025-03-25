@@ -8,7 +8,7 @@
 class Hittable {
 public:
     // Constructor
-    virtual bool Hit(const Ray &ray, Interval rayTime, HitRecord &record) const = 0;
+    virtual bool Hit(const Ray &ray, const Interval &rayTime, HitRecord &record) const = 0;
 
     // Destructor
     virtual ~Hittable() = default;
