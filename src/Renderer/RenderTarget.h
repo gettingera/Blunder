@@ -3,9 +3,7 @@
 
 
 #include <vector>
-#include <string>
 #include <fstream>
-#include <glm/vec3.hpp>
 
 
 class RenderTarget {

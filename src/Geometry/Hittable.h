@@ -2,16 +2,18 @@
 #define HITTABLE_H
 
 
-#include "Utils/Ray.h"
 #include "Geometry/HitRecord.h"
 
 
 class Hittable {
-  public:
+public:
     // Constructor
-    virtual bool Hit(const Ray& ray, double timeMin, double timeMax, HitRecord& record) const = 0;
-};
+    virtual bool Hit(const Ray &ray, Interval rayTime, HitRecord &record) const = 0;
 
+    // Destructor
+    virtual ~Hittable() = default;
+
+};
 
 
 #endif //HITTABLE_H

@@ -3,48 +3,47 @@
 
 
 #include <vector>
-#include <memory>
 #include "Hittable.h"
 
 
 class HittableList : public Hittable {
-  public:
+public:
     // Constructors
-    HittableList() {}
+    HittableList() = default;
 
-    HittableList(std::shared_ptr<Hittable> object) {
-      this->Add(object);
+    HittableList(const std::shared_ptr<Hittable> &object) {
+        this->Add(object);
     }
 
     // Methods
     void Clear() {
-      this->objects.clear();
+        this->objects.clear();
     }
 
-    void Add(std::shared_ptr<Hittable> object) {
-      this->objects.push_back(object);
+    void Add(const std::shared_ptr<Hittable>& object) {
+        this->objects.push_back(object);
     }
 
     // Override
-    bool Hit(const Ray& ray, double timeMin, double timeMax, HitRecord& record) const override {
-      HitRecord tempRecord;
-      bool hitAny = false;
-      auto closestSoFar = timeMax;
+    bool Hit(const Ray &ray, Interval rayTime, HitRecord &record) const override {
+        HitRecord tempRecord;
+        bool hitAny = false;
+        auto closestSoFar = rayTime.max;
 
-      for (auto object : this->objects) {
-        if (object->Hit(ray, timeMin, closestSoFar, tempRecord)) {
-          hitAny = true;
-          closestSoFar = tempRecord.time;
-          record = tempRecord;
+        for (auto object: this->objects) {
+            if (object->Hit(ray, Interval(rayTime.min, closestSoFar), tempRecord)) {
+                hitAny = true;
+                closestSoFar = tempRecord.time;
+                record = tempRecord;
+            }
         }
-      }
 
-      return hitAny;
+        return hitAny;
     }
 
-  private:
+private:
     // Attributes
-    std::vector<std::shared_ptr<Hittable>> objects;
+    std::vector<std::shared_ptr<Hittable> > objects;
 };
 
 

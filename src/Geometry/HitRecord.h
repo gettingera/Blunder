@@ -2,14 +2,8 @@
 #define HITRECORD_H
 
 
-#include <glm/vec3.hpp>
-
-
-#include "Utils/Ray.h"
-
-
 class HitRecord {
-  public:
+public:
     // Public attributes
     glm::dvec3 point;
     glm::dvec3 normal;
@@ -17,13 +11,11 @@ class HitRecord {
     bool frontFace;
 
     // Methods
-    void SetFaceNormal(const Ray& ray, const glm::dvec3& outwardNormal) {
-      this->frontFace = glm::dot(ray.Direction(), outwardNormal) < 0;
-      this->normal = this->frontFace ? outwardNormal : -outwardNormal;
+    void SetFaceNormal(const Ray &ray, const glm::dvec3 &outwardNormal) {
+        this->frontFace = glm::dot(ray.Direction(), outwardNormal) < 0;
+        this->normal = this->frontFace ? outwardNormal : -outwardNormal;
     }
-
 };
-
 
 
 #endif //HITRECORD_H

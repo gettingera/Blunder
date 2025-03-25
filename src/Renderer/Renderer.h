@@ -7,9 +7,15 @@
 
 
 class Renderer {
-  public:
+public:
+    // Constructor
+    Renderer() = default;
+
     // Methods
-    virtual RenderTarget* Render(Scene* scene);
+    virtual std::shared_ptr<RenderTarget> Render(std::shared_ptr<Scene> scene) = 0;
+
+    // Destructor
+    virtual ~Renderer() = default;
 };
 
 

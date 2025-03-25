@@ -3,8 +3,8 @@
 
 
 struct SceneSettings {
-  int width;
-  int height;
+    int width;
+    int height;
 };
 
 
