@@ -40,9 +40,9 @@ public:
 
                 // Write integer converted color data to file
                 file <<
-                        static_cast<int>(color.x) << " " <<
-                        static_cast<int>(color.y) << " " <<
-                        static_cast<int>(color.z) << "\n";
+                        static_cast<int>(color.x * 255.999) << " " <<
+                        static_cast<int>(color.y * 255.999) << " " <<
+                        static_cast<int>(color.z * 255.999) << "\n";
             }
         }
 
