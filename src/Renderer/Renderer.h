@@ -12,7 +12,7 @@ public:
     Renderer() = default;
 
     // Methods
-    virtual void Render(const shared_ptr<Scene> &scene, const shared_ptr<RenderTarget> &render_target) = 0;
+    virtual void Render(const Scene &scene, const shared_ptr<RenderTarget> &render_target) = 0;
 
     // Destructor
     virtual ~Renderer() = default;

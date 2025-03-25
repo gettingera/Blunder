@@ -5,12 +5,10 @@
 class Camera {
 public:
     // Constructor
-    Camera() = default;
-
     Camera(const dvec3 &position, const dvec3 &direction, const dvec3 &up_direction) {
         set_position(position);
         set_direction(direction);
-        set_direction(up_direction);
+        set_up_direction(up_direction);
     }
 
     // Getters
@@ -48,10 +46,10 @@ public:
     }
 
 private:
-    dvec3 position = dvec3(0);
-    dvec3 direction = dvec3(0);
+    dvec3 position{};
+    dvec3 direction{};
     dvec3 up_direction = dvec3(0, 0, 1);
-    double vfov = 90;
+    double vfov = 30;
 
     // // Methods
     // void Initialize() {

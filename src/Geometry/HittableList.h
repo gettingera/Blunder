@@ -24,10 +24,10 @@ public:
     bool Hit(const Ray &ray, const Interval &rayTime, HitRecord &record) const override {
         HitRecord tempRecord{};
         bool hitAny = false;
-        auto closestSoFar = rayTime.max;
+        auto closestSoFar = rayTime.get_max();
 
         for (const auto &object: objects) {
-            if (object->Hit(ray, Interval(rayTime.min, closestSoFar), tempRecord)) {
+            if (object->Hit(ray, Interval(rayTime.get_min(), closestSoFar), tempRecord)) {
                 hitAny = true;
                 closestSoFar = tempRecord.get_time();
                 record = tempRecord;

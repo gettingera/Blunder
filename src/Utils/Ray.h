@@ -5,6 +5,8 @@
 class Ray {
 public:
     // Constructor
+    Ray() = default;
+
     Ray(const dvec3 &origin, const dvec3 &direction) {
         set_origin(origin);
         set_direction(direction);
