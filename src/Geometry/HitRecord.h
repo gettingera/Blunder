@@ -5,10 +5,23 @@
 #include <glm/vec3.hpp>
 
 
-struct HitRecord {
-  glm::dvec3 point;
-  glm::dvec3 normal;
-  double time;
+#include "Utils/Ray.h"
+
+
+class HitRecord {
+  public:
+    // Public attributes
+    glm::dvec3 point;
+    glm::dvec3 normal;
+    double time;
+    bool frontFace;
+
+    // Methods
+    void SetFaceNormal(const Ray& ray, const glm::dvec3& outwardNormal) {
+      this->frontFace = glm::dot(ray.Direction(), outwardNormal) < 0;
+      this->normal = this->frontFace ? outwardNormal : -outwardNormal;
+    }
+
 };
 
 

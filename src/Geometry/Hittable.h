@@ -9,7 +9,7 @@
 class Hittable {
   public:
     // Constructor
-    virtual bool Hit(const Ray& ray, double time_min, double time_max, HitRecord& record) const = 0;
+    virtual bool Hit(const Ray& ray, double timeMin, double timeMax, HitRecord& record) const = 0;
 };
 
 
