@@ -49,7 +49,7 @@ private:
     dvec3 position{};
     dvec3 direction{};
     dvec3 up_direction = dvec3(0, 0, 1);
-    double vfov = 30;
+    double vfov = 20;
 
     // // Methods
     // void Initialize() {

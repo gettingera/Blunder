@@ -1,12 +1,15 @@
 #ifndef HEADERS_H
 #define HEADERS_H
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <cmath>
 #include <iostream>
 #include <limits>
 #include <memory>
 #include <random>
 #include <glm/glm.hpp>
+#include <glm/gtx/norm.hpp>
 
 
 // C++ Std Usings
@@ -22,8 +25,16 @@ const double pi = 3.1415926535897932385;
 
 // Utility Functions
 
+inline double linear_to_gamma(double linear_component)
+{
+    if (linear_component > 0)
+        return std::sqrt(linear_component);
+
+    return 0;
+}
+
 inline double degrees_to_radians(double degrees) {
-    return degrees * pi / 180.0;
+    return degrees * 3.1415926535897932385 / 180.0;
 }
 
 inline double random_double() {
@@ -42,6 +53,23 @@ static dvec3 random_dvec3() {
 
 static dvec3 random_dvec3(double min, double max) {
     return {random_double(min,max), random_double(min,max), random_double(min,max)};
+}
+
+inline dvec3 random_unit_vector() {
+    while (true) {
+        auto p = random_dvec3(-1,1);
+        auto lensq = length2(p);
+        if (1e-160 < lensq && lensq <= 1)
+            return p / sqrt(lensq);
+    }
+}
+
+inline dvec3 random_on_hemisphere(const vec3& normal) {
+    vec3 on_unit_sphere = random_unit_vector();
+    if (dot(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+        return on_unit_sphere;
+    else
+        return -on_unit_sphere;
 }
 
 // Common Headers

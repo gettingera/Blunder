@@ -24,6 +24,9 @@ public:
     void WriteToFile(const std::string &filename) const {
         std::ofstream file(filename);
 
+        // Interval for intensity, valid mapping of colors
+        static const Interval intensity(0, 0.999);
+
         // PPM Header
         file << "P3\n" << width << " " << height << "\n255\n";
 
@@ -33,11 +36,16 @@ public:
                 // Get pixel
                 const auto pixel = GetPixel(x, y);
 
+                // Gamma correction
+                auto r = linear_to_gamma(pixel.x);
+                auto g = linear_to_gamma(pixel.y);
+                auto b = linear_to_gamma(pixel.z);
+
                 // Write integer converted color data to file
                 file <<
-                        static_cast<int>(pixel.x * 255.999) << " " <<
-                        static_cast<int>(pixel.y * 255.999) << " " <<
-                        static_cast<int>(pixel.z * 255.999) << "\n";
+                        static_cast<int>(256 * intensity.clamp(r)) << " " <<
+                        static_cast<int>(256 * intensity.clamp(g)) << " " <<
+                        static_cast<int>(256 * intensity.clamp(b)) << "\n";
             }
         }
 

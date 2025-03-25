@@ -26,6 +26,12 @@ public:
         return get_min() < x && x < get_max();
     }
 
+    [[nodiscard]] double clamp(const double x) const {
+        if (x < get_min()) return get_min();
+        if (x > get_max()) return get_max();
+        return x;
+    }
+
     // Getters
     [[nodiscard]] double get_min() const {
         return min;

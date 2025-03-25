@@ -44,7 +44,7 @@ public:
 
                 for (int k = 0; k < samples; k++) {
                     Ray ray = GetRay(i, j, rtcv);
-                    color += GetRayColor(ray, scene.world);
+                    color += GetRayColor(ray, scene.world, max_depth);
                 }
 
                 color /= samples;
@@ -102,20 +102,26 @@ public:
         return {random_double() - 0.5, random_double() - 0.5, 0};
     }
 
-    [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world) {
+    [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world, const int depth) { // NOLINT(*-no-recursion)
+        if (depth <= 0)
+            return dvec3(0);
+
         HitRecord record{};
 
-        if (world->Hit(ray, Interval(0, infinity), record)) {
-            return 0.5 * (record.get_normal() + dvec3(1));
+        if (world->Hit(ray, Interval(0.001, infinity), record)) {
+            const dvec3 direction = record.get_normal() + random_unit_vector();
+            return 0.5 * GetRayColor(Ray(record.get_point(), direction), world, depth-1);
         }
 
-        dvec3 unit_direction = normalize(ray.Direction());
-        auto a = 0.5 * (unit_direction.y + 1.0);
+        // Sky rendering
+        const dvec3 unit_direction = normalize(ray.Direction());
+        const auto a = 0.5 * (unit_direction.z + 1.0);
         return (1.0 - a) * dvec3(1) + a * dvec3(0.5, 0.7, 1);
     }
 
 private:
-    int samples = 10;
+    int samples = 100;
+    int max_depth = 10;
 };
 
 
