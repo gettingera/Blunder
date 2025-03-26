@@ -40,8 +40,17 @@ void TestCameraPass(void);
 void TestCameraFail(void);
 
 //Geometry
-void TestGeometryPass(void);
-void TestGeometryFail(void);
+void TestGeometryHitRecordPass(void);
+void TestGeometryHitRecordFail(void);
+
+void TestGeometryHittablePass(void);
+void TestGeometryHittableFail(void);
+
+void TestGeometryHittableListPass(void);
+void TestGeometryHittableListFail(void);
+
+void TestGeometrySpherePass(void);
+void TestGeometrySphereFail(void);
 
 //Materials
 void TestMaterialsPass(void);
@@ -66,8 +75,18 @@ int main() {
     TestCameraFail();
 
     // Test Geometry
-    TestGeometryPass();
-    TestGeometryFail();
+    TestGeometryHitRecordPass();
+    TestGeometryHitRecordFail();
+
+    TestGeometryHittablePass();
+    TestGeometryHittableFail();
+
+    TestGeometryHittableListPass();
+    TestGeometryHittableListFail();
+
+    TestGeometrySpherePass();
+    TestGeometrySphereFail();
+    
 
     // Test Materials
     TestMaterialsPass();
@@ -93,10 +112,9 @@ void TestCameraPass() {
 }
 
 void TestCameraFail() {
-    float32 width = 5.0f;
-    float32 height = 6.0f;
+    float width = 5.0f;
+    float height = 6.0f;
     RenderTarget(width, height);
-
 }
 
 void TestGeometryPass() {
