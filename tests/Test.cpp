@@ -108,7 +108,6 @@ int main() {
     TestGeometrySpherePass();
     TestGeometrySphereFail();
     
-
     // Test Materials
     TestMaterialsDielectricPass();
     TestMaterialsDielectricFail();
@@ -123,8 +122,14 @@ int main() {
     TestMaterialMetalFail();
 
     // Test Renderer
-    TestRendererPass();
-    TestRendererFail();
+    TestRendererRaytracerPass();
+    TestRendererRaytracerFail();
+
+    TestRendererRendererPass();
+    TestRendererRendererFail();
+
+    TestRendererRenderTargetPass();
+    TestRendererRenderTargetFail();
 
     // Test Scene
     TestScenePass();
@@ -207,14 +212,29 @@ void TestMaterialMetalFail() {
     Metal();
 }
 
-void TestRendererPass() {
-
+//Renderer
+void TestRendererRaytracerPass() {
+    Raytracer();
+}
+void TestRendererRaytracerFail() {
+    Raytracer();
 }
 
-void TestRendererFail() {
-
+void TestRendererRendererPass() {
+    Renderer();
+}
+void TestRendererRendererFail() {
+    Renderer();
 }
 
+void TestRendererRenderTargetPass() {
+    RenderTarget();
+}
+void TestRendererRenderTargetFail() {
+    RenderTarget();
+}
+
+//Scene
 void TestScenePass() {
 
 }
@@ -223,6 +243,8 @@ void TestSceneFail() {
 
 }
 
+
+//Utils
 void TestUtilsPass() {
 
 }
