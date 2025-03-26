@@ -236,11 +236,11 @@ void TestRendererRenderTargetFail() {
 
 //Scene
 void TestScenePass() {
-
+    Scene();
 }
 
 void TestSceneFail() {
-
+    Scene();
 }
 
 
