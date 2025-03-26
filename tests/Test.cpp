@@ -136,8 +136,14 @@ int main() {
     TestSceneFail();
 
     // Test Utils
-    TestUtilsPass();
-    TestUtilsFail();
+    TestUtilsHeadersPass();
+    TestUtilsHeadersFail();
+
+    TestUtilsIntervalPass();
+    TestUtilsIntervalFail();
+
+    TestUtilsIntervalPass();
+    TestUtilsIntervalFail();
 }
 
 //Camera
@@ -243,12 +249,25 @@ void TestSceneFail() {
     Scene();
 }
 
-
 //Utils
-void TestUtilsPass() {
-
+void TestUtilsHeadersPass() {
+    HEADERS_H
+}
+void TestUtilsHeadersFail() {
+    HEADERS_H
 }
 
-void TestUtilsFail() {
+void TestUtilsIntervalPass() {
+    Interval();
+}
+void TestUtilsIntervalFail() {
+    Interval();
+}
 
+void TestUtilsIntervalPass() {
+    Interval();
+}
+
+void TestUtilsIntervalFail() {
+    Interval();
 }
