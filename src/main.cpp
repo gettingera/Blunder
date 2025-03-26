@@ -19,13 +19,16 @@ int main() {
     const auto render_target = make_shared<RenderTarget>(width, height);
 
     // Camera
-    const auto camera = make_shared<Camera>(dvec3(-4, 10, 3), dvec3(0, 0, 0.5), dvec3(0, 0, 1));
+    const auto camera = make_shared<Camera>(dvec3(-4, 4, 1.5), dvec3(0, 0, 0.5), dvec3(0, 0, 1));
+    camera->set_focus_distance(2.5);
+    camera->set_focus_angle(9);
+    camera->set_vfov(45);
 
     // World creation
     const auto world = make_shared<HittableList>();
 
     // Materials!
-    auto material_green = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.0));
+    auto material_green = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.05));
     auto material_metal = make_shared<Metal>(dvec3(0.85), 0.01);
     auto material_glass = make_shared<Dielectric>(1.5);
     auto material_bubble = make_shared<Dielectric>(1.0/1.5);

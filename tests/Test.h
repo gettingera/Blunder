@@ -1,7 +1,7 @@
 //Includes
 
 //Camera
-#include <Camera/Camera.h>
+#include "Camera/Camera.h"
 
 //Geometry
 #include "Geometry/HitRecord.h"

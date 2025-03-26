@@ -15,6 +15,8 @@ struct RT_CAMERA_VALUES {
     double h;
     double viewport_height;
     double viewport_width;
+    double focus_distance;
+    double focus_angle;
 
     dvec3 position;
     dvec3 direction;
@@ -22,6 +24,8 @@ struct RT_CAMERA_VALUES {
     dvec3 u;
     dvec3 v;
     dvec3 w;
+    dvec3 focus_disk_u;
+    dvec3 focus_disk_v;
     dvec3 viewport_u;
     dvec3 viewport_v;
     dvec3 pixel_delta_u;
@@ -40,6 +44,8 @@ public:
 
 
         for (int j = 0; j < render_target->get_height(); j++) {
+            std::cout << "Rendering in progress: " << 100 * static_cast<double>(j) / render_target->get_height() << "%\n";
+
             for (int i = 0; i < render_target->get_width(); i++) {
                 auto color = dvec3(0);
 
@@ -84,6 +90,14 @@ public:
                                   .viewport_v / 2.0;
         rtc.pixel_upper_left = rtc.viewport_upper_left + 0.5 * (rtc.pixel_delta_u + rtc.pixel_delta_v);
 
+        auto focus_radius = scene.camera->get_focus_distance() * std::tan(
+                                degrees_to_radians(scene.camera->get_focus_angle() / 2));
+        rtc.focus_disk_u = rtc.u * focus_radius;
+        rtc.focus_disk_v = rtc.v * focus_radius;
+
+        rtc.focus_distance = scene.camera->get_focus_distance();
+        rtc.focus_angle = scene.camera->get_focus_angle();
+
         return rtc;
     }
 
@@ -93,17 +107,22 @@ public:
                                   + ((i + offset.x) * rtcv.pixel_delta_u)
                                   + ((j + offset.y) * rtcv.pixel_delta_v);
 
-        const auto ray_origin = rtcv.position;
+        const auto ray_origin = (rtcv.focus_angle <= 0) ? rtcv.position : focus_disk_sample(rtcv);
         const auto ray_direction = pixel_sample - ray_origin;
 
         return {ray_origin, ray_direction};
+    }
+
+    [[nodiscard]] static dvec3 focus_disk_sample(const RT_CAMERA_VALUES &rtcv) {
+        auto p = random_in_unit_disk();
+        return rtcv.position + (p.x * rtcv.focus_disk_u) + (p.y * rtcv.focus_disk_v);
     }
 
     [[nodiscard]] static dvec3 SampleSquare() {
         return {random_double() - 0.5, random_double() - 0.5, 0};
     }
 
-    [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world, const int depth) { // NOLINT(*-no-recursion)
+    [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world, const int depth) {
         if (depth <= 0)
             return dvec3(0);
 

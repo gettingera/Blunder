@@ -78,6 +78,14 @@ inline dvec3 random_on_hemisphere(const vec3& normal) {
         return -on_unit_sphere;
 }
 
+inline dvec3 random_in_unit_disk() {
+    while (true) {
+        auto p = dvec3(random_double(-1,1), random_double(-1,1), 0);
+        if (length2(p) < 1)
+            return p;
+    }
+}
+
 // Common Headers
 
 #include "Utils/Ray.h"

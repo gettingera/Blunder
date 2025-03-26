@@ -28,6 +28,14 @@ public:
         return vfov;
     }
 
+    [[nodiscard]] double get_focus_distance() const {
+        return focus_distance;
+    }
+
+    [[nodiscard]] double get_focus_angle() const {
+        return focus_angle;
+    }
+
     // Setters
     void set_position(const dvec3 &position) {
         this->position = position;
@@ -45,11 +53,21 @@ public:
         this->vfov = vfov;
     }
 
+    void set_focus_distance(const double focus_distance) {
+        this->focus_distance = focus_distance;
+    }
+
+    void set_focus_angle(const double focus_angle) {
+        this->focus_angle = focus_angle;
+    }
+
 private:
     dvec3 position{};
     dvec3 direction{};
     dvec3 up_direction = dvec3(0, 0, 1);
     double vfov = 20;
+    double focus_distance = 0;
+    double focus_angle = 0;
 };
 
 
