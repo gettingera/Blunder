@@ -143,11 +143,13 @@ void TestGeometryHittableListFail() {
 }
 
 void TestGeometrySpherePass() {
-    Sphere();
+    auto material_green = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.0));
+    Sphere(dvec3(0, 0, -100.5), 100, material_green);
 }
 
 void TestGeometrySphereFail() {
-    Sphere();
+    auto material_blue = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.0));
+    Sphere(dvec3(0, 0, -100.5), 100, material_blue);
 }
 
 void TestMaterialsPass() {
