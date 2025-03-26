@@ -34,56 +34,107 @@
 //Macros
 
 //Prototypes
-void TestCamera(void);
-void TestGeometry(void);
-void TestMaterials(void);
-void TestRenderer(void);
-void TestScene(void);
-void TestUtils(void);
+
+//Camera
+void TestCameraPass(void);
+void TestCameraFail(void);
+
+//Geometry
+void TestGeometryPass(void);
+void TestGeometryFail(void);
+
+//Materials
+void TestMaterialsPass(void);
+void TestMaterialsFail(void);
+
+//Renderer
+void TestRendererPass(void);
+void TestRendererFail(void);
+
+//Scene
+void TestScenePass(void);
+void TestSceneFail(void);
+
+//Utils
+void TestUtilsPass(void);
+void TestUtilsFail(void);
 
 // main Function
 int main() {
     // Test Camera
-    TestCamera();
+    TestCameraPass();
+    TestCameraFail();
 
     // Test Geometry
-    TestGeometry();
+    TestGeometryPass();
+    TestGeometryFail();
 
     // Test Materials
-    TestMaterials();
+    TestMaterialsPass();
+    TestMaterialFail();
 
     // Test Renderer
-    TestRenderer();
+    TestRendererPass();
+    TestRendererFail();
 
     // Test Scene
-    TestScene();
+    TestScenePass();
+    TestSceneFail();
 
     // Test Utils
-    TestUtils();
+    TestUtilsPass();
+    TestUtilsFail();
 }
 
-void TestCamera() {
+void TestCameraPass() {
     int width = 1280/2;
     int height = 720/2;
     RenderTarget(width, height);
 }
 
-void TestGeometry() {
+void TestCameraFail() {
+    float32 width = 5.0f;
+    float32 height = 6.0f;
+    RenderTarget(width, height);
 
 }
 
-void TestMaterials() {
+void TestGeometryPass() {
 
 }
 
-void TestRenderer() {
+void TestGeometryFail() {
 
 }
 
-void TestScene() {
+void TestMaterialsPass() {
 
 }
 
-void TestUtils() {
+void TestMaterialFail() {
+
+}
+
+void TestRendererPass() {
+
+}
+
+void TestRendererFail() {
+
+}
+
+void TestScenePass() {
+
+}
+
+void TestSceneFail() {
+
+}
+
+void TestUtilsPass() {
+
+}
+
+void TestUtilsFail() {
 
 }
