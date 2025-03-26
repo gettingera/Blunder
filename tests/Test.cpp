@@ -110,8 +110,17 @@ int main() {
     
 
     // Test Materials
-    TestMaterialsPass();
-    TestMaterialFail();
+    TestMaterialsDielectricPass();
+    TestMaterialsDielectricFail();
+
+    TestMaterialsLambertianPass();
+    TestMaterialsLabertianFail();
+
+    TestMaterialsMaterialPass();
+    TestMaterialsMaterialFail();
+
+    TestMaterialMetalPass();
+    TestMaterialMetalFail();
 
     // Test Renderer
     TestRendererPass();
@@ -126,6 +135,7 @@ int main() {
     TestUtilsFail();
 }
 
+//Camera
 void TestCameraPass() {
     int width = 1280/2;
     int height = 720/2;
@@ -138,6 +148,7 @@ void TestCameraFail() {
     RenderTarget(width, height);
 }
 
+//Geometry
 void TestGeometryHitRecordPass() {
     HitRecord();
 }
@@ -164,12 +175,36 @@ void TestGeometrySphereFail() {
     Sphere(dvec3(0, 0, -100.5), 100, material_blue);
 }
 
-void TestMaterialsPass() {
-    
+//Material
+void TestMaterialsDielectricPass() {
+    Dielectric();
 }
 
-void TestMaterialFail() {
+void TestMaterialsDielectricFail() {
+    Dielectric();
+}
 
+void TestMaterialsLambertianPass() {
+    Lambertian();
+}
+void TestMaterialsLabertianFail() {
+    Lambertian();
+}
+
+void TestMaterialsMaterialPass() {
+    Material();
+}
+
+void TestMaterialsMaterialFail() {
+    Material();
+}
+
+void TestMaterialMetalPass() {
+    Metal();
+}
+
+void TestMaterialMetalFail() {
+    Metal();
 }
 
 void TestRendererPass() {
