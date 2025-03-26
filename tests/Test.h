@@ -1,7 +1,7 @@
 //Includes
 
 //Camera
-#include <src/Camera/Camera.h>
+#include <Camera/Camera.h>
 
 //Geometry
 #include "Geometry/HitRecord.h"
@@ -30,3 +30,50 @@
 
 //Main
 #include "main.cpp"
+
+//Prototypes
+void TestCamera(void);
+void TestGeometry(void);
+void TestMaterials(void);
+void TestRenderer(void);
+void TestScene(void);
+void TestUtils(void);
+
+// main Function
+int main() {
+    // Test Camera
+
+    // Test Geometry
+
+    // Test Materials
+
+    // Test Renderer
+
+    // Test Scene
+
+    // Test Utils
+}
+
+void TestCamera() {
+
+}
+
+void TestGeometry() {
+
+}
+
+void TestMaterials() {
+
+}
+
+void TestRenderer() {
+
+}
+
+void TestScene() {
+
+}
+
+void TestUtils() {
+
+}
