@@ -1,7 +1,7 @@
 //Includes
 
 //Camera
-#include <Camera/Camera.h>
+#include "Camera/Camera.h"
 
 //Geometry
 #include "Geometry/HitRecord.h"
@@ -31,6 +31,8 @@
 //Main
 #include "main.cpp"
 
+//Macros
+
 //Prototypes
 void TestCamera(void);
 void TestGeometry(void);
@@ -42,20 +44,28 @@ void TestUtils(void);
 // main Function
 int main() {
     // Test Camera
+    TestCamera();
 
     // Test Geometry
+    TestGeometry();
 
     // Test Materials
+    TestMaterials();
 
     // Test Renderer
+    TestRenderer();
 
     // Test Scene
+    TestScene();
 
     // Test Utils
+    TestUtils();
 }
 
 void TestCamera() {
-
+    int width = 1280/2;
+    int height = 720/2;
+    RenderTarget(width, height);
 }
 
 void TestGeometry() {
