@@ -53,8 +53,17 @@ void TestGeometrySpherePass(void);
 void TestGeometrySphereFail(void);
 
 //Materials
-void TestMaterialsPass(void);
-void TestMaterialsFail(void);
+void TestMaterialsDielectricPass(void);
+void TestMaterialsDielectricFail(void);
+
+void TestMaterialsLambertianPass(void);
+void TestMaterialsLabertianFail(void);
+
+void TestMaterialsMaterialPass(void);
+void TestMaterialsMaterialFail(void);
+
+void TestMaterialMetalPass(void);
+void TestMaterialMetalFail(void);
 
 //Renderer
 void TestRendererPass(void);
@@ -117,16 +126,32 @@ void TestCameraFail() {
     RenderTarget(width, height);
 }
 
-void TestGeometryPass() {
-
+void TestGeometryHitRecordPass() {
+    HitRecord();
 }
 
-void TestGeometryFail() {
+void TestGeometryHitRecordFail() {
+    HitRecord();
+}
 
+void TestGeometryHittableListPass() {
+    HittableList();
+}
+
+void TestGeometryHittableListFail() {
+    HittableList();
+}
+
+void TestGeometrySpherePass() {
+    Sphere();
+}
+
+void TestGeometrySphereFail() {
+    Sphere();
 }
 
 void TestMaterialsPass() {
-
+    
 }
 
 void TestMaterialFail() {
