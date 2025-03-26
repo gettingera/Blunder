@@ -66,16 +66,28 @@ void TestMaterialMetalPass(void);
 void TestMaterialMetalFail(void);
 
 //Renderer
-void TestRendererPass(void);
-void TestRendererFail(void);
+void TestRendererRaytracerPass(void);
+void TestRendererRaytracerFail(void);
+
+void TestRendererRendererPass(void);
+void TestRendererRendererFail(void);
+
+void TestRendererRenderTargetPass(void);
+void TestRendererRenderTargetFail(void);
 
 //Scene
 void TestScenePass(void);
 void TestSceneFail(void);
 
 //Utils
-void TestUtilsPass(void);
-void TestUtilsFail(void);
+void TestUtilsHeadersPass(void);
+void TestUtilsHeadersFail(void);
+
+void TestUtilsIntervalPass(void);
+void TestUtilsIntervalFail(void);
+
+void TestUtilsIntervalPass(void);
+void TestUtilsIntervalFail(void);
 
 // main Function
 int main() {
