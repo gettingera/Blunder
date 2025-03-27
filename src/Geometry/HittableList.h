@@ -12,6 +12,7 @@
 class HittableList final : public Hittable {
     /// List of pointers to hittable objects.
     std::vector<shared_ptr<Hittable> > objects;
+
 public:
     // Constructors
     /**
@@ -62,7 +63,7 @@ public:
      *
      * @return List of pointers to hittable objects.
      */
-    [[nodiscard]] std::vector<shared_ptr<Hittable>> get_objects() const {
+    [[nodiscard]] std::vector<shared_ptr<Hittable> > get_objects() const {
         return objects;
     }
 
@@ -72,7 +73,7 @@ public:
      *
      * @param objects List of pointers to hittable objects.
      */
-    void set_objects(const std::vector<shared_ptr<Hittable>> &objects) {
+    void set_objects(const std::vector<shared_ptr<Hittable> > &objects) {
         this->objects = objects;
     }
 };

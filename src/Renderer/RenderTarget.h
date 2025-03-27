@@ -18,6 +18,7 @@ class RenderTarget {
 
     /// Two dimensional array of pixels.
     std::vector<std::vector<dvec3> > pixels;
+
 public:
     // Constructors
     /**

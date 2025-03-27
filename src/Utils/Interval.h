@@ -113,7 +113,8 @@ public:
     }
 
     // Static intervals, useful later
-    static const Interval empty, universe;
+    static const Interval empty;
+    static const Interval universe;
 };
 
 /// Empty interval.
@@ -121,5 +122,6 @@ const Interval Interval::empty = Interval(+infinity, -infinity);
 
 /// Universe.
 const Interval Interval::universe = Interval(-infinity, +infinity);
+
 
 #endif //INTERVAL_H

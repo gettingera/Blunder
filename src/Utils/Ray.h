@@ -13,6 +13,7 @@ class Ray {
 
     /// Position of ray direction.
     dvec3 direction{};
+
 public:
     // Constructors
     Ray() = default;
