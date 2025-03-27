@@ -1,7 +1,5 @@
 #ifndef RAYTRACER_H
 #define RAYTRACER_H
-
-
 #include "Renderer.h"
 #include "RenderTarget.h"
 #include "Geometry/HitRecord.h"
@@ -9,6 +7,11 @@
 #include "Scene/Scene.h"
 
 
+/**
+ * Utility structure to hold necessary camera values and computations for ray tracing.
+ *
+ * Values are largely undocumented for now. They will be documented soon. UNFINISHED.
+ */
 struct RT_CAMERA_VALUES {
     double focal_length;
     double theta;
@@ -35,7 +38,18 @@ struct RT_CAMERA_VALUES {
 };
 
 
+/**
+ * Raytracer renderer.
+ *
+ * Useful for rendering photorealistic images imitating the interactions of light.
+ */
 class Raytracer final : public Renderer {
+    /// The amount of rays traced per pixel.
+    int samples = 10;
+
+    /// The amount of times a ray may scatter before having a contribution of zero.
+    int max_depth = 10;
+
 public:
     // Methods
     void Render(const Scene &scene, const shared_ptr<RenderTarget> &render_target) override {
@@ -44,7 +58,8 @@ public:
 
 
         for (int j = 0; j < render_target->get_height(); j++) {
-            std::cout << "Rendering in progress: " << 100 * static_cast<double>(j) / render_target->get_height() << "%\n";
+            std::cout << "Rendering in progress: " << 100 * static_cast<double>(j) / render_target->get_height() <<
+                    "%\n";
 
             for (int i = 0; i < render_target->get_width(); i++) {
                 auto color = dvec3(0);
@@ -61,6 +76,13 @@ public:
     }
 
     // Helpers
+    /**
+     * Initializes the camera values required for raytracing.
+     *
+     * @param scene Scene to be rendered.
+     * @param render_target Render target to be rendered to.
+     * @return RT_CAMERA_VALUES struct.
+     */
     static RT_CAMERA_VALUES InitializeRTCamera(const Scene &scene, const shared_ptr<RenderTarget> &render_target) {
         RT_CAMERA_VALUES rtc{};
 
@@ -101,6 +123,14 @@ public:
         return rtc;
     }
 
+    /**
+     * Gets the ray coming from the camera through pixel (i, j).
+     *
+     * @param i Pixel X position.
+     * @param j Pixel Y position.
+     * @param rtcv RT_CAMERA_VALUES struct.
+     * @return Ray pointing through pixel (i, j).
+     */
     [[nodiscard]] static Ray GetRay(const int i, const int j, const RT_CAMERA_VALUES &rtcv) {
         const auto offset = SampleSquare();
         const auto pixel_sample = rtcv.pixel_upper_left
@@ -113,15 +143,34 @@ public:
         return {ray_origin, ray_direction};
     }
 
+    /**
+     * Gets a random point on the focus disk for rendering depth of field.
+     *
+     * @param rtcv RT_CAMERA_VALUES struct.
+     * @return Point on focus disk.
+     */
     [[nodiscard]] static dvec3 focus_disk_sample(const RT_CAMERA_VALUES &rtcv) {
         auto p = random_in_unit_disk();
         return rtcv.position + (p.x * rtcv.focus_disk_u) + (p.y * rtcv.focus_disk_v);
     }
 
+    /**
+     * Gets a random point on the unit square, centered at (0, 0).
+     *
+     * @return Random point on the unit square.
+     */
     [[nodiscard]] static dvec3 SampleSquare() {
         return {random_double() - 0.5, random_double() - 0.5, 0};
     }
 
+    /**
+     * Gets the visual color of a ray interacting with the world.
+     *
+     * @param ray Ray of light.
+     * @param world List of objects to be rendered.
+     * @param depth Recursion depth, amount of scattering allowed.
+     * @return Color of ray interacting with the world.
+     */
     [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world, const int depth) {
         if (depth <= 0)
             return dvec3(0);
@@ -140,14 +189,10 @@ public:
         }
 
         // Sky rendering
-        const dvec3 unit_direction = normalize(ray.Direction());
+        const dvec3 unit_direction = normalize(ray.get_direction());
         const auto a = 0.5 * (unit_direction.z + 1);
         return (1.0 - a) * dvec3(0.8, 0.9, 1.0) + a * dvec3(0.4, 0.8, 1.0);
     }
-
-private:
-    int samples = 10;
-    int max_depth = 10;
 };
 
 

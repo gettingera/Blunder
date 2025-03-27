@@ -8,10 +8,10 @@
  * Useful for giving objects a distinctive metal appearance.
  */
 class Metal final : public Material {
-    /// Color.
+    /// Color of metal.
     dvec3 color{};
 
-    /// Roughness.
+    /// Roughness of metal.
     double roughness{};
 
 public:

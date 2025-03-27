@@ -8,7 +8,7 @@
  * Useful for giving objects a matte appearance.
  */
 class Lambertian final : public Material {
-    /// Color.
+    /// Color of matte surface.
     dvec3 color{};
 
 public:
