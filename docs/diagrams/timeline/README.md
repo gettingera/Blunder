@@ -1,3 +1,3 @@
 # Blunder Project Milestone Timeline
 
-![Blunder Timeline](https://github.com/gettingera/Blunder/docs/diagrams/timeline/blundertimeline.jpg)
+![Blunder Timeline](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/timeline/blundertimeline.jpg)
