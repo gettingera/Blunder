@@ -9,7 +9,7 @@
 ## Gavin Sloan
 
 ## Anna Gettinger
-![gettingera](https://github.com/gettingera/Blunder/blob/main/doc/members/team_pictures/agettinger.png)
+![gettingera](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png)
 ### Week 1
 -	Coordinate project planning
 -	Create GitHub repository
