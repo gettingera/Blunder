@@ -28,7 +28,7 @@ add_subdirectory(${LIB_DIR}/glm)
 target_link_libraries(${PROJECT_NAME} PRIVATE glm)  # If GLM needs to be linked, otherwise remove this line
 
 # Find Doxygen as a system package
-find_package(Doxygen REQUIRED)
+find_package(Doxygen)
 
 if (DOXYGEN_FOUND)
     set(DOXYGEN_IN ${CMAKE_SOURCE_DIR}/Doxyfile)
@@ -44,5 +44,5 @@ if (DOXYGEN_FOUND)
 
     add_dependencies(${PROJECT_NAME} doc)
 else()
-    message(FATAL_ERROR "Doxygen not found on your system. Please install Doxygen.")
+    message(WARNING "Doxygen not found on your system. Doxygen docs will not be generated.")
 endif()
