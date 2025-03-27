@@ -2,14 +2,23 @@
 #define LAMBERTIAN_H
 
 
-#include "Material.h"
-
-
+/**
+ * Lambertian material.
+ *
+ * Useful for giving objects a matte appearance.
+ */
 class Lambertian final : public Material {
+    /// Color.
+    dvec3 color{};
+
 public:
     // Constructors
-    Lambertian(const dvec3 &albedo) {
-        set_albedo(albedo);
+    /**
+     * Makes a new lambertian material.
+     * @param color Color.
+     */
+    explicit Lambertian(const dvec3 &color) {
+        set_color(color);
     }
 
     // Methods
@@ -21,23 +30,29 @@ public:
             direction = record.get_normal();
 
         scattered = Ray(record.get_point(), direction);
-        attenuation = albedo;
+        attenuation = color;
 
         return true;
     }
 
     // Getters
-    [[nodiscard]] dvec3 get_albedo() const {
-        return albedo;
+    /**
+     * Gets color.
+     * @return Color
+     */
+    [[nodiscard]] dvec3 get_color() const {
+        return color;
     }
 
     // Setters
-    void set_albedo(const dvec3 &albedo) {
-        this->albedo = albedo;
+    /**
+     * Sets color.
+     *
+     * @param color Color.
+     */
+    void set_color(const dvec3 &color) {
+        this->color = color;
     }
-
-private:
-    dvec3 albedo;
 };
 
 

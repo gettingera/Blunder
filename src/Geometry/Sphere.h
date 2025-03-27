@@ -1,14 +1,33 @@
 #ifndef SPHERE_H
 #define SPHERE_H
-
-
 #include <glm/gtx/norm.hpp>
 #include "Hittable.h"
 
 
+/**
+ * Sphere object.
+ *
+ * Use this to render perfectly spherical objects.
+ */
 class Sphere final : public Hittable {
+    /// Position of sphere.
+    dvec3 center{};
+
+    /// Radius of sphere.
+    double radius{};
+
+    /// Pointer to the sphere material.
+    shared_ptr<Material> material;
+
 public:
     // Constructors
+    /**
+     * Makes a new sphere.
+     *
+     * @param center Position of sphere.
+     * @param radius Radius of sphere.
+     * @param material Pointer to material.
+     */
     Sphere(const dvec3 &center, const double radius, const shared_ptr<Material> &material) {
         set_center(center);
         set_radius(radius);
@@ -17,9 +36,9 @@ public:
 
     // Methods
     bool Hit(const Ray &ray, const Interval &rayTime, HitRecord &record) const override {
-        dvec3 oc = center - ray.Origin();
-        auto a = length2(ray.Direction());
-        auto h = dot(ray.Direction(), oc);
+        dvec3 oc = center - ray.get_origin();
+        auto a = length2(ray.get_direction());
+        auto h = dot(ray.get_direction(), oc);
         auto c = length2(oc) - radius * radius;
 
         auto discriminant = h * h - a * c;
@@ -46,36 +65,59 @@ public:
     }
 
     // Getters
+    /**
+     * Gets center.
+     *
+     * @return Position of sphere.
+     */
     [[nodiscard]] dvec3 get_center() const {
         return center;
     }
 
+    /**
+     * Gets radius.
+     *
+     * @return Radius of sphere.
+     */
     [[nodiscard]] double get_radius() const {
         return radius;
     }
 
+    /**
+     * Gets pointer to material.
+     * @return Pointer to material.
+     */
     [[nodiscard]] shared_ptr<Material> get_material() const {
         return material;
     }
 
     // Setters
+    /**
+     * Sets center.
+     *
+     * @param center Position of sphere.
+     */
     void set_center(const dvec3 &center) {
         this->center = center;
     }
 
+    /**
+     * Sets radius.
+     *
+     * @param radius Radius of sphere.
+     */
     void set_radius(const double radius) {
         this->radius = radius;
     }
 
+    /**
+     * Sets pointer to material.
+     *
+     * @param material Pointer to material.
+     */
     void set_material(const shared_ptr<Material> &material) {
         this->material = material;
     }
-
-private:
-    // Attributes
-    dvec3 center {};
-    double radius {};
-    shared_ptr<Material> material;
 };
 
 

@@ -4,7 +4,10 @@
 
 class Ray {
 public:
-    // Constructor
+    // Constructors
+    /**
+     * Creates a new Ray.
+     */
     Ray() = default;
 
     Ray(const dvec3 &origin, const dvec3 &direction) {
@@ -14,12 +17,13 @@ public:
 
     // Methods
     [[nodiscard]] dvec3 At(const double time) const {
-        return Origin() + (Direction() * time);
+        return get_origin() + (get_direction() * time);
     }
 
     // Getters
-    [[nodiscard]] const dvec3 &Origin() const { return origin; }
-    [[nodiscard]] const dvec3 &Direction() const { return direction; }
+    [[nodiscard]] const dvec3 &get_origin() const { return origin; }
+
+    [[nodiscard]] const dvec3 &get_direction() const { return direction; }
 
     // Setters
     void set_origin(const dvec3 &origin) {
@@ -32,7 +36,8 @@ public:
 
 private:
     // Attributes
-    dvec3 origin{}, direction{};
+    dvec3 origin{};
+    dvec3 direction{};
 };
 
 

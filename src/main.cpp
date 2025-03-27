@@ -19,9 +19,9 @@ int main() {
     const auto render_target = make_shared<RenderTarget>(width, height);
 
     // Camera
-    const auto camera = make_shared<Camera>(dvec3(-4, 4, 1.5), dvec3(0, 0, 0.5), dvec3(0, 0, 1));
+    const auto camera = make_shared<Camera>(dvec3(-4, 4, 1.5), dvec3(0, 0, 0.5));
     camera->set_focus_distance(2.5);
-    camera->set_focus_angle(9);
+    camera->set_focus_angle(0);
     camera->set_vfov(45);
 
     // World creation

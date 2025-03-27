@@ -146,7 +146,7 @@ public:
     }
 
 private:
-    int samples = 100;
+    int samples = 10;
     int max_depth = 10;
 };
 
