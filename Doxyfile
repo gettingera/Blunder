@@ -1,0 +1,8 @@
+PROJECT_NAME          = "Blunder"
+OUTPUT_DIRECTORY      = "../docs/code"
+INPUT                 = "../src"
+RECURSIVE             = YES
+GENERATE_HTML         = YES
+GENERATE_LATEX        = NO
+EXTRACT_PRIVATE       = YES
+HIDE_UNDOC_MEMBERS    = YES

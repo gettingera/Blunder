@@ -7,24 +7,24 @@ class Material;
 
 
 /**
- * Storing information from ray-hittable intersections.
+ * Stores information from ray-hittable intersections.
  *
  * This is useful for avoiding lengthy parameter lists.
  */
 class HitRecord {
-    /// Point of the ray-hittable intersection.
+    /// Point of intersection.
     dvec3 point{};
 
-    /// Normal of the hittable at the intersection.
+    /// Surface normal at the intersection.
     dvec3 normal{};
 
-    /// Material of the hittable.
+    /// Material of the intersected object.
     shared_ptr<Material> material{};
 
-    /// Parameterized time when the Ray meets the hittable.
+    /// Ray parameter at intersection.
     double time{};
 
-    /// Whether the ray intersected the hittable from the inside or outside.
+    /// Whether the intersection was from inside or outside.
     bool front_face{};
 
 public:
@@ -36,10 +36,10 @@ public:
 
     // Methods
     /**
-     * Calculates the front_face and normal from incoming ray and hittable normal information.
+     * Computes intersection normal direction based on ray and surface normal.
      *
-     * @param ray The incoming Ray from the camera.
-     * @param outwardNormal The outward facing normal from the hittable.
+     * @param ray The incoming ray.
+     * @param outwardNormal The outward-facing surface normal.
      */
     void SetFaceNormal(const Ray &ray, const dvec3 &outwardNormal) {
         front_face = dot(ray.get_direction(), outwardNormal) < 0;
@@ -48,45 +48,45 @@ public:
 
     // Getters
     /**
-     * Gets point.
+     * Gets the intersection point.
      *
-     * @return Point of the ray-hittable intersection.
+     * @return Point of intersection.
      */
     [[nodiscard]] dvec3 get_point() const {
         return point;
     }
 
     /**
-     * Gets normal.
+     * Gets the surface normal.
      *
-     * @return Normal of the hittable at the intersection.
+     * @return Surface normal at the intersection.
      */
     [[nodiscard]] dvec3 get_normal() const {
         return normal;
     }
 
     /**
-     * Gets material pointer.
+     * Gets the material.
      *
-     * @return Material of the hittable.
+     * @return Material of the intersected object.
      */
     [[nodiscard]] shared_ptr<Material> get_material() const {
         return material;
     }
 
     /**
-     * Gets time.
+     * Gets the ray parameter.
      *
-     * @return Parameterized time when the Ray meets the hittable.
+     * @return Ray parameter at intersection.
      */
     [[nodiscard]] double get_time() const {
         return time;
     }
 
     /**
-     * Gets front_face.
+     * Gets the intersection orientation.
      *
-     * @return Whether the ray intersected the hittable from the inside or outside.
+     * @return Whether the intersection was from inside or outside.
      */
     [[nodiscard]] bool get_front_face() const {
         return front_face;
@@ -94,45 +94,45 @@ public:
 
     // Setters
     /**
-     * Sets point.
+     * Sets the intersection point.
      *
-     * @param point Point of the ray-hittable intersection.
+     * @param point Point of intersection.
      */
     void set_point(const dvec3 &point) {
         this->point = point;
     }
 
     /**
-     * Sets normal.
+     * Sets the surface normal.
      *
-     * @param normal Normal of the hittable at the intersection.
+     * @param normal Surface normal at the intersection.
      */
     void set_normal(const dvec3 &normal) {
         this->normal = normal;
     }
 
     /**
-     * Sets material pointer.
+     * Sets the material.
      *
-     * @param material Material of the hittable.
+     * @param material Material of the intersected object.
      */
     void set_material(const shared_ptr<Material> &material) {
         this->material = material;
     }
 
     /**
-     * Sets time.
+     * Sets the ray parameter.
      *
-     * @param time Parameterized time when the Ray meets the hittable.
+     * @param time Ray parameter at intersection.
      */
     void set_time(const double time) {
         this->time = time;
     }
 
     /**
-     * Sets front_face.
+     * Sets the intersection orientation.
      *
-     * @param front_face Whether the ray intersected the hittable from the inside or outside.
+     * @param front_face Whether the intersection was from inside or outside.
      */
     void set_front_face(const bool front_face) {
         this->front_face = front_face;

@@ -16,7 +16,7 @@ public:
     /**
      * Makes a new dielectric material.
      *
-     * @param index_of_refraction Index of refraction.
+     * @param index_of_refraction How much light bends at the surface.
      */
     explicit Dielectric(const double &index_of_refraction) {
         set_index_of_refraction(index_of_refraction);
@@ -44,10 +44,10 @@ public:
     }
 
     /**
-     * Helper function to approximate reflectance of dielectric surfaces.
+     * Helper function to approximate likelihood of reflectance.
      *
-     * @param cosine View angle.
-     * @param refraction_index Index of refraction.
+     * @param cosine Cosine of the angle between the ray and the surface normal.
+     * @param refraction_index How much light bends at the surface.
      * @return Likelihood of reflectance.
      */
     static double reflectance(const double cosine, const double refraction_index) {
@@ -61,7 +61,7 @@ public:
     /**
      * Gets index_of_refraction.
      *
-     * @return Index of refraction.
+     * @return How much light bends at the surface.
      */
     [[nodiscard]] double get_index_of_refraction() const {
         return index_of_refraction;
@@ -71,7 +71,7 @@ public:
     /**
      * Sets index_of_refraction.
      *
-     * @param index_of_refraction Index of refraction.
+     * @param index_of_refraction How much light bends at the surface.
      */
     void set_index_of_refraction(const double index_of_refraction) {
         this->index_of_refraction = index_of_refraction;

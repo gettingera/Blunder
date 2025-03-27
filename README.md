@@ -1,2 +1,5 @@
 # Blunder
-Repository for Agile Project in CYBR 404.
+An interactive, innovative raytracer for the modern world.
+
+# Getting Started
+Write a raytracer yourself (average foss enthusiast)

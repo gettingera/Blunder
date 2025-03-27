@@ -8,17 +8,17 @@
  * Useful for giving objects a distinctive metal appearance.
  */
 class Metal final : public Material {
-    /// Color of metal.
+    /// Color.
     dvec3 color{};
 
-    /// Roughness of metal.
+    /// Roughness.
     double roughness{};
 
 public:
     // Constructors
     /**
      * Makes a new metal material.
-     * 
+     *
      * @param color Color.
      * @param roughness Roughness.
      */
@@ -39,7 +39,7 @@ public:
     // Getters
     /**
      * Gets color.
-     * 
+     *
      * @return Color.
      */
     [[nodiscard]] dvec3 get_color() const {
@@ -48,7 +48,7 @@ public:
 
     /**
      * Gets roughness.
-     * 
+     *
      * @return Roughness.
      */
     [[nodiscard]] double get_roughness() const {
