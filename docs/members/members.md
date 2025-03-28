@@ -8,7 +8,19 @@
 
 ## Gavin Sloan
 ![SloanG1](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg)
-
+### Week 1
+- Create test cases for raytracer
+- Coordinate with the code lead
+- Coordinate with the design lead
+### Week 2
+- Create test cases for raytracer
+- Coordinate with the code lead
+- Coordinate with the design lead
+### Week 3
+- Create test cases for raytracer
+- Coordinate with the code lead
+- Coordinate with the design lead
+  
 ## Anna Gettinger
 ![gettingera](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png)
 ### Week 1
