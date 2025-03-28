@@ -7,7 +7,6 @@ Write a raytracer yourself (average foss enthusiast)
 # Index
 ## Prefatory Information
 - [Members and Roles]()
-- [Outline of Project]()
 - [Scope Statement]()
 - [Milestones]()
 - [Timeline]()
