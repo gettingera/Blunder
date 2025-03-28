@@ -9,22 +9,28 @@
 ## Kaden Gilbert
 
 ## Gavin Sloan
+
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg" alt="Gavin Sloan" width="500" height:auto>
+
 ### Week 1
 - Create test cases for raytracer
 - Coordinate with the code lead
 - Coordinate with the design lead
+
 ### Week 2
 - Create test cases for raytracer
 - Coordinate with the code lead
 - Coordinate with the design lead
+  
 ### Week 3
 - Create test cases for raytracer
 - Coordinate with the code lead
 - Coordinate with the design lead
   
 ## Anna Gettinger
+
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png" alt="Anna Gettinger" width="500" height:auto>
+
 ### Week 1
 -	Coordinate project planning
 -	Create GitHub repository
@@ -34,10 +40,12 @@
 -	Create milestones timeline
 -	Create user stories diagram
 -	Assist with creating main README.md file
+
 ### Week 2
 - Assist with raycaster extensions coding
 - Coordinate tasks and commmunicate with team members
 - Keep track of team progress on GitHub
+
 ### Week 3
 -	Assist with GUI coding
 -	Coordinate tasks and commmunicate with team members
