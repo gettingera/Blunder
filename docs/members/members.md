@@ -7,7 +7,7 @@
 ## Kaden Gilbert
 
 ## Gavin Sloan
-![SloanG1](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/gavinsloan.jpeg)
+![SloanG1](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg)
 
 ## Anna Gettinger
 ![gettingera](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png)
