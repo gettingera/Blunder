@@ -10,7 +10,7 @@ Write a raytracer yourself (average foss enthusiast)
 - [General Idea]()
 - [Scope Statement]()
 - [Milestones]()
-- [Timelines]()
+- [Timeline]()
 - [Executive Summary]()
 
 ## Sprint 1
