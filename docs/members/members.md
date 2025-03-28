@@ -5,7 +5,7 @@
 
 
 ## Kade Schrock 
-<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/IMG_8822" alt="Thomas Safago" width="500" height:auto>
+<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/IMG_8822.jpg" alt="Kade Schrock" width="500" height:auto>
 ## Kaden Gilbert
 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/kadengilbert.jpg" alt="Kaden Gilbert" width="500" height:auto>
