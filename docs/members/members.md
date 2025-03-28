@@ -28,3 +28,5 @@
 -	Coordinate tasks and commmunicate with team members
 - Keep track of team progress on GitHub
 - Create final project presentation
+
+Go to [Home](https://github.com/gettingera/Blunder)
