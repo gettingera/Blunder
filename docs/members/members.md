@@ -8,7 +8,7 @@
 
 ## Kaden Gilbert
 
-<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/kadengilbert.jpeg" alt="Kaden Gilbert" width="500" height:auto>
+<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/kadengilbert.jpg" alt="Kaden Gilbert" width="500" height:auto>
 
 ## Gavin Sloan
 
