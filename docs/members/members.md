@@ -1,6 +1,7 @@
 # Blunder Team Members
 
 ## Thomas Safago
+![kiffit](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/tsafago.jpeg)
 
 ## Kade Schrock 
 
