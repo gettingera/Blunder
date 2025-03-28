@@ -36,21 +36,10 @@
 //Prototypes
 
 //Camera
-void TestCameraPass(void);
-void TestCameraFail(void);
+void TestCamera(void);
 
 //Geometry
-void TestGeometryHitRecordPass(void);
-void TestGeometryHitRecordFail(void);
-
-void TestGeometryHittablePass(void);
-void TestGeometryHittableFail(void);
-
-void TestGeometryHittableListPass(void);
-void TestGeometryHittableListFail(void);
-
-void TestGeometrySpherePass(void);
-void TestGeometrySphereFail(void);
+void TestGeometrySphere(void);
 
 //Materials
 void TestMaterialsDielectricPass(void);
@@ -66,47 +55,26 @@ void TestMaterialMetalPass(void);
 void TestMaterialMetalFail(void);
 
 //Renderer
-void TestRendererRaytracerPass(void);
-void TestRendererRaytracerFail(void);
+void TestRendererRaytracer(void);
+void TestRendererRenderer(void);
+void TestRendererRenderTarget(void);
 
-void TestRendererRendererPass(void);
-void TestRendererRendererFail(void);
-
-void TestRendererRenderTargetPass(void);
-void TestRendererRenderTargetFail(void);
 
 //Scene
 void TestScenePass(void);
 void TestSceneFail(void);
 
 //Utils
-void TestUtilsHeadersPass(void);
-void TestUtilsHeadersFail(void);
+void TestUtilsHeaders(void);
 
-void TestUtilsIntervalPass(void);
-void TestUtilsIntervalFail(void);
-
-void TestUtilsIntervalPass(void);
-void TestUtilsIntervalFail(void);
 
 // main Function
 int main() {
     // Test Camera
-    TestCameraPass();
-    TestCameraFail();
+    TestCamera();
 
     // Test Geometry
-    TestGeometryHitRecordPass();
-    TestGeometryHitRecordFail();
-
-    TestGeometryHittablePass();
-    TestGeometryHittableFail();
-
-    TestGeometryHittableListPass();
-    TestGeometryHittableListFail();
-
-    TestGeometrySpherePass();
-    TestGeometrySphereFail();
+    TestGeometrySphere();
     
     // Test Materials
     TestMaterialsDielectricPass();
@@ -122,152 +90,81 @@ int main() {
     TestMaterialMetalFail();
 
     // Test Renderer
-    TestRendererRaytracerPass();
-    TestRendererRaytracerFail();
+    TestRendererRaytracer();
 
-    TestRendererRendererPass();
-    TestRendererRendererFail();
+    TestRendererRenderer();
 
-    TestRendererRenderTargetPass();
-    TestRendererRenderTargetFail();
+    TestRendererRenderTarget();
 
     // Test Scene
-    TestScenePass();
-    TestSceneFail();
+    TestScene();
 
     // Test Utils
-    TestUtilsHeadersPass();
-    TestUtilsHeadersFail();
-
-    TestUtilsIntervalPass();
-    TestUtilsIntervalFail();
-
-    TestUtilsIntervalPass();
-    TestUtilsIntervalFail();
+    TestUtilsHeaders();
 }
 
 //Camera
-void TestCameraPass() {
+void TestCamera() {
     int width = 1280/2;
     int height = 720/2;
-    RenderTarget(width, height);
-}
-
-void TestCameraFail() {
-    float width = 5.0f;
-    float height = 6.0f;
-    RenderTarget(width, height);
+    if (RenderTarget(width, height)) {
+        printf(true);
+    } else {
+        prinf(false);
+    }
 }
 
 //Geometry
-void TestGeometryHitRecordPass() {
-    HitRecord();
-}
-
-void TestGeometryHitRecordFail() {
-    HitRecord();
-}
-
-void TestGeometryHittableListPass() {
-    HittableList();
-}
-
-void TestGeometryHittableListFail() {
-    HittableList();
-}
-
-void TestGeometrySpherePass() {
+void TestGeometrySphere() {
     auto material_green = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.0));
-    Sphere(dvec3(0, 0, -100.5), 100, material_green);
-}
-
-void TestGeometrySphereFail() {
-    auto material_blue = make_shared<Lambertian>(dvec3(0.8, 0.8, 0.0));
-    Sphere(dvec3(0, 0, -100.5), 100, material_blue);
+    if (Sphere(dvec3(0, 0, -100.5), 100, material_green)) {
+        printf(true);
+    } else {
+        prinf(false);
+    }
 }
 
 //Material
-void TestMaterialsDielectricPass() {
-    Dielectric();
-}
-
-void TestMaterialsDielectricFail() {
-    Dielectric();
-}
-
-void TestMaterialsLambertianPass() {
-    Lambertian();
-}
-void TestMaterialsLabertianFail() {
-    Lambertian();
-}
-
-void TestMaterialsMaterialPass() {
-    Material();
-}
-
-void TestMaterialsMaterialFail() {
-    Material();
-}
-
-void TestMaterialMetalPass() {
-    Metal();
-}
-
-void TestMaterialMetalFail() {
-    Metal();
-}
 
 //Renderer
-void TestRendererRaytracerPass() {
-    Raytracer();
-}
-void TestRendererRaytracerFail() {
-    Raytracer();
+void TestRendererRaytracer() {
+    if (Raytracer) {
+        printf(true);
+    } else {
+        printf(false);
+    }
 }
 
-void TestRendererRendererPass() {
-    Renderer();
-}
-void TestRendererRendererFail() {
-    Renderer();
+void TestRendererRenderer() {
+    if (Renderer()) {
+        printf(true);
+    } else {
+        printf(false);
+    }
 }
 
 void TestRendererRenderTargetPass() {
-    RenderTarget();
-}
-void TestRendererRenderTargetFail() {
-    RenderTarget();
+    if (RenderTarget()) {
+        printf(true);
+    } else {
+        printf(false);
+    }
 }
 
 //Scene
-void TestScenePass() {
-    Scene();
-}
-
-void TestSceneFail() {
-    Scene();
+void TestScene() {
+    if Scene() {
+        printf(true);
+    } else {
+        printf(false);
+    }
 }
 
 //Utils
-void TestUtilsHeadersPass() {
-    HEADERS_H
-}
-void TestUtilsHeadersFail() {
-    HEADERS_H
-}
-
-void TestUtilsIntervalPass() {
-    Interval();
-}
-void TestUtilsIntervalFail() {
-    Interval();
-}
-
-void TestUtilsIntervalPass() {
-    Interval();
-}
-
-void TestUtilsIntervalFail() {
-    Interval();
+void TestUtilsHeaders() {
+    if HEADERS_H {
+        printf(true);
+    } else {
+        printf(false);
+    }
 }
