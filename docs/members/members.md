@@ -1,14 +1,15 @@
 # Blunder Team Members
 
 ## Thomas Safago
-![kiffit](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/tsafago.jpg)
+<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/tsafago.jpg" alt="Thomas Safago" width="500" height:auto>
+
 
 ## Kade Schrock 
 
 ## Kaden Gilbert
 
 ## Gavin Sloan
-![SloanG1](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg)
+<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg" alt="Gavin Sloan" width="500" height:auto>
 ### Week 1
 - Create test cases for raytracer
 - Coordinate with the code lead
@@ -23,7 +24,7 @@
 - Coordinate with the design lead
   
 ## Anna Gettinger
-![gettingera](https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png)
+<img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png" alt="Anna Gettinger" width="500" height:auto>
 ### Week 1
 -	Coordinate project planning
 -	Create GitHub repository
