@@ -1,13 +1,13 @@
 # Blunder Team Members
 
-## Thomas Safago
+## Code Lead: Thomas Safago
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/tsafago.jpg" alt="Thomas Safago" width="500" height:auto>
 
 
-## Kade Schrock 
+## Design Lead: Kade Schrock 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/IMG_8822.jpg" alt="Kade Schrock" width="500" height:auto>
 
-## Kaden Gilbert
+## Documentation Lead: Kaden Gilbert
 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/kadengilbert.jpg" alt="Kaden Gilbert" width="500" height:auto>
 
@@ -33,7 +33,7 @@
 - Complete a final review of the Github repository and physical documentation
 - Turn in the physical documentation to the team lead when completed
 
-## Gavin Sloan
+## Security Lead: Gavin Sloan
 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg" alt="Gavin Sloan" width="500" height:auto>
 
@@ -52,7 +52,7 @@
 - Coordinate with the code lead
 - Coordinate with the design lead
   
-## Anna Gettinger
+## Group Lead: Anna Gettinger
 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/agettinger.png" alt="Anna Gettinger" width="500" height:auto>
 
