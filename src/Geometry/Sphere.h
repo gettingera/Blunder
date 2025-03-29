@@ -39,7 +39,7 @@ public:
         dvec3 oc = center - ray.get_origin();
         auto a = length2(ray.get_direction());
         auto h = dot(ray.get_direction(), oc);
-        auto c = length2(oc) - radius * radius;
+        auto c = length2(oc) - get_radius() * get_radius();
 
         auto discriminant = h * h - a * c;
         if (discriminant < 0)
@@ -57,9 +57,9 @@ public:
 
         record.set_time(root);
         record.set_point(ray.At(record.get_time()));
-        const dvec3 outward_normal = (record.get_point() - center) / radius;
+        const dvec3 outward_normal = (record.get_point() - get_center()) / get_radius();
         record.SetFaceNormal(ray, outward_normal);
-        record.set_material(material);
+        record.set_material(get_material());
 
         return true;
     }
