@@ -6,7 +6,6 @@
 #include "Materials/Material.h"
 #include "Scene/Scene.h"
 
-
 /**
  * Utility structure to hold necessary camera values and computations for ray tracing.
  *
@@ -56,11 +55,10 @@ public:
         // Get RT_CAMERA_VALUES for ray query information
         auto rtcv = InitializeRTCamera(scene, render_target);
 
+        // Rendered rows
+        int rendered_rows = 0;
 
         for (int j = 0; j < render_target->get_height(); j++) {
-            std::cout << "Rendering in progress: " << 100 * static_cast<double>(j) / render_target->get_height() <<
-                    "%\n";
-
             for (int i = 0; i < render_target->get_width(); i++) {
                 auto color = dvec3(0);
 
@@ -72,6 +70,10 @@ public:
                 color /= samples;
                 render_target->SetPixel(i, j, color);
             }
+            rendered_rows += 1;
+            std::cout << "Rendering in progress: " << 100 * static_cast<double>(rendered_rows) / render_target->
+                    get_height() <<
+                    "%\n";
         }
     }
 

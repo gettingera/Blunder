@@ -87,6 +87,16 @@ inline double random_double(double min, double max) {
 }
 
 /**
+ * Returns a random integer between min and max.
+ * @param min Minimum integer.
+ * @param max Maximum integer.
+ * @return Random integer between min and max.
+ */
+inline int random_int(int min, int max) {
+    return static_cast<int>(random_double(min, max + 1));
+}
+
+/**
  * Gets a random vector in [0, 1)^3
  *
  * @return Component randomized 3D vector.

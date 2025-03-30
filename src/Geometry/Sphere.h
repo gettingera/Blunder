@@ -19,6 +19,9 @@ class Sphere final : public Hittable {
     /// Pointer to the sphere material.
     shared_ptr<Material> material;
 
+    /// Bounding box of the sphere.
+    AABB bounding_box;
+
 public:
     // Constructors
     /**
@@ -32,6 +35,10 @@ public:
         set_center(Ray(center, dvec3(0)));
         set_radius(radius);
         set_material(material);
+
+        // Sets bounding box of stationary sphere.
+        auto rvec = dvec3(radius);
+        set_bounding_box(AABB(get_center().get_origin() - rvec, get_center().get_origin() + rvec));
     }
 
     /**
@@ -45,6 +52,12 @@ public:
         set_center(Ray(center1, center2 - center1));
         set_radius(radius);
         set_material(material);
+
+        // Sets bounding box of moving sphere.
+        auto rvec = dvec3(radius);
+        AABB box1(get_center().At(0) - rvec, get_center().At(0) + rvec);
+        AABB box2(get_center().At(1) - rvec, get_center().At(1) + rvec);
+        set_bounding_box(AABB(box1, box2));
     }
 
     // Methods
@@ -78,6 +91,10 @@ public:
         return true;
     }
 
+    [[nodiscard]] AABB BoundingBox() const override {
+        return get_bounding_box();
+    };
+
     // Getters
     /**
      * Gets center.
@@ -103,6 +120,14 @@ public:
      */
     [[nodiscard]] shared_ptr<Material> get_material() const {
         return material;
+    }
+
+    /**
+     * Gets the bounding box.
+     * @return Bounding box surrounding the sphere.
+     */
+    [[nodiscard]] AABB get_bounding_box() const {
+        return bounding_box;
     }
 
     // Setters
@@ -131,6 +156,15 @@ public:
      */
     void set_material(const shared_ptr<Material> &material) {
         this->material = material;
+    }
+
+    /**
+     * Sets the bounding box.
+     *
+     * @param bounding_box Bounding box surrounding the sphere.
+     */
+    void set_bounding_box(const AABB &bounding_box) {
+        this->bounding_box = bounding_box;
     }
 };
 
