@@ -28,16 +28,14 @@ make  # Makes the project, binaries stored in ./bin/
 - [Executive Summary](https://github.com/gettingera/Blunder/blob/main/docs/executive-summary/README.md)
 
 ## Sprint 1
-- [Tasks]()
-- [Testing/Testing Outcomes]()
-- [Deadlines]()
-- [*Other Elements*]()
+- [Tasks](https://github.com/gettingera/Blunder/blob/main/docs/sprint-one/sprint-one-tasks.md)
+- [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/docs/sprint-one/sprint-one-testing.md)
+- [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprint-one/sprint-one-deadlines.md)
 
 ## Sprint 2
 - [Tasks]()
 - [Testing/Testing Outcomes]()
 - [Deadlines]()
-- [*Other Elements*]()
 
 ## Sprint 3
 - [Tasks]()
