@@ -193,6 +193,41 @@ public:
         const auto a = 0.5 * (unit_direction.z + 1);
         return (1.0 - a) * dvec3(0.8, 0.9, 1.0) + a * dvec3(0.4, 0.8, 1.0);
     }
+
+    // Getters and setters
+    /**
+     * Gets the number of samples.
+     *
+     * @return Amount of rays cast per pixel to be averaged in the final image.
+     */
+    [[nodiscard]] int get_samples() const {
+        return samples;
+    }
+
+    /**
+     * Sets the number of samples.
+     *
+     * @param samples Amount of rays cast per pixel to be averaged in the final image.
+     */
+    void set_samples(const int samples) {
+        this->samples = samples;
+    }
+
+    /**
+     * Gets the maximum depth.
+     * @return Maximum number of scatters a ray can have before being terminated.
+     */
+    [[nodiscard]] int get_max_depth() const {
+        return max_depth;
+    }
+
+    /**
+     * Sets the maximum depth.
+     * @param max_depth Maximum number of scatters a ray can have before being terminated.
+     */
+    void set_max_depth(const int max_depth) {
+        this->max_depth = max_depth;
+    }
 };
 
 
