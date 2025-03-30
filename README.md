@@ -21,11 +21,11 @@ make  # Makes the project, binaries stored in ./bin/
 # Index
 ## Prefatory Information
 - [Members and Roles](https://github.com/gettingera/Blunder/blob/main/docs/members/README.md)
-- [Scope Statement]()
-- [User Stories]()
-- [Milestones]()
-- [Timeline]()
-- [Executive Summary]()
+- [Scope Statement](https://github.com/gettingera/Blunder/blob/main/docs/scope/README.md)
+- [User Stories](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/user_stories/README.md)
+- [Milestones](https://github.com/gettingera/Blunder/blob/main/docs/milestones/README.md)
+- [Timeline](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/timeline/README.md)
+- [Executive Summary](https://github.com/gettingera/Blunder/blob/main/docs/executive-summary/README.md)
 
 ## Sprint 1
 - [Tasks]()
