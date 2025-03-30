@@ -1,12 +1,15 @@
 // Includes
-#include <memory>
 
+// Camera
 #include "../src/Camera/Camera.h"
+
+// Materials
+#include <cstdio>
+
 #include "../src/Materials/Dielectric.h"
 #include "../src/Materials/Lambertian.h"
 #include "../src/Materials/Material.h"
 #include "../src/Materials/Metal.h"
-
 
 // Macros
 
