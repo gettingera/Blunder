@@ -1,10 +1,18 @@
 // Includes
+#include "../lib/glm/glm/glm.hpp"
+#include "../lib/glm/glm/vec3.hpp"
+#include "../src/Renderer/RenderTarget.h"
+
+using namespace glm;
 
 // Camera
 #include "../src/Camera/Camera.h"
 
 // Materials
 #include <cstdio>
+#include <memory>
+#include <cassert>
+#include <stdexcept>
 
 #include "../src/Materials/Dielectric.h"
 #include "../src/Materials/Lambertian.h"
@@ -25,70 +33,77 @@ bool TestMetal();
 // Main Function
 int main() {
     // Test Functions
-    TestCamera();
-    TestDielectric();
-    TestLambertian();
-    TestMaterial();
-    TestMetal();
+    assert(TestCamera());
+    assert(TestDielectric());
+    assert(TestLambertian());
+    assert(TestMaterial());
+    assert(TestMetal());
 }
 
 // Camera
 bool TestCamera() {
-    bool test = true;
     try {
         int width = 1280;
         int height = 720;
 
         // Render target
-        const auto render_target = make_shared<RenderTarget>(width, height);
+        auto render_target = std::make_shared<RenderTarget>(width, height);
 
         // Camera
-        const auto camera = make_shared<Camera>(dvec3(4, -2, 0.5), dvec3(0, 0, 0));
+        auto camera = std::make_shared<Camera>(dvec3(4, -2, 0.5), dvec3(0, 0, 0));
 
         camera->set_focus_distance(4);
         camera->set_focus_angle(4);
         camera->set_vfov(45);
 
-        //Insert assertion statement here
+        assert(camera != nullptr);
+        assert(camera->get_focus_distance() == 4);
+        assert(camera->get_focus_angle() == 4);
+        assert(camera->get_vfov() == 45);
+
+        return true;
     }
-    catch (const std::assertion_error& e) {
-        test = false;
+    catch (const std::exception &e) {
+        printf("Camera Test Failed: %s\n", e.what());
+        return false;
     }
-    return test;
 }
 
 // Material
 
 bool TestDielectric() {
-    bool test = true;
-
     try {
         // Material
-        auto material_Dielectric = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
+        auto material_dielectric = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
 
-        //Insert assertion statement here
+        assert(material_dielectric != nullptr);
+        assert(material_dielectric->get_reflectivity() == 0.01);
+
+        return true;
     }
-    catch (const std::assertion_error& e) {
-        test = false;
+    catch (const std::exception &e) {
+        printf("Dielectric Test Failed: %s\n", e.what());
+        return false;
     }
-    return test; // Return test results
 }
 
 
 bool TestLambertian() {
-    bool test = true;
-
     try {
         // Material
-        auto material_lambertian = std::make_shared<Lambertian>(dvec3(0.85), 0.01);
+        auto material_lambertian = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
 
-        //Insert assertion statement here
+        assert(material_lambertian != nullptr);
+        assert(material_lambertian->get_reflectivity() == 0.01);
+
+        return true;
     }
-    catch (const std::assertion_error& e) {
-        test = false;
+    catch (const std::exception &e) {
+        printf("Lambertian Test Failed: %s\n", e.what());
+        return false;
     }
-    return test; // Return test results
 }
+
 
 bool TestMaterial() {
     bool test = true;
