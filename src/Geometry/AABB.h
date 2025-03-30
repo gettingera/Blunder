@@ -30,7 +30,7 @@ public:
      * @param y y axis interval.
      * @param z z axis interval.
      */
-    AABB(const Interval& x, const Interval& y, const Interval& z) {
+    AABB(const Interval &x, const Interval &y, const Interval &z) {
         set_x(x);
         set_y(y);
         set_z(z);

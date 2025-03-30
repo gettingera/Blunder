@@ -11,8 +11,8 @@
 // Main method
 int main() {
     // Camera dimensions
-    int width = 1200/2;
-    int height = 800/2;
+    int width = 1920 / 2;
+    int height = 1080 / 2;
 
     // Render target
     const auto render_target = make_shared<RenderTarget>(width, height);
@@ -62,19 +62,19 @@ int main() {
     world.Add(make_shared<Sphere>(dvec3(4, 0, 1), 1.0, make_shared<Metal>(dvec3(0.7, 0.6, 0.5), 0.0)));
 
     // Box creation (centered at (0, 0, 0) with size 2)
-    dvec3 v0(-1, -1, 0);  // bottom-left-front
-    dvec3 v1( 1, -1, 0);  // bottom-right-front
-    dvec3 v2( 1,  1, 0);  // top-right-front
-    dvec3 v3(-1,  1, 0);  // top-left-front
-    dvec3 v4(-1, -1,  2);  // bottom-left-back
-    dvec3 v5( 1, -1,  2);  // bottom-right-back
-    dvec3 v6( 1,  1,  2);  // top-right-back
-    dvec3 v7(-1,  1,  2);  // top-left-back
+    dvec3 v0(-1, -1, 0); // bottom-left-front
+    dvec3 v1(1, -1, 0); // bottom-right-front
+    dvec3 v2(1, 1, 0); // top-right-front
+    dvec3 v3(-1, 1, 0); // top-left-front
+    dvec3 v4(-1, -1, 2); // bottom-left-back
+    dvec3 v5(1, -1, 2); // bottom-right-back
+    dvec3 v6(1, 1, 2); // top-right-back
+    dvec3 v7(-1, 1, 2); // top-left-back
 
     // Create box triangles (each face is 2 triangles)
-    auto box_material1 = make_shared<Lambertian>(dvec3(0.8, 0.1, 0.1));  // Red material
-    auto box_material2 = make_shared<Metal>(dvec3(0.7, 0.7, 0.7), 0.0);  // Silver material
-    auto box_material3 = make_shared<Dielectric>(1.5);  // Dielectric material
+    auto box_material1 = make_shared<Lambertian>(dvec3(0.8, 0.1, 0.1)); // Red material
+    auto box_material2 = make_shared<Metal>(dvec3(0.7, 0.7, 0.7), 0.0); // Silver material
+    auto box_material3 = make_shared<Dielectric>(1.5); // Dielectric material
 
     // Front face
     world.Add(make_shared<Triangle>(v0, v1, v2, box_material1));

@@ -30,7 +30,9 @@ public:
      *
      * @param collection Collection of objects to be stored in the BVH.
      */
-    explicit BVH_Node(HittableList collection) : BVH_Node(collection.get_objects(), 0, collection.get_objects().size()) {};
+    explicit BVH_Node(HittableList collection) : BVH_Node(collection.get_objects(), 0,
+                                                          collection.get_objects().size()) {
+    };
 
     /**
      * A verbose constructor for the BVH.
@@ -39,7 +41,7 @@ public:
      * @param start Beginning index of objects.
      * @param end Last index of objects.
      */
-    BVH_Node(std::vector<shared_ptr<Hittable>> &objects, const size_t start, const size_t end) {
+    BVH_Node(std::vector<shared_ptr<Hittable> > &objects, const size_t start, const size_t end) {
         // Build bounding box of source objects
         set_bounding_box({});
         for (size_t object_index = start; object_index < end; object_index++) {
@@ -48,9 +50,10 @@ public:
         const int axis = get_bounding_box().LongestAxis();
 
         auto comparator = (axis == 0)
-            ? box_x_compare : (axis == 1)
-            ? box_y_compare
-            : box_z_compare;
+                              ? box_x_compare
+                              : (axis == 1)
+                                    ? box_y_compare
+                                    : box_z_compare;
 
         size_t object_span = end - start;
 
@@ -77,7 +80,8 @@ public:
         }
 
         bool hit_left = get_left()->Hit(ray, rayTime, record);
-        bool hit_right = get_right()->Hit(ray, Interval(rayTime.get_min(), hit_left ? record.get_time() : rayTime.get_max()), record);
+        bool hit_right = get_right()->Hit(
+            ray, Interval(rayTime.get_min(), hit_left ? record.get_time() : rayTime.get_max()), record);
 
         return hit_left || hit_right;
     };
@@ -181,7 +185,7 @@ public:
 
     /**
      * Sets the bounding box of the BVH node.
-     * 
+     *
      * @param bounding_box Bounding box of the BVH node.
      */
     void set_bounding_box(const AABB &bounding_box) {

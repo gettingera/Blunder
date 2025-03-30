@@ -11,7 +11,7 @@
  */
 class HittableList final : public Hittable {
     /// List of pointers to hittable objects.
-    std::vector<shared_ptr<Hittable>> objects;
+    std::vector<shared_ptr<Hittable> > objects;
 
     /// Bounding box of all objects in list.
     AABB bounding_box;
@@ -75,7 +75,7 @@ public:
      *
      * @return List of pointers to hittable objects.
      */
-    [[nodiscard]] std::vector<shared_ptr<Hittable>> &get_objects() {
+    [[nodiscard]] std::vector<shared_ptr<Hittable> > &get_objects() {
         return objects;
     }
 

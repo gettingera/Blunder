@@ -58,7 +58,8 @@ public:
 
         // Set bounding box
         auto bbox_origin = AABB(AABB(a.get_origin(), b.get_origin()), AABB(b.get_origin(), c.get_origin()));
-        auto bbox_direction = AABB(AABB(a.get_direction(), b.get_direction()), AABB(b.get_direction(), c.get_direction()));
+        auto bbox_direction = AABB(AABB(a.get_direction(), b.get_direction()),
+                                   AABB(b.get_direction(), c.get_direction()));
         set_bounding_box(AABB(bbox_origin, bbox_direction));
     }
 
