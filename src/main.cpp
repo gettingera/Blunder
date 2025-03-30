@@ -20,9 +20,9 @@ int main() {
     const auto render_target = make_shared<RenderTarget>(width, height);
 
     // Camera
-    const auto camera = make_shared<Camera>(dvec3(4, -2, 0.5), dvec3(0, 0, 0));
+    const auto camera = make_shared<Camera>(dvec3(10, -3, 0.5), dvec3(0, 0, 0));
     camera->set_focus_distance(4);
-    camera->set_focus_angle(4);
+    camera->set_focus_angle(0);
     camera->set_vfov(45);
 
     // World creation
@@ -37,15 +37,15 @@ int main() {
 
     // Object instances
     world->Add(make_shared<Sphere>(dvec3(0, 0, -101), 100, material_green));
-    world->Add(make_shared<Sphere>(dvec3(0, 0, 0), 1, material_red));
+    world->Add(make_shared<Sphere>(dvec3(0, 0, 0), dvec3(0, -1, 0), 1, material_red));
     // world->Add(make_shared<Sphere>(dvec3(-2, 0, 0.5), 1, material_glass));
     // world->Add(make_shared<Sphere>(dvec3(-2, 0, 0.5), 0.8, material_bubble));
     // world->Add(make_shared<Sphere>(dvec3(2, 0, 0.5), 1, material_metal));
 
     auto triangle = make_shared<Triangle>(
-        dvec3(-5, 1, -2),
-        dvec3(0, 1, 5),
-        dvec3(5, 1, -2),
+        Ray(dvec3(-5, 1, -2), dvec3(-5, 1, -2)),
+        Ray(dvec3(0, 1, 5), dvec3(0, 0, 5)),
+        Ray(dvec3(5, 1, -2), dvec3(5, 1, -2)),
         material_metal);
 
     triangle->InvertNormals();
@@ -57,7 +57,7 @@ int main() {
 
     // Render to RTT
     Raytracer rt;
-    rt.set_samples(40);
+    rt.set_samples(10);
     rt.set_max_depth(10);
 
     rt.Render(scene, render_target);

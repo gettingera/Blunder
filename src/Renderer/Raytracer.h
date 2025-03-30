@@ -132,15 +132,19 @@ public:
      * @return Ray pointing through pixel (i, j).
      */
     [[nodiscard]] static Ray GetRay(const int i, const int j, const RT_CAMERA_VALUES &rtcv) {
+        // Per pixel sample offset for antialiasing
         const auto offset = SampleSquare();
         const auto pixel_sample = rtcv.pixel_upper_left
                                   + ((i + offset.x) * rtcv.pixel_delta_u)
                                   + ((j + offset.y) * rtcv.pixel_delta_v);
 
+        // Used for depth of field, offsets ray origin by focus angle
         const auto ray_origin = (rtcv.focus_angle <= 0) ? rtcv.position : focus_disk_sample(rtcv);
         const auto ray_direction = pixel_sample - ray_origin;
 
-        return {ray_origin, ray_direction};
+        // Random double between 0 and 1 for motion blur
+        const auto ray_time = random_double();
+        return {ray_origin, ray_direction, ray_time};
     }
 
     /**

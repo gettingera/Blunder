@@ -39,7 +39,7 @@ public:
         else
             direction = refract(unit_direction, record.get_normal(), ri);
 
-        scattered = Ray(record.get_point(), direction);
+        scattered = Ray(record.get_point(), direction, rayIn.get_time());
         return true;
     }
 
