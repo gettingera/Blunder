@@ -9,18 +9,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add lib/ as a directory for external libraries
 set(LIB_DIR "${CMAKE_SOURCE_DIR}/lib")
 
+# Add bin/ as a directory for compiled binaries
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+
 # Add source files
 file(GLOB_RECURSE SRC_FILES src/*.cpp src/*.h)
 
 # Create executable
-add_executable(${PROJECT_NAME} ${SRC_FILES}
-        src/Materials/Material.h
-        src/Materials/Lambertian.h
-        src/Materials/Metal.h
-        src/Materials/Dielectric.h
-        src/Geometry/Triangle.h
-        src/Geometry/AABB.h
-        src/Geometry/BVH_Node.h)
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/src)  # Your source files

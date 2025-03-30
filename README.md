@@ -2,7 +2,7 @@
 An interactive, innovative raytracer for the modern world.
 
 # Getting Started
-Write a raytracer yourself (average foss enthusiast)
+It is currently recommended to download CLion before continuing to compile the in-development project. 
 
 # Index
 ## Prefatory Information
