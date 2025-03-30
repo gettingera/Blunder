@@ -29,7 +29,7 @@ public:
         if (near_zero(direction))
             direction = record.get_normal();
 
-        scattered = Ray(record.get_point(), direction);
+        scattered = Ray(record.get_point(), direction, rayIn.get_time());
         attenuation = color;
 
         return true;

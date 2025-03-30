@@ -14,6 +14,9 @@ class Ray {
     /// Position of ray direction.
     dvec3 direction{};
 
+    /// Time when the ray is, using the equation origin + direction * time. Used for motion blur.
+    double time{0};
+
 public:
     // Constructors
     Ray() = default;
@@ -27,6 +30,19 @@ public:
     Ray(const dvec3 &origin, const dvec3 &direction) {
         set_origin(origin);
         set_direction(direction);
+    }
+
+    /**
+     * Makes a new ray, with a time variable for motion blur.
+     *
+     * @param origin Origin.
+     * @param direction Direction.
+     * @param time Time along the ray for motion blur calculations.
+     */
+    Ray(const dvec3 &origin, const dvec3 &direction, const double time) {
+        set_origin(origin);
+        set_direction(direction);
+        set_time(time);
     }
 
     // Methods
@@ -59,6 +75,15 @@ public:
         return direction;
     }
 
+    /**
+     * Gets time.
+     *
+     * @return Time when ray is along its direction vector.
+     */
+    [[nodiscard]] double get_time() const {
+        return time;
+    }
+
     // Setters
     /**
      * Sets origin.
@@ -76,6 +101,14 @@ public:
      */
     void set_direction(const dvec3 &direction) {
         this->direction = direction;
+    }
+
+    /**
+     * Sets time.
+     * @param time Time when ray is along its direction vector.
+     */
+    void set_time(const double time) {
+        this->time = time;
     }
 };
 

@@ -31,7 +31,7 @@ public:
     bool Scatter(const Ray &rayIn, const HitRecord &record, dvec3 &attenuation, Ray &scattered) const override {
         dvec3 reflected = reflect(rayIn.get_direction(), record.get_normal());
         reflected = normalize(reflected) + roughness * random_unit_vector();
-        scattered = Ray(record.get_point(), reflected);
+        scattered = Ray(record.get_point(), reflected, rayIn.get_time());
         attenuation = color;
         return dot(scattered.get_direction(), record.get_normal()) > 0;
     }
