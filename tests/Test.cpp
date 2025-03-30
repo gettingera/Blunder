@@ -12,11 +12,9 @@ using namespace glm;
 #include <cstdio>
 #include <memory>
 #include <cassert>
-#include <stdexcept>
 
 #include "../src/Materials/Dielectric.h"
 #include "../src/Materials/Lambertian.h"
-#include "../src/Materials/Material.h"
 #include "../src/Materials/Metal.h"
 
 // Macros
@@ -27,16 +25,20 @@ using namespace glm;
 bool TestCamera();
 bool TestDielectric();
 bool TestLambertian();
-bool TestMaterial();
 bool TestMetal();
 
 // Main Function
 int main() {
-    // Test Functions
+    printf("Camera Test: ");
     assert(TestCamera());
+
+    printf("Dielectric Test: ");
     assert(TestDielectric());
+
+    printf("Lambertian Test: ");
     assert(TestLambertian());
-    assert(TestMaterial());
+
+    printf("Metal Test: ");
     assert(TestMetal());
 }
 
@@ -72,11 +74,14 @@ bool TestCamera() {
 // Material
 bool TestDielectric() {
     try {
+        //index of refraction
+        float refaction = 1.5;
+
         // Material
-        auto material_dielectric = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
+        auto material_dielectric = std::make_shared<Dielectric>(refaction);
 
         assert(material_dielectric != nullptr);
-        assert(material_dielectric->get_reflectivity() == 0.01);
+        assert(material_dielectric->get_index_of_refraction() == 1.5);
 
         return true;
     }
@@ -88,11 +93,13 @@ bool TestDielectric() {
 
 bool TestLambertian() {
     try {
+        dvec3 color(0.4, 0.2, 0.1);
+
         // Material
-        auto material_lambertian = std::make_shared<Lambertian>(dvec3(0.85), 0.01);
+        auto material_lambertian = std::make_shared<Lambertian>(color);
 
         assert(material_lambertian != nullptr);
-        assert(material_lambertian->get_reflectivity() == 0.01);
+        assert(material_lambertian->get_color() == color);
 
         return true;
     }
@@ -102,27 +109,20 @@ bool TestLambertian() {
     }
 }
 
-bool TestMaterial() {
-    try {
-        // Material
-        auto material = std::make_shared<Material>(dvec3(0.85), 0.01);
-
-        assert(material != nullptr);
-
-        return true;
-    }
-    catch (const std::exception &e) {
-        printf("Material Test Failed: %s\n", e.what());
-        return false;
-    }
-}
-
 bool TestMetal() {
     try {
+        // Color
+        dvec3 color(0.7, 0.6, 0.5);
+
+        // Roughness
+        float roughness = 0.0;
+
         // Material
-        auto material_metal = std::make_shared<Metal>(dvec3(0.85), 0.01);
+        auto material_metal = std::make_shared<Metal>(color, roughness);
 
         assert(material_metal != nullptr);
+        assert(material_metal->get_color() == color);
+        assert(material_metal->get_roughness() == roughness);
 
         return true;
     }
