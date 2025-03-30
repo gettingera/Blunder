@@ -1,4 +1,4 @@
-# DEADLINES 
+# SPRINT 2 DEADLINES 
 
 As displayed in the project’s comprehensive timeline, the following items must be completed no later than Sunday, March 30: 
 
