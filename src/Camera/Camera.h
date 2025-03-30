@@ -18,7 +18,7 @@ class Camera {
     dvec3 up_direction = dvec3(0, 0, 1);
 
     /// Vertical FOV for zooming the camera in and out.
-    double vfov = 90;
+    double vfov = 60;
 
     /// The distance from the camera position that the scene will be in perfect focus.
     double focus_distance = 0;
