@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LIB_DIR "${CMAKE_SOURCE_DIR}/lib")
 
 # Add bin/ as a directory for compiled binaries
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+set(BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 
 # Add source files
 file(GLOB_RECURSE SRC_FILES src/*.cpp src/*.h)
@@ -45,3 +46,4 @@ if (DOXYGEN_FOUND)
 else()
     message(WARNING "Doxygen not found on your system. Doxygen docs will not be generated.")
 endif()
+
