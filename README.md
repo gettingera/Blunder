@@ -22,6 +22,7 @@ make  # Makes the project, binaries stored in ./bin/
 ## Prefatory Information
 - [Members and Roles]()
 - [Scope Statement]()
+- [User Stories]()
 - [Milestones]()
 - [Timeline]()
 - [Executive Summary]()
