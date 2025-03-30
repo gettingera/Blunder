@@ -144,7 +144,7 @@ public:
         const auto ray_origin = (rtcv.focus_angle <= 0) ? rtcv.position : focus_disk_sample(rtcv);
         const auto ray_direction = pixel_sample - ray_origin;
 
-        // Random double between 0 and 1 for motion blur
+        // Random double between 0 and 1 (frame start -> frame end) for motion blur
         const auto ray_time = random_double();
         return {ray_origin, ray_direction, ray_time};
     }

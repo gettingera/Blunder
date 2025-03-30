@@ -53,13 +53,26 @@
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/tsafago.jpg" alt="Thomas Safago" width="500" height:auto>
 
 ### Week 1
-- ...
+- Research ray tracer and tutorials in order to have a firm understanding of the problem
+- Develop utilities and the project structure
+- Create a working prototype, iterate over the next few sprints
+- Document code, add support for tools for external docgen
+- Assist with creating diagrams
 
 ### Week 2
-- ...
+- Implement further features to ray tracer and draw out interactions between the ray tracer and the gui
+- Refactor code heavily to support better naming conventions and structure
+- Support multithreaded rendering
+- Reorder codebase for C++ best conventions, break functions apart into helpers for better unit testing and security
+- Implement exceptions and error handling
+- Optimize ray tracer for real-time rendering feedback
+- Deploy code documentation to GitHub Pages for web interaction.
 
 ### Week 3
-- ...
+- Identify any final issues with the ray tracer and merge the gui and ray tracer together
+- Commit to finding and fixing bugs
+- Generating final documentation
+- Assist with the final presentation and any other deliverables
 
 ## Design Lead: Kade Schrock 
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/IMG_8822.jpg" alt="Kade Schrock" width="500" height:auto>

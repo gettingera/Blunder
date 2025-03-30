@@ -42,8 +42,8 @@ public:
      * @param outwardNormal The outward-facing surface normal.
      */
     void SetFaceNormal(const Ray &ray, const dvec3 &outwardNormal) {
-        front_face = dot(ray.get_direction(), outwardNormal) < 0;
-        normal = front_face ? outwardNormal : -outwardNormal;
+        set_front_face(dot(ray.get_direction(), outwardNormal) < 0);
+        set_normal(get_front_face() ? outwardNormal : -outwardNormal);
     }
 
     // Getters

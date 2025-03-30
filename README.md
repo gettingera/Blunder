@@ -2,7 +2,21 @@
 An interactive, innovative raytracer for the modern world.
 
 # Getting Started
-Write a raytracer yourself (average foss enthusiast)
+## Linux Compilation
+Requirements:
+- CMake (3.16+)
+- Git (recommended, can use wget)
+
+Optional:
+- Doxygen (automated code documentation generation)
+
+### Command Line Instructions
+```sh
+git clone https://github.com/gettingera/Blunder.git --recursive  # Downloads the repository and necessary submodules
+cd Blunder  # Enter source directory
+cmake .  # Builds in-place, generates Doxygen documentation if Doxygen is available on your sytem
+make  # Makes the project, binaries stored in ./bin/
+```
 
 # Index
 ## Prefatory Information
