@@ -70,7 +70,6 @@ bool TestCamera() {
 }
 
 // Material
-
 bool TestDielectric() {
     try {
         // Material
@@ -87,11 +86,10 @@ bool TestDielectric() {
     }
 }
 
-
 bool TestLambertian() {
     try {
         // Material
-        auto material_lambertian = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
+        auto material_lambertian = std::make_shared<Lambertian>(dvec3(0.85), 0.01);
 
         assert(material_lambertian != nullptr);
         assert(material_lambertian->get_reflectivity() == 0.01);
@@ -104,33 +102,32 @@ bool TestLambertian() {
     }
 }
 
-
 bool TestMaterial() {
-    bool test = true;
-
     try {
         // Material
         auto material = std::make_shared<Material>(dvec3(0.85), 0.01);
 
-        //Insert assertion statement here
+        assert(material != nullptr);
+
+        return true;
     }
-    catch (const std::assertion_error& e) {
-        test = false;
+    catch (const std::exception &e) {
+        printf("Material Test Failed: %s\n", e.what());
+        return false;
     }
-    return test; // Return test results
 }
 
 bool TestMetal() {
-    bool test = true;
-
     try {
         // Material
         auto material_metal = std::make_shared<Metal>(dvec3(0.85), 0.01);
 
-        //Insert assertion statement here
+        assert(material_metal != nullptr);
+
+        return true;
     }
-    catch (const std::assertion_error& e) {
-        test = false;
+    catch (const std::exception &e) {
+        printf("Metal Test Failed: %s\n", e.what());
+        return false;
     }
-    return test; // Return test results
 }
