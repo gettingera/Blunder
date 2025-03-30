@@ -2,23 +2,31 @@
 #include <memory>
 
 #include "../src/Camera/Camera.h"
+#include "../src/Materials/Dielectric.h"
+#include "../src/Materials/Lambertian.h"
+#include "../src/Materials/Material.h"
 #include "../src/Materials/Metal.h"
-#include "../src/Renderer/RenderTarget.h"
-#include "../src/Scene/Scene.h"
-#include "../src/Geometry/Sphere.h"
+
 
 // Macros
 
 // Structures
 
 // Prototypes
-bool TestMaterial();
 bool TestCamera();
+bool TestDielectric();
+bool TestLambertian();
+bool TestMaterial();
+bool TestMetal();
 
 // Main Function
 int main() {
     // Test Functions
+    TestCamera();
+    TestDielectric();
+    TestLambertian();
     TestMaterial();
+    TestMetal();
 }
 
 // Camera
@@ -47,7 +55,54 @@ bool TestCamera() {
 }
 
 // Material
+
+bool TestDielectric() {
+    bool test = true;
+
+    try {
+        // Material
+        auto material_Dielectric = std::make_shared<Dielectric>(dvec3(0.85), 0.01);
+
+        //Insert assertion statement here
+    }
+    catch (const std::assertion_error& e) {
+        test = false;
+    }
+    return test; // Return test results
+}
+
+
+bool TestLambertian() {
+    bool test = true;
+
+    try {
+        // Material
+        auto material_lambertian = std::make_shared<Lambertian>(dvec3(0.85), 0.01);
+
+        //Insert assertion statement here
+    }
+    catch (const std::assertion_error& e) {
+        test = false;
+    }
+    return test; // Return test results
+}
+
 bool TestMaterial() {
+    bool test = true;
+
+    try {
+        // Material
+        auto material = std::make_shared<Material>(dvec3(0.85), 0.01);
+
+        //Insert assertion statement here
+    }
+    catch (const std::assertion_error& e) {
+        test = false;
+    }
+    return test; // Return test results
+}
+
+bool TestMetal() {
     bool test = true;
 
     try {
