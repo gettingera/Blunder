@@ -20,8 +20,9 @@ make  # Makes the project, binaries stored in ./bin/
 
 # Index
 ## Prefatory Information
-- [Members and Roles]()
+- [Members and Roles](https://github.com/gettingera/Blunder/blob/main/docs/members/README.md)
 - [Scope Statement]()
+- [User Stories]()
 - [Milestones]()
 - [Timeline]()
 - [Executive Summary]()
