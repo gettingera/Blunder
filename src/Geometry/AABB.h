@@ -4,6 +4,11 @@
 #include "../../lib/glm/glm/vec3.hpp"
 
 
+/**
+ * Defines Axis Aligned Bounding Boxes (AABBs) for performing optimized intersection testing.
+ *
+ * This allows for highly optimized intersection calculations with complex, expensive objects.
+ */
 class AABB {
     /// Axis-aligned x interval
     Interval x;
@@ -42,6 +47,12 @@ public:
         set_z(a.z < b.z ? Interval(a.z, b.z) : Interval(b.z, a.z));
     }
 
+    /**
+     * Constructs an AABB covering the two provided AABBs.
+     *
+     * @param a First bounding box.
+     * @param b Second bounding box.
+     */
     AABB(const AABB &a, const AABB &b) {
         set_x(Interval(a.get_x(), b.get_x()));
         set_y(Interval(a.get_y(), b.get_y()));
@@ -50,10 +61,10 @@ public:
 
     // Methods
     /**
-     * Selects an axis based on an interger input.
+     * Selects an axis interval based on an integer input.
      *
      * @param n Alternating axis.
-     * @return Axis corresponding to n.
+     * @return Interval corresponding to the axis n.
      */
     [[nodiscard]] Interval AxisInterval(const int n) const {
         Interval ret = get_x();
@@ -64,12 +75,23 @@ public:
         return ret;
     }
 
+    /**
+     * Gets the integer corresponding to AxisInterval of the longest axis of the AABB.
+     * @return Integer corresponding to the longest axis of the AABB.
+     */
     [[nodiscard]] int LongestAxis() const {
         if (get_x().size() > get_y().size())
             return get_x().size() > get_z().size() ? 0 : 2;
         return get_y().size() > get_z().size() ? 1 : 2;
     }
 
+    /**
+     * Determines if ray intersects the AABB within a specified time interval.
+     *
+     * @param ray Ray being tested for intersection against the AABB.
+     * @param rayTime Ray interval where intersections are valid.
+     * @return Whether ray intersected the AABB within the valid rayTime interval.
+     */
     bool Hit(const Ray &ray, Interval rayTime) const {
         const dvec3 &rayOrigin = ray.get_origin();
         const dvec3 &rayDirection = ray.get_direction();
@@ -101,33 +123,66 @@ public:
     }
 
     // Getters
+    /**
+     * Gets the x-axis interval.
+     *
+     * @return x-axis interval.
+     */
     [[nodiscard]] Interval get_x() const {
         return x;
     }
 
+    /**
+     * Gets the y-axis interval.
+     *
+     * @return y-axis interval.
+     */
     [[nodiscard]] Interval get_y() const {
         return y;
     }
 
+    /**
+     * Gets the z-axis interval.
+     *
+     * @return z-axis interval.
+     */
     [[nodiscard]] Interval get_z() const {
         return z;
     }
 
     // Setters
+    /**
+     * Sets the x-axis interval.
+     *
+     * @param x x-axis interval.
+     */
     void set_x(const Interval &x) {
         this->x = x;
     }
 
+    /**
+     * Sets the y-axis interval.
+     *
+     * @param y y-axis interval.
+     */
     void set_y(const Interval &y) {
         this->y = y;
     }
 
+    /**
+     * Sets the z-axis interval.
+     *
+     * @param z z-axis interval.
+     */
     void set_z(const Interval &z) {
         this->z = z;
     }
 
     // Static constants
+    /// AABB encapsulating nothing. Useful for set inclusions/exclusions.
     static const AABB empty;
+
+    /// AABB encapsulating everything. Useful for set inclusions/exclusions.
     static const AABB universe;
 };
 

@@ -128,7 +128,10 @@ public:
     }
 
     // Static intervals, useful later
+    /// Empty interval.
     static const Interval empty;
+
+    /// Universal interval. (contains all numbers)
     static const Interval universe;
 };
 

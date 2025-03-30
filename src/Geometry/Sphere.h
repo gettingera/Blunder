@@ -10,7 +10,7 @@
  * Use this to render perfectly spherical objects.
  */
 class Sphere final : public Hittable {
-    /// Position of sphere over frame time.
+    /// Position of sphere over frame beginning to frame ending.
     Ray center{};
 
     /// Radius of sphere.
@@ -44,7 +44,8 @@ public:
     /**
      * Makes a new moving sphere.
      *
-     * @param center Position of sphere.
+     * @param center1 Position of the sphere at frame beginning.
+     * @param center2 Position of the sphere at frame ending.
      * @param radius Radius of sphere.
      * @param material Pointer to material.
      */

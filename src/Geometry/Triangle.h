@@ -9,9 +9,13 @@
  * This means for normals to appear correctly, vertices must be defined counterclockwise in the world.
  */
 class Triangle final : public Hittable {
-    /// Time dependent vertices that create the triangle.
+    /// First vertex from frame beginning to frame ending.
     Ray a{};
+
+    /// Second vertex from frame beginning to frame ending.
     Ray b{};
+
+    /// Third vertex from frame beginning to frame ending.
     Ray c{};
 
     /// Pointer to the sphere material.
@@ -120,6 +124,7 @@ public:
 
     /**
      * Inverts the normals of the triangle by swapping vertices a and b, inverting the orientation.
+     * It is recommended to not do this for moving triangles.
      */
     void InvertNormals() {
         const Ray temp = get_a();
@@ -173,14 +178,29 @@ public:
     }
 
     // Setters
+    /**
+     * Sets the first vertex of the triangle.
+     *
+     * @param a First vertex of the triangle.
+     */
     void set_a(const Ray &a) {
         this->a = a;
     }
 
+    /**
+     * Sets the second vertex of the triangle.
+     *
+     * @param b Second vertex of the triangle.
+     */
     void set_b(const Ray &b) {
         this->b = b;
     }
 
+    /**
+     * Sets the third vertex of the triangle.
+     *
+     * @param c third vertex of the triangle.
+     */
     void set_c(const Ray &c) {
         this->c = c;
     }

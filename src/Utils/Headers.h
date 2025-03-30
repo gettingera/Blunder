@@ -37,6 +37,12 @@ inline bool near_zero(const dvec3 &vec) {
     return (std::fabs(vec.x) < s) && (std::fabs(vec.y) < s) && (std::fabs(vec.z) < s);
 }
 
+/**
+ * Gets whether a value is close to 0.
+ *
+ * @param val Value to check.
+ * @return Whether value is close to zero.
+ */
 inline bool near_zero(const double val) {
     const auto s = 1e-8;
     return std::fabs(val) < s;

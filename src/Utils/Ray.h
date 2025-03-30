@@ -6,6 +6,7 @@
  * Ray class for defining and operating with rays.
  *
  * Useful for defining camera rays, light rays, intersection tests, and parameterization.
+ * Also crucial for motion blur calculations
  */
 class Ray {
     /// Position of ray origin.

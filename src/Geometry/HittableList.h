@@ -25,7 +25,7 @@ public:
 
     // Methods
     /**
-     * Adds a hittable pointer to the list.
+     * Adds a hittable pointer to the list. Will also modify the bounding box of the list.
      * 
      * @param object Pointer of hittable to be added to the list.
      */
@@ -61,6 +61,10 @@ public:
         return hitAny;
     }
 
+    /**
+     *
+     * Encapsulates all the objects inside the list.
+     */
     [[nodiscard]] AABB BoundingBox() const override {
         return get_bounding_box();
     };
