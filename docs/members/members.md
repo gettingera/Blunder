@@ -65,10 +65,15 @@
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/IMG_8822.jpg" alt="Kade Schrock" width="500" height:auto>
 
 ### Week 1
-- ...
+- Start building out designs for our data flow and class UMLs
+- Heavily research raytracing and create seperate raytracer to learn the intricacies of raytracing
+- Research on ImGui/Vulkan implementation, for Gui with realtime raytracing
+- Begin development of seperate ImGui/Vulkan raytracer
 
 ### Week 2
-- ...
+- Update any diagrams that need adjusted for code/structure changes
+- Use ImGui/Vulkan raytracer to make a Gui for our main raytracer
+- Fully implement realtime raytracing with Gui into main project
 
 ### Week 3
 - ...
