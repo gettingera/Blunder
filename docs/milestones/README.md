@@ -8,3 +8,5 @@
 
 **Week 3**: Sprints 5 and 6 will fulfill the following milestone:
 - Finalized raycaster GUI
+
+Go to [Home](https://github.com/gettingera/Blunder)
