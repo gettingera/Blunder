@@ -1,6 +1,7 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 #include "Geometry/HitRecord.h"
+#include "AABB.h"
 
 
 /**
@@ -20,6 +21,12 @@ public:
      * @return Boolean whether ray intersects the hittable.
      */
     virtual bool Hit(const Ray &ray, const Interval &rayTime, HitRecord &record) const = 0;
+
+    /**
+     * 
+     * @return AABB surrounding the hittable.
+     */
+    [[nodiscard]] virtual AABB BoundingBox() const = 0;
 
     // Destructor
     virtual ~Hittable() = default;

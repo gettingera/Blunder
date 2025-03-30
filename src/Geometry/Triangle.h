@@ -1,6 +1,5 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
-#include <complex>
 
 
 /**
@@ -18,6 +17,9 @@ class Triangle final : public Hittable {
     /// Pointer to the sphere material.
     shared_ptr<Material> material;
 
+    /// Bounding box of the triangle.
+    AABB bounding_box;
+
 public:
     // Constructors
     /**
@@ -32,6 +34,9 @@ public:
         set_b(Ray(b, dvec3(0)));
         set_c(Ray(c, dvec3(0)));
         set_material(material);
+
+        // Set bounding box
+        set_bounding_box(AABB(AABB(a, b), AABB(b, c)));
     }
 
     /**
@@ -46,6 +51,11 @@ public:
         set_b(Ray(b.get_origin(), b.get_direction() - b.get_origin()));
         set_c(Ray(c.get_origin(), c.get_direction() - c.get_origin()));
         set_material(material);
+
+        // Set bounding box
+        auto bbox_origin = AABB(AABB(a.get_origin(), b.get_origin()), AABB(b.get_origin(), c.get_origin()));
+        auto bbox_direction = AABB(AABB(a.get_direction(), b.get_direction()), AABB(b.get_direction(), c.get_direction()));
+        set_bounding_box(AABB(bbox_origin, bbox_direction));
     }
 
     // Methods, uses the Moller Trumbore triangle intersection algorithm
@@ -104,6 +114,10 @@ public:
         return false;
     }
 
+    [[nodiscard]] AABB BoundingBox() const override {
+        return get_bounding_box();
+    };
+
     /**
      * Inverts the normals of the triangle by swapping vertices a and b, inverting the orientation.
      */
@@ -149,6 +163,15 @@ public:
         return material;
     }
 
+    /**
+     * Gets the bounding box of the triangle.
+     *
+     * @return Bounding box of the triangle.
+     */
+    [[nodiscard]] AABB get_bounding_box() const {
+        return bounding_box;
+    }
+
     // Setters
     void set_a(const Ray &a) {
         this->a = a;
@@ -169,6 +192,15 @@ public:
      */
     void set_material(const shared_ptr<Material> &material) {
         this->material = material;
+    }
+
+    /**
+     * Sets the bounding box of the triangle.
+     *
+     * @param bounding_box Bounding box of the triangle.
+     */
+    void set_bounding_box(const AABB &bounding_box) {
+        this->bounding_box = bounding_box;
     }
 };
 

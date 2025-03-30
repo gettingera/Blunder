@@ -33,6 +33,16 @@ public:
         set_max(max);
     }
 
+    /**
+     * Constructs an interval surrounding a and b.
+     * @param a First interval.
+     * @param b Second interval.
+     */
+    Interval(const Interval &a, const Interval &b) {
+        set_min(a.get_min() <= b.get_min() ? a.get_min() : b.get_min());
+        set_max(a.get_max() >= b.get_max() ? a.get_max() : b.get_max());
+    }
+
     // Methods
     /**
      * Gets length of interval.
@@ -72,6 +82,11 @@ public:
         if (x < get_min()) return get_min();
         if (x > get_max()) return get_max();
         return x;
+    }
+
+    [[nodiscard]] Interval expand(const double delta) {
+        double padding = delta / 2;
+        return {get_min() - padding, get_max() + padding};
     }
 
     // Getters

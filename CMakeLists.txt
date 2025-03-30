@@ -18,7 +18,9 @@ add_executable(${PROJECT_NAME} ${SRC_FILES}
         src/Materials/Lambertian.h
         src/Materials/Metal.h
         src/Materials/Dielectric.h
-        src/Geometry/Triangle.h)
+        src/Geometry/Triangle.h
+        src/Geometry/AABB.h
+        src/Geometry/BVH_Node.h)
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/src)  # Your source files

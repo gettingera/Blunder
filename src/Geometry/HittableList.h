@@ -11,7 +11,10 @@
  */
 class HittableList final : public Hittable {
     /// List of pointers to hittable objects.
-    std::vector<shared_ptr<Hittable> > objects;
+    std::vector<shared_ptr<Hittable>> objects;
+
+    /// Bounding box of all objects in list.
+    AABB bounding_box;
 
 public:
     // Constructors
@@ -28,6 +31,7 @@ public:
      */
     void Add(const shared_ptr<Hittable> &object) {
         objects.push_back(object);
+        set_bounding_box(AABB(get_bounding_box(), object->BoundingBox()));
     }
 
     /**
@@ -57,14 +61,26 @@ public:
         return hitAny;
     }
 
+    [[nodiscard]] AABB BoundingBox() const override {
+        return get_bounding_box();
+    };
+
     // Getters
     /**
      * Gets objects.
      *
      * @return List of pointers to hittable objects.
      */
-    [[nodiscard]] std::vector<shared_ptr<Hittable> > get_objects() const {
+    [[nodiscard]] std::vector<shared_ptr<Hittable>> &get_objects() {
         return objects;
+    }
+
+    /**
+     * Gets the bounding box.
+     * @return Bounding box of the list.
+     */
+    [[nodiscard]] AABB get_bounding_box() const {
+        return bounding_box;
     }
 
     // Setters
@@ -75,6 +91,14 @@ public:
      */
     void set_objects(const std::vector<shared_ptr<Hittable> > &objects) {
         this->objects = objects;
+    }
+
+    /**
+     * Sets the bounding box.
+     * @param bounding_box Bounding box.
+     */
+    void set_bounding_box(const AABB &bounding_box) {
+        this->bounding_box = bounding_box;
     }
 };
 
