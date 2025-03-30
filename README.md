@@ -35,7 +35,7 @@ make  # Makes the project, binaries stored in ./bin/
 ## Sprint 2
 - [Tasks](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-tasks.md)
 - [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-testing.md)
-- [Deadlines]()
+- [Deadlines](https://github.com/gettingera/Blunder/tree/main/docs/sprint-two)
 
 # **The following sections will be completed as the project progresses:**
 
