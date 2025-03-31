@@ -89,7 +89,9 @@
 - Fully implement realtime raytracing with Gui into main project
 
 ### Week 3
-- ...
+- Implementing final gui features
+- testing for gui bugs
+- finalize any diagrams that have had structural code changes
 
 ## Security Lead: Gavin Sloan
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg" alt="Gavin Sloan" width="500" height:auto>
