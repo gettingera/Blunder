@@ -31,15 +31,19 @@ bool TestMetal();
 int main() {
     printf("Camera Test: ");
     assert(TestCamera());
+    printf("Test Passed");
 
     printf("Dielectric Test: ");
     assert(TestDielectric());
+    printf("Test Passed");
 
     printf("Lambertian Test: ");
     assert(TestLambertian());
+    printf("Test Passed");
 
     printf("Metal Test: ");
     assert(TestMetal());
+    printf("Test Passed");
 }
 
 // Camera
