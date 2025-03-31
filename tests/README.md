@@ -7,5 +7,4 @@
 - Materials File
   - Dielectric.h
   - Lambertian.h
-  - Material.h
   - Metal.h
