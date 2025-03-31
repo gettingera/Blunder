@@ -16,6 +16,7 @@ git clone https://github.com/gettingera/Blunder.git --recursive  # Downloads the
 cd Blunder  # Enter source directory
 cmake .  # Builds in-place, generates Doxygen documentation if Doxygen is available on your sytem
 make  # Makes the project, binaries stored in ./bin/
+./bin/Blunder  # Renders the scene defined in main.cpp
 ```
 
 # Index
