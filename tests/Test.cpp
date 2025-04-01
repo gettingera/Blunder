@@ -2,12 +2,8 @@
 
 // Camera
 #include <cstdio>
-#include <memory>
-#include "../src/Camera/Camera.h"
-#include "../src/Renderer/RenderTarget.h"
-#include "../lib/glm/glm/glm.hpp"
-#define CAMERA_H
-
+#include <ctime>
+#include "Camera/Camera.h"
 // Materials
 
 // Macros
@@ -43,24 +39,9 @@ int main() {
 
 // Camera
 bool TestCamera() {
-    int width = 1280;
-    int height = 720;
-
-    /// World position of camera.
-    dvec3 position{};
-
-    /// Position in world where camera will be pointed.
-    dvec3 direction{};
-
-    /// Vector indicating what direction should be considered upward.
-    dvec3 up_direction = dvec3(0, 0, 1);
-
-    // Render target
-    shared_ptr<Camera> camera;
-    const auto render_target = std::make_shared<RenderTarget>(width, height);
-
+    int width = 1920 / 2;
+    int height = 1080 / 2;
     return true;
-
 
 }
 /*
