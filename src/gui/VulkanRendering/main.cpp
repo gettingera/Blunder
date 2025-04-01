@@ -1,37 +1,72 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#define GLM_FORCE_DEPTH_ZERO_TO_ME
-#include <glm/vec4.hpp>
-#include <glm/mat4x4.hpp>
-
 #include <iostream>
+#include <stdexcept>
+#include <cstdlib>
 
-int main()
-{
-	glfwInit();
+//global constant window dimensions
+const uint32_t WIDTH = 800;
+const uint32_t HEIGHT = 600;
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan window", nullptr, nullptr);
-
-	uint32_t extensionCount = 0;
-	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-
-	std::cout << extensionCount << " extenstions supported\n";
-
-	glm::mat4 matrix;
-	glm::vec4 vec;
-	auto test = matrix * vec;
-
-	while (!glfwWindowShouldClose(window))
-	{
-		glfwPollEvents();
+class HelloTriangleApplication {
+public:
+	void run() {
+		initWindow();
+		initVulkan();
+		mainLoop();
+		cleanup();
 	}
 
-	glfwDestroyWindow(window);
+private:
+	//reference to "window" called in "initWindow()" function
+	GLFWwindow* window;
 
-	glfwTerminate();
+	//initialize glfw which is used to create windows
+	void initWindow() {
+		//initializes glfw library
+		glfwInit();
 
-	return 0;
+		//tells glfw to not look for OpenGL context since we are using Vulkan not OpenGL
+		//disables resizeble windows
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
+		//creates glfw window with const values "WIDTH" and "HEIGHT"
+		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+	}
+	//initates vulkan, vulkan objects will be stored here as private class members and will have functions that call them
+	void initVulkan() {
+
+	}
+
+	//begins to render frames after the "initVulkan()" function's initialization 
+	void mainLoop() {
+		//keeps appplication running until error occurs or window is closed
+		while (!glfwWindowShouldClose(window)) {
+			glfwPollEvents();
+		}
+	}
+
+	//deallocates resources once the window is closed
+	void cleanup() {
+		glfwDestroyWindow(window);
+
+		glfwTerminate();
+	}
+};
+
+
+int main() {
+	HelloTriangleApplication app;
+
+	try {
+		app.run();
+	}
+	catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	return EXIT_SUCCESS;
 }

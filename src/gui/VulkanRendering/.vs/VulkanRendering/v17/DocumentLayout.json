@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\VisualStudioProjects\\VulkanRendering\\",
+  "WorkspaceRootPath": "E:\\VisualStudioProjects\\Blunder\\src\\gui\\VulkanRendering\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E4855D6-C45B-4F2A-95E9-1A562C527121}|VulkanRendering.vcxproj|E:\\VisualStudioProjects\\VulkanRendering\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{7E4855D6-C45B-4F2A-95E9-1A562C527121}|VulkanRendering.vcxproj|E:\\VisualStudioProjects\\Blunder\\src\\gui\\VulkanRendering\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7E4855D6-C45B-4F2A-95E9-1A562C527121}|VulkanRendering.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "E:\\VisualStudioProjects\\VulkanRendering\\main.cpp",
+              "DocumentMoniker": "E:\\VisualStudioProjects\\Blunder\\src\\gui\\VulkanRendering\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
-              "ToolTip": "E:\\VisualStudioProjects\\VulkanRendering\\main.cpp",
+              "ToolTip": "E:\\VisualStudioProjects\\Blunder\\src\\gui\\VulkanRendering\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-01T16:55:36.426Z",
               "EditorCaption": ""
