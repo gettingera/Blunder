@@ -1,7 +1,5 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-
-
 /**
  * A camera for viewing and rendering 3D scenes.
  *

@@ -2,8 +2,7 @@
 
 // Camera
 #include <cstdio>
-#include <ctime>
-#include "Camera/Camera.h"
+
 // Materials
 
 // Macros
