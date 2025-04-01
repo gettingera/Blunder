@@ -2,6 +2,8 @@
 
 // Camera
 #include <cstdio>
+#include "Camera/Camera.h"
+#include <glm/glm.hpp>
 
 // Materials
 
