@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <vector>
+#include <optional>
 
 //global constant window dimensions
 const uint32_t WIDTH = 800;
@@ -41,6 +42,17 @@ void DestroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 	}
 }
 
+
+////////////Creates struct for use in Queue Families
+struct QueueFamilyIndices {
+	std::optional<uint32_t> graphicsFamily;
+
+	bool isComplete() {
+		return graphicsFamily.has_value();
+	}
+};
+
+
 class HelloTriangleApplication {
 public:
 	void run() {
@@ -60,6 +72,8 @@ private:
 	//reference to debugMessenger
 	VkDebugUtilsMessengerEXT debugMessenger;
 
+	VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+
 
 	////////////initialize glfw which is used to create windows
 	void initWindow() {
@@ -74,11 +88,15 @@ private:
 		//creates glfw window with const values "WIDTH" and "HEIGHT"
 		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
 	}
+
+
 	////////////initates vulkan, vulkan objects will be stored here as private class members and will have functions that call them
 	void initVulkan() {
 		createInstance();
 		setupDebugMessenger();
+		pickPhysicalDevice();
 	}
+
 
 	////////////begins to render frames after the "initVulkan()" function's initialization 
 	void mainLoop() {
@@ -87,6 +105,7 @@ private:
 			glfwPollEvents();
 		}
 	}
+
 
 	////////////deallocates resources once the window is closed
 	void cleanup() {
@@ -174,6 +193,70 @@ private:
 		if (CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
 			throw std::runtime_error("failed to set up debug messenger!");
 		}
+	}
+
+
+	////////////will choose which graphic card or cards to use (implicitly destroyed when VkInstance is destroyed)
+	void pickPhysicalDevice() {
+		uint32_t deviceCount = 0;
+		vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+
+		//error when no vulkan compatible GPUs are found
+		if (deviceCount == 0) {
+			throw std::runtime_error("failed to find GPUs with Vulkan support!");
+		}
+
+		//array to hold physical device handles
+		std::vector<VkPhysicalDevice> devices(deviceCount);
+		vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+		for (const auto& device : devices) {
+			if (isDeviceSuitable(device)) {
+				physicalDevice = device;
+				break;
+			}
+		}
+
+		//throws error if graphics card is not suitable for desired features
+		if (physicalDevice == VK_NULL_HANDLE) {
+			throw std::runtime_error("failed to find a suitable GPU!");
+		}
+	}
+
+
+	////////////looks for queue families necessary to run any graphical operation in Vulkan
+	QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
+		QueueFamilyIndices indices;
+
+		//retrieving list of Queue Families
+		uint32_t queueFamilyCount = 0;
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+		//gets properties of the lists of Queue Families
+		std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+		//loops through Queue Families to find at least one that supports "VK_QUEUE_GRAHPICS_BIT"
+		int i = 0;
+		for (const auto& queueFamily : queueFamilies) {
+			if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
+				indices.graphicsFamily = i;
+			}
+			//leaves loop early if proper device is found
+			if (indices.isComplete()) {
+				break;
+			}
+			i++;
+		}
+		return indices;
+	}
+
+
+	////////////checks each grahpics card in array "VkPhysicalDevice" to see if they have the requirements for the operations that need ot performed
+	bool isDeviceSuitable(VkPhysicalDevice device) {
+		//usuing the Queue Family indices as a check to determine if we have a suitable GPU or not (if we have "VK_QUEUE_GRAHPICS_BIT" or not)
+		QueueFamilyIndices indices = findQueueFamilies(device);
+
+		return indices.isComplete();
 	}
 
 
