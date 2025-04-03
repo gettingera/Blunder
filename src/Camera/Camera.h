@@ -1,154 +1,98 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-
+#include <Utils/Headers.h>
 
 /**
  * A camera for viewing and rendering 3D scenes.
- *
- * This positionable camera provides utilities for safe storage and manipulation of the camera.
+ * This positionable camera provides utilities for safe manipulation of the camera.
  */
 class Camera {
     /// World position of camera.
-    dvec3 position{};
+    vec3 position{-infinity, -infinity, -infinity};
 
-    /// Position in world where camera will be pointed.
-    dvec3 direction{};
+    /// Position in the world the camera is viewing.
+    vec3 look_at{infinity, infinity, infinity};
 
     /// Vector indicating what direction should be considered upward.
-    dvec3 up_direction = dvec3(0, 0, 1);
+    vec3 up_direction{0, 0, 1};
 
     /// Vertical FOV for zooming the camera in and out.
-    double vfov = 60;
-
-    /// The distance from the camera position that the scene will be in perfect focus.
-    double focus_distance = 0;
-
-    /// The amount of blur. (depth of field)
-    double focus_angle = 0;
+    double fov{45};
 
 public:
     // Constructors
     /**
-     * Initializes the camera for the 3D scene.
      *
-     * @param position World position of camera.
-     * @param direction Position in world where camera will be pointed.
+     * @param position Position of the camera in the world.
+     * @param look_at Position the camera is looking at in the world.
+     *
+     * @note
+     * Test Cases:\n
+     * auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1)); -> position should be (0, 0, 0), look_at should be (1, 1, 1)\n
+     * auto c2 = Camera(vec3(0, 0, 0), vec3(0, 0, 0)); -> ERROR: will throw a CameraException (equal vectors should fail)\n
      */
-    Camera(const dvec3 &position, const dvec3 &direction) {
-        set_position(position);
-        set_direction(direction);
-    }
+    Camera(const vec3 &position, const vec3 &look_at);
 
     // Getters
-    /**
-     * Gets position.
-     * 
-     * @return World position of camera.
-     */
-    [[nodiscard]] dvec3 get_position() const {
-        return position;
-    }
+    /// Gets the position of the camera in the world.
+    [[nodiscard]] vec3 get_position() const { return position; }
 
-    /**
-     * Gets direction.
-     * 
-     * @return Position in world where camera will be pointed.
-     */
-    [[nodiscard]] dvec3 get_direction() const {
-        return direction;
-    }
+    /// Gets the position the camera is looking at in the world.
+    [[nodiscard]] vec3 get_look_at() const { return look_at; }
 
-    /**
-     * Gets up_direction.
-     * 
-     * @return Vector indicating what direction should be considered upward.
-     */
-    [[nodiscard]] dvec3 get_up_direction() const {
-        return up_direction;
-    }
+    /// Gets the direction considered upward in the world.
+    [[nodiscard]] vec3 get_up_direction() const { return up_direction; }
 
-    /**
-     * Gets vfov.
-     * 
-     * @return Vertical FOV for zooming the camera in and out.
-     */
-    [[nodiscard]] double get_vfov() const {
-        return vfov;
-    }
-
-    /**
-     * Gets focus_distance.
-     * 
-     * @return The distance from the camera position that the scene will be in perfect focus.
-     */
-    [[nodiscard]] double get_focus_distance() const {
-        return focus_distance;
-    }
-
-    /**
-     * Gets focus_angle.
-     * 
-     * @return The amount of blur. (depth of field)
-     */
-    [[nodiscard]] double get_focus_angle() const {
-        return focus_angle;
-    }
+    /// Gets the vertical field of view of the camera.
+    [[nodiscard]] double get_fov() const { return fov; }
 
     // Setters
     /**
-     * Sets position.
-     * 
-     * @param position World position of camera.
+     * Sets the position of the camera in the world.
+     * @param position Position of the camera in the world.
+     *
+     * @note Test Cases:\n
+     * auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1)) -> makes a new camera\n
+     * c1.set_position(vec3(2, 2, 2)) -> position should be (2, 2, 2)\n
+     * c1.set_position(vec3(1, 1, 1)) -> ERROR: will throw a CameraException (position must not be equal to look_at)\n
      */
-    void set_position(const dvec3 &position) {
-        this->position = position;
-    }
+    void set_position(const vec3 &position);
 
     /**
-     * Sets direction.
-     * 
-     * @param direction Position in world where camera will be pointed.
+     * Gets the position in the world the camera is viewing.
+     * @param look_at Position in the world the camera is viewing.
+     *
+     * @note Test Cases:\n
+     * auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1))\n
+     * c1.set_look_at(vec3(2, 2, 2)) -> look_at should be (2, 2, 2)\n
+     * c1.set_look_at(vec3(0, 0, 0)) -> ERROR: will throw a CameraException (look_at must not be equal to position)\n
      */
-    void set_direction(const dvec3 &direction) {
-        this->direction = direction;
-    }
+    void set_look_at(const vec3 &look_at);
 
     /**
-     * Sets up_direction.
-     * 
+     * Sets the vector indicating what direction should be considered upward.
      * @param up_direction Vector indicating what direction should be considered upward.
+     *
+     * @note Test Cases:\n
+     * auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1))\n
+     * c1.set_up_direction(vec3(1, 2, 3)) -> up_direction should be (1, 2, 3)\n
+     * c1.set_up_direction(vec3(0, 0, 0)) -> ERROR: will throw a CameraException (up_direction must not be a zero vector)\n
      */
-    void set_up_direction(const dvec3 &up_direction) {
-        this->up_direction = up_direction;
-    }
+    void set_up_direction(const vec3 &up_direction);
 
     /**
-     * Sets vfov.
-     * 
-     * @param vfov Vertical FOV for zooming the camera in and out.
+     * Sets the vertical field of to a value between (0, 180) degrees.
+     * @param fov Vertical FOV for zooming the camera in and out.
+     *
+     * @note Test Cases:\n
+     * auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));\n
+     * c1.set_fov(45); -> fov should be 45\n
+     * c1.set_fov(0) -> ERROR: will throw a CameraException (0 is not in (0, 180))\n
+     * c1.set_fov(180) -> ERROR: will throw a CameraException (180 is not in (0, 180))\n
+     * c1.set_fov(-1) -> ERROR: will throw a CameraException (-1 is not in (0, 180))\n
+     * c1.set_fov(181) -> ERROR: will throw a CameraException (181 is not in (0, 180))\n
      */
-    void set_vfov(const double vfov) {
-        this->vfov = vfov;
-    }
-
-    /**
-     * Sets focus_distance.
-     * 
-     * @param focus_distance The distance from the camera position that the scene will be in perfect focus.
-     */
-    void set_focus_distance(const double focus_distance) {
-        this->focus_distance = focus_distance;
-    }
-
-    /**
-     * Sets focus_angle.
-     * 
-     * @param focus_angle The amount of blur. (depth of field)
-     */
-    void set_focus_angle(const double focus_angle) {
-        this->focus_angle = focus_angle;
-    }
+    void set_fov(double fov);
 };
-
 
 #endif //CAMERA_H

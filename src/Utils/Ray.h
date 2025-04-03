@@ -1,117 +1,73 @@
 #ifndef RAY_H
 #define RAY_H
-
+#include <Utils/Headers.h>
 
 /**
  * Ray class for defining and operating with rays.
- *
- * Useful for defining camera rays, light rays, intersection tests, and parameterization.
- * Also crucial for motion blur calculations
+ * Rays have a starting position and a direction (distinct).
+ * Different points along this ray can be found by using a parameter t.
+ * This is useful for calculating intersections of objects in terms of one variable, t.
  */
 class Ray {
-    /// Position of ray origin.
-    dvec3 origin{};
+    /// Position of ray position.
+    vec3 position{-infinity, -infinity, -infinity};
 
     /// Position of ray direction.
-    dvec3 direction{};
-
-    /// Time when the ray is, using the equation origin + direction * time. Used for motion blur.
-    double time{0};
+    vec3 direction{infinity, infinity, infinity};
 
 public:
     // Constructors
-    Ray() = default;
-
     /**
      * Makes a new ray.
-     *
-     * @param origin Origin.
+     * @param position Position.
      * @param direction Direction.
-     */
-    Ray(const dvec3 &origin, const dvec3 &direction) {
-        set_origin(origin);
-        set_direction(direction);
-    }
-
-    /**
-     * Makes a new ray, with a time variable for motion blur.
      *
-     * @param origin Origin.
-     * @param direction Direction.
-     * @param time Time along the ray for motion blur calculations.
+     * @note Test Cases:
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1)) -> position should be (0, 0, 0), direction should be (1, 1, 1)
+     * auto r2 = Ray(vec3(1, 1, 1), vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction vector should be non-zero)
      */
-    Ray(const dvec3 &origin, const dvec3 &direction, const double time) {
-        set_origin(origin);
-        set_direction(direction);
-        set_time(time);
-    }
+    Ray(const vec3 &position, const vec3 &direction);
 
     // Methods
     /**
-     * Gets the point on the ray at the time parameter.
+     * Gets the point on the ray at the parameter t.
+     * @param t Finite, real valued parameter.
+     * @return Point on ray at t. (using the equation: position + t*direction)
      *
-     * @param time Time parameter.
-     * @return Point on ray.
+     * @note Test Cases:
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
+     * r1.at(0) -> should be equal to r1.position
+     * r1.at(1) -> should be equal to r1.position + r1.direction
+     * r1.at(infinity) -> ERROR: will throw a RayException (t must be finite)
+     * r1.at(NAN) -> ERROR: will throw a RayException (t must be finite)
      */
-    [[nodiscard]] dvec3 At(const double time) const {
-        return get_origin() + (get_direction() * time);
-    }
+    [[nodiscard]] vec3 at(float t) const;
 
     // Getters
     /**
-     * Gets origin.
-     *
-     * @return Origin.
+     * Gets position.
+     * @return Starting position of the ray.
      */
-    [[nodiscard]] const dvec3 &get_origin() const {
-        return origin;
-    }
+    [[nodiscard]] vec3 get_position() const { return position; }
 
     /**
      * Gets direction.
-     *
-     * @return Direction.
+     * @return Direction the ray travels.
      */
-    [[nodiscard]] const dvec3 &get_direction() const {
-        return direction;
-    }
-
-    /**
-     * Gets time.
-     *
-     * @return Time when ray is along its direction vector.
-     */
-    [[nodiscard]] double get_time() const {
-        return time;
-    }
+    [[nodiscard]] vec3 get_direction() const { return direction; }
 
     // Setters
     /**
-     * Sets origin.
-     *
-     * @param origin Origin.
+     * Sets position.
+     * @param position Starting position of the ray.
      */
-    void set_origin(const dvec3 &origin) {
-        this->origin = origin;
-    }
+    void set_position(const vec3 &position);
 
     /**
      * Sets direction.
-     *
-     * @param direction Direction.
+     * @param direction Direction the ray travels.
      */
-    void set_direction(const dvec3 &direction) {
-        this->direction = direction;
-    }
-
-    /**
-     * Sets time.
-     * @param time Time when ray is along its direction vector.
-     */
-    void set_time(const double time) {
-        this->time = time;
-    }
+    void set_direction(const vec3 &direction);
 };
-
 
 #endif //RAY_H

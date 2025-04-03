@@ -1,51 +1,108 @@
 #ifndef HEADERS_H
 #define HEADERS_H
+
+// Allow usage of experimental GLM functions (like length2)
 #define GLM_ENABLE_EXPERIMENTAL
+
+// Common system and lib headers
 #include <cmath>
 #include <iostream>
 #include <limits>
 #include <memory>
 #include <random>
+#include <string>
 #include <glm/glm.hpp>
 #include <glm/gtx/norm.hpp>
 
-// C++ Std Usings
-
+// C++ std usings, glm namespace
 using std::make_shared;
 using std::shared_ptr;
 using namespace glm;
 
 // Constants
-
 /// Infinity.
-const double infinity = std::numeric_limits<double>::infinity();
+constexpr float infinity = std::numeric_limits<float>::infinity();
 
 /// Pi.
-const double pi = 3.1415926535897932385;
+constexpr float pi = 3.14159265358979;
 
 // Utility Functions
-
 /**
- * Gets whether a vector is near zero.
+ * Gets whether a value is finite.
+ * @param val Value to check.
+ * @return Whether val is finite valued.
  *
- * @param vec Vector.
- * @return Whether vector is near zero.
+ * @note Test Cases:
+ * constexpr float infinity = std::numeric_limits<float>::infinity()
+ * is_finite(0) -> true
+ * is_finite(infinity) -> false
+ * is_finite(-infinity) -> false
+ * is_finite(NAN) -> false
  */
-inline bool near_zero(const dvec3 &vec) {
-    // Return true if the vector is close to zero in all dimensions.
-    const auto s = 1e-8;
-    return (std::fabs(vec.x) < s) && (std::fabs(vec.y) < s) && (std::fabs(vec.z) < s);
+inline bool is_finite(const float val) {
+    return std::isfinite(val);
 }
 
 /**
- * Gets whether a value is close to 0.
+ * Gets whether a vector is finite.
+ * @param vec Vector to check.
+ * @return Whether all components of the vector are finite valued.
  *
- * @param val Value to check.
- * @return Whether value is close to zero.
+ * Test Cases:
+ * constexpr float infinity = std::numeric_limits<float>::infinity()
+ * is_finite(vec3(0, 0, 0)) -> true
+ * is_finite(vec3(infinity, infinity, infinity)) -> false
+ * is_finite(vec3(-infinity, -infinity, -infinity)) -> false
+ * is_finite(vec3(NAN, NAN, NAN)) -> false
  */
-inline bool near_zero(const double val) {
-    const auto s = 1e-8;
-    return std::fabs(val) < s;
+inline bool is_finite(const vec3 &vec) {
+    return is_finite(vec.x) && is_finite(vec.y) && is_finite(vec.z);
+}
+
+/**
+ * Gets whether a value is near zero.
+ * @param val Floating-point value to check.
+ * @return Whether value is close to zero.
+ *
+ * @note Test Cases:
+ * near_zero(1.0f) -> false
+ * near_zero(0.0f) -> true
+ * near_zero(1e-8) -> false
+ * near_zero(1e-9) -> true
+ */
+inline bool is_near_zero(const float val) {
+    return std::fabs(val) <= 1e-9;
+}
+
+/**
+ * Gets whether a vector is near zero.
+ * @param vec Vector to check.
+ * @return Whether vector is near zero.
+ *
+ * @note Test Cases:
+ * near_zero(vec3(1, 1, 1)) -> false
+ * near_zero(vec3(0, 0, 0)) -> true
+ * near_zero(vec3(1e-8, 1e-8, 1e-8)) -> false
+ * near_zero(vec3(1e-9, 1e-9, 1e-9)) -> true
+ */
+inline bool is_near_zero(const vec3 &vec) {
+    return is_near_zero(vec.x) && is_near_zero(vec.y) && is_near_zero(vec.z);
+}
+
+/**
+ * Gets whether two vectors are nearly equal.
+ * @param vec1 First vector.
+ * @param vec2 Second vector.
+ * @return Whether the first and second vector are nearly equal to each other.
+ *
+ * @note Test Cases:
+ * near_equal(vec3(0, 0, 0), vec3(1, 1, 1)) -> false
+ * near_equal(vec3(1, 1, 1), vec3(1, 1, 1)) -> true
+ * near_equal(vec3(0, 0, 0), vec3(1e-8, 1e-8, 1e-8)) -> false
+ * near_equal(vec3(0, 0, 0), vec3(1e-9, 1e-9, 1e-9)) -> true
+ */
+inline bool is_near_equal(const vec3 &vec1, const vec3 &vec2) {
+    return is_near_zero(vec2 - vec1);
 }
 
 /**
@@ -162,9 +219,7 @@ inline dvec3 random_in_unit_disk() {
     }
 }
 
-// Common Headers
-
-#include "Utils/Ray.h"
-#include "Utils/Interval.h"
+// Common custom headers
+#include <Utils/Exceptions.h>
 
 #endif //HEADERS_H
