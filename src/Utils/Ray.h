@@ -10,7 +10,7 @@
  */
 class Ray {
     /// Position of ray position.
-    vec3 position{-infinity, -infinity, -infinity};
+    vec3 position{infinity, infinity, infinity};
 
     /// Position of ray direction.
     vec3 direction{infinity, infinity, infinity};
@@ -44,28 +44,31 @@ public:
     [[nodiscard]] vec3 at(float t) const;
 
     // Getters
-    /**
-     * Gets position.
-     * @return Starting position of the ray.
-     */
+    /// Gets the starting position of the ray.
     [[nodiscard]] vec3 get_position() const { return position; }
 
-    /**
-     * Gets direction.
-     * @return Direction the ray travels.
-     */
+    /// Gets the direction vector the ray is traveling.
     [[nodiscard]] vec3 get_direction() const { return direction; }
 
     // Setters
     /**
      * Sets position.
      * @param position Starting position of the ray.
+     *
+     * @notes Test Cases:
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
+     * r1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)
      */
     void set_position(const vec3 &position);
 
     /**
      * Sets direction.
      * @param direction Direction the ray travels.
+     *
+    * * @notes Test Cases:
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
+     * r1.set_direction(vec3(2, 2, 2)) -> direction should be (2, 2, 2)
+     * r1.set_direction(vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction cannot be a zero vector)
      */
     void set_direction(const vec3 &direction);
 };

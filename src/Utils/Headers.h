@@ -106,12 +106,62 @@ inline bool is_near_equal(const vec3 &vec1, const vec3 &vec2) {
 }
 
 /**
+ * Gets whether a value is within the bounds of min and max.
+ * @param val Value to check bounds of.
+ * @param min Minimum bound.
+ * @param max Maximum bound.
+ * @return Whether val is between min and max.
+ *
+ * @note Test Cases:
+ * is_inside_closed_range(1, 0, 2) -> true
+ * is_inside_closed_range(0, 0, 2) -> true
+ * is_inside_closed_range(2, 0, 2) -> true
+ * NOTE: if min > max, return false.
+ * NOTE: if any arguments non-finite, return false
+ */
+inline bool is_inside_closed_range(const float val, const float min, const float max) {
+    bool is_inside = false;
+
+    if (!is_finite(val) || !is_finite(min) || !is_finite(max)) {
+        is_inside = false;
+    } else if (min > max) {
+        is_inside = false;
+    } else if (min <= val && val <= max) {
+        is_inside = true;
+    }
+
+    return is_inside;
+}
+
+/**
+ * Gets whether all the components of a vector are within the bounds of min and max.
+ * @param vec1 Vector to check bounds of.
+ * @param min Minimum bound.
+ * @param max Maximum bound.
+ * @return Whether all the components of a vector are between min and max.
+ *
+ * @note Test Cases:
+ * is_inside_closed_range(vec3(1, 1, 1), 0, 2) -> true
+ * is_inside_closed_range(vec3(0, 0, 0), 0, 2) -> true
+ * is_inside_closed_range(vec3(2, 2, 2), 0, 2) -> true
+ * is_inside_closed_range(vec3(3, 3, 3), 0, 2) -> false
+ * is_inside_closed_range(vec3(-1, -1, -1), 0, 2) -> false
+ * NOTE: same conditions apply as previous definition
+ */
+inline bool is_inside_closed_range(const vec3 &vec1, const float min, const float max) {
+    return  is_inside_closed_range(vec1.x, min, max) &&
+            is_inside_closed_range(vec1.y, min, max) &&
+            is_inside_closed_range(vec1.z, min, max);
+}
+
+
+/**
  * Converts linear color space to gamma corrected color space.
  *
  * @param linear_component Color component to be gamma corrected.
  * @return Gamma corrected color component.
  */
-inline double linear_to_gamma(double linear_component) {
+inline float linear_to_gamma(float linear_component) {
     if (linear_component > 0)
         return std::sqrt(linear_component);
 
@@ -124,16 +174,16 @@ inline double linear_to_gamma(double linear_component) {
  * @param degrees Angle in degrees.
  * @return Angle in radians.
  */
-inline double degrees_to_radians(double degrees) {
+inline float degrees_to_radians(float degrees) {
     return degrees * 3.1415926535897932385 / 180.0;
 }
 
 /**
- * Gets a random double in [0, 1).
+ * Gets a random float in [0, 1).
  *
- * @return Random double in [0, 1).
+ * @return Random float in [0, 1).
  */
-inline double random_double() {
+inline float random_float() {
     return std::rand() / (RAND_MAX + 1.0);
 }
 
@@ -144,9 +194,9 @@ inline double random_double() {
  * @param max Maximum number.
  * @return Random number between the minimum and maximum.
  */
-inline double random_double(double min, double max) {
+inline float random_float(float min, float max) {
     // Returns a random real in [min,max).
-    return min + (max - min) * random_double();
+    return min + (max - min) * random_float();
 }
 
 /**
@@ -156,7 +206,7 @@ inline double random_double(double min, double max) {
  * @return Random integer between min and max.
  */
 inline int random_int(int min, int max) {
-    return static_cast<int>(random_double(min, max + 1));
+    return static_cast<int>(random_float(min, max + 1));
 }
 
 /**
@@ -164,8 +214,8 @@ inline int random_int(int min, int max) {
  *
  * @return Component randomized 3D vector.
  */
-static dvec3 random_dvec3() {
-    return {random_double(), random_double(), random_double()};
+static vec3 random_vec3() {
+    return {random_float(), random_float(), random_float()};
 }
 
 /**
@@ -174,8 +224,8 @@ static dvec3 random_dvec3() {
  * @param max Maximum number.
  * @return Component randomized 3D vector.
  */
-static dvec3 random_dvec3(double min, double max) {
-    return {random_double(min, max), random_double(min, max), random_double(min, max)};
+static vec3 random_vec3(float min, float max) {
+    return {random_float(min, max), random_float(min, max), random_float(min, max)};
 }
 
 /**
@@ -183,9 +233,9 @@ static dvec3 random_dvec3(double min, double max) {
  *
  * @return Normalized random unit vector.
  */
-inline dvec3 random_unit_vector() {
+inline vec3 random_unit_vector() {
     while (true) {
-        auto p = random_dvec3(-1, 1);
+        auto p = random_vec3(-1, 1);
         auto lensq = length2(p);
         if (1e-160 < lensq && lensq <= 1)
             return p / sqrt(lensq);
@@ -198,7 +248,7 @@ inline dvec3 random_unit_vector() {
  * @param normal Normal of surface.
  * @return Random unit vector on hemisphere.
  */
-inline dvec3 random_on_hemisphere(const vec3 &normal) {
+inline vec3 random_on_hemisphere(const vec3 &normal) {
     vec3 on_unit_sphere = random_unit_vector();
     if (dot(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
         return on_unit_sphere;
@@ -211,9 +261,9 @@ inline dvec3 random_on_hemisphere(const vec3 &normal) {
  *
  * @return Random point in the unit disk.
  */
-inline dvec3 random_in_unit_disk() {
+inline vec3 random_in_unit_disk() {
     while (true) {
-        auto p = dvec3(random_double(-1, 1), random_double(-1, 1), 0);
+        auto p = vec3(random_float(-1, 1), random_float(-1, 1), 0);
         if (length2(p) < 1)
             return p;
     }
@@ -221,5 +271,7 @@ inline dvec3 random_in_unit_disk() {
 
 // Common custom headers
 #include <Utils/Exceptions.h>
+#include <Utils/Ray.h>
+#include <Utils/Color.h>
 
 #endif //HEADERS_H

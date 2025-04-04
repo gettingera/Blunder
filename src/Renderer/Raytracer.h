@@ -1,10 +1,9 @@
 #ifndef RAYTRACER_H
 #define RAYTRACER_H
-#include "Renderer.h"
-#include "RenderTarget.h"
-#include "Geometry/HitRecord.h"
-#include "Materials/Material.h"
-#include "Scene/Scene.h"
+#include <Utils/Headers.h>
+#include <Geometry/SphereList.h>
+#include <Renderer/RenderTarget.h>
+#include <Camera/Camera.h>
 
 /**
  * Utility structure to hold necessary camera values and computations for ray tracing.
@@ -12,37 +11,32 @@
  * Values are largely undocumented for now. They will be documented soon. UNFINISHED.
  */
 struct RT_CAMERA_VALUES {
-    double focal_length;
-    double theta;
-    double h;
-    double viewport_height;
-    double viewport_width;
-    double focus_distance;
-    double focus_angle;
+    float focal_length;
+    float theta;
+    float h;
+    float viewport_height;
+    float viewport_width;
 
-    dvec3 position;
-    dvec3 direction;
-    dvec3 up_direction;
-    dvec3 u;
-    dvec3 v;
-    dvec3 w;
-    dvec3 focus_disk_u;
-    dvec3 focus_disk_v;
-    dvec3 viewport_u;
-    dvec3 viewport_v;
-    dvec3 pixel_delta_u;
-    dvec3 pixel_delta_v;
-    dvec3 viewport_upper_left;
-    dvec3 pixel_upper_left;
+    vec3 position;
+    vec3 direction;
+    vec3 up_direction;
+    vec3 u;
+    vec3 v;
+    vec3 w;
+    vec3 viewport_u;
+    vec3 viewport_v;
+    vec3 pixel_delta_u;
+    vec3 pixel_delta_v;
+    vec3 viewport_upper_left;
+    vec3 pixel_upper_left;
 };
 
 
 /**
  * Raytracer renderer.
- *
  * Useful for rendering photorealistic images imitating the interactions of light.
  */
-class Raytracer final : public Renderer {
+class Raytracer final {
     /// The amount of rays traced per pixel.
     int samples = 10;
 
@@ -51,53 +45,51 @@ class Raytracer final : public Renderer {
 
 public:
     // Methods
-    void Render(const Scene &scene, const shared_ptr<RenderTarget> &render_target) override {
+    void Render(const shared_ptr<SphereList> &spheres, const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target) const {
         // Get RT_CAMERA_VALUES for ray query information
-        auto rtcv = InitializeRTCamera(scene, render_target);
+        auto rtcv = InitializeRTCamera(camera, render_target);
 
         // Rendered rows
         int rendered_rows = 0;
 
         for (int j = 0; j < render_target->get_height(); j++) {
             for (int i = 0; i < render_target->get_width(); i++) {
-                auto color = dvec3(0);
+                vec3 color{0};
 
                 for (int k = 0; k < samples; k++) {
                     Ray ray = GetRay(i, j, rtcv);
-                    color += GetRayColor(ray, scene.world, max_depth);
+                    color += GetRayColor(ray, spheres, max_depth);
                 }
 
                 color /= samples;
-                render_target->SetPixel(i, j, color);
+                render_target->set_pixel(i, j, Color(color));
             }
+
             rendered_rows += 1;
-            std::cout << "Rendering in progress: " << 100 * static_cast<double>(rendered_rows) / render_target->
-                    get_height() <<
-                    "%\n";
+            std::cout << "Rendering in progress: " << 100 * static_cast<float>(rendered_rows) / render_target->get_height() << "%\n";
         }
     }
 
     // Helpers
     /**
      * Initializes the camera values required for raytracing.
-     *
-     * @param scene Scene to be rendered.
+     * @param camera Camera to be rendering.
      * @param render_target Render target to be rendered to.
      * @return RT_CAMERA_VALUES struct.
      */
-    static RT_CAMERA_VALUES InitializeRTCamera(const Scene &scene, const shared_ptr<RenderTarget> &render_target) {
+    static RT_CAMERA_VALUES InitializeRTCamera(const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target) {
         RT_CAMERA_VALUES rtc{};
 
-        rtc.position = scene.camera->get_position();
-        rtc.direction = scene.camera->get_direction();
-        rtc.up_direction = scene.camera->get_up_direction();
+        rtc.position = camera->get_position();
+        rtc.direction = camera->get_look_at();
+        rtc.up_direction = camera->get_up_direction();
 
         rtc.focal_length = length(rtc.position - rtc.direction);
-        rtc.theta = degrees_to_radians(scene.camera->get_vfov());
+        rtc.theta = degrees_to_radians(camera->get_fov());
         rtc.h = std::tan(rtc.theta / 2.0);
         rtc.viewport_height = 2.0 * rtc.h * rtc.focal_length;
         rtc.viewport_width = rtc.viewport_height * (
-                                 static_cast<double>(render_target->get_width()) / static_cast<double>(render_target->
+                                 static_cast<float>(render_target->get_width()) / static_cast<float>(render_target->
                                      get_height()));
 
         rtc.w = normalize(rtc.position - rtc.direction);
@@ -107,27 +99,18 @@ public:
         rtc.viewport_u = rtc.viewport_width * rtc.u;
         rtc.viewport_v = rtc.viewport_height * -rtc.v;
 
-        rtc.pixel_delta_u = rtc.viewport_u / static_cast<double>(render_target->get_width());
-        rtc.pixel_delta_v = rtc.viewport_v / static_cast<double>(render_target->get_height());
+        rtc.pixel_delta_u = rtc.viewport_u / static_cast<float>(render_target->get_width());
+        rtc.pixel_delta_v = rtc.viewport_v / static_cast<float>(render_target->get_height());
 
-        rtc.viewport_upper_left = scene.camera->get_position() - (rtc.focal_length * rtc.w) - rtc.viewport_u / 2.0 - rtc
-                                  .viewport_v / 2.0;
-        rtc.pixel_upper_left = rtc.viewport_upper_left + 0.5 * (rtc.pixel_delta_u + rtc.pixel_delta_v);
-
-        auto focus_radius = scene.camera->get_focus_distance() * std::tan(
-                                degrees_to_radians(scene.camera->get_focus_angle() / 2));
-        rtc.focus_disk_u = rtc.u * focus_radius;
-        rtc.focus_disk_v = rtc.v * focus_radius;
-
-        rtc.focus_distance = scene.camera->get_focus_distance();
-        rtc.focus_angle = scene.camera->get_focus_angle();
+        rtc.viewport_upper_left = camera->get_position() - (rtc.focal_length * rtc.w) - rtc.viewport_u / 2.0f - rtc
+                                  .viewport_v / 2.0f;
+        rtc.pixel_upper_left = rtc.viewport_upper_left + 0.5f * (rtc.pixel_delta_u + rtc.pixel_delta_v);
 
         return rtc;
     }
 
     /**
      * Gets the ray coming from the camera through pixel (i, j).
-     *
      * @param i Pixel X position.
      * @param j Pixel Y position.
      * @param rtcv RT_CAMERA_VALUES struct.
@@ -140,64 +123,65 @@ public:
                                   + ((i + offset.x) * rtcv.pixel_delta_u)
                                   + ((j + offset.y) * rtcv.pixel_delta_v);
 
-        // Used for depth of field, offsets ray origin by focus angle
-        const auto ray_origin = (rtcv.focus_angle <= 0) ? rtcv.position : focus_disk_sample(rtcv);
+        // Get ray through pixel by random offset for antialiasing
+        const auto ray_origin = rtcv.position;
         const auto ray_direction = pixel_sample - ray_origin;
 
-        // Random double between 0 and 1 (frame start -> frame end) for motion blur
-        const auto ray_time = random_double();
-        return {ray_origin, ray_direction, ray_time};
-    }
-
-    /**
-     * Gets a random point on the focus disk for rendering depth of field.
-     *
-     * @param rtcv RT_CAMERA_VALUES struct.
-     * @return Point on focus disk.
-     */
-    [[nodiscard]] static dvec3 focus_disk_sample(const RT_CAMERA_VALUES &rtcv) {
-        auto p = random_in_unit_disk();
-        return rtcv.position + (p.x * rtcv.focus_disk_u) + (p.y * rtcv.focus_disk_v);
+        // Return ray
+        return {ray_origin, ray_direction};
     }
 
     /**
      * Gets a random point on the unit square, centered at (0, 0).
-     *
      * @return Random point on the unit square.
      */
-    [[nodiscard]] static dvec3 SampleSquare() {
-        return {random_double() - 0.5, random_double() - 0.5, 0};
+    [[nodiscard]] static vec3 SampleSquare() {
+        return {random_float() - 0.5, random_float() - 0.5, 0};
     }
 
     /**
      * Gets the visual color of a ray interacting with the world.
-     *
      * @param ray Ray of light.
-     * @param world List of objects to be rendered.
+     * @param spheres List of spheres to be rendered.
      * @param depth Recursion depth, amount of scattering allowed.
-     * @return Color of ray interacting with the world.
+     * @return Color of ray interacting with the spheres.
      */
-    [[nodiscard]] static dvec3 GetRayColor(const Ray &ray, const shared_ptr<Hittable> &world, const int depth) {
+    [[nodiscard]] static vec3 GetRayColor(const Ray &ray, const shared_ptr<SphereList> &spheres, const int depth) {
         if (depth <= 0)
-            return dvec3(0);
+            return vec3(0);
 
         HitRecord record{};
 
-        if (world->Hit(ray, Interval(0.001, infinity), record)) {
-            Ray scattered;
-            dvec3 attenuation;
-
-            if (record.get_material()->Scatter(ray, record, attenuation, scattered)) {
-                return attenuation * GetRayColor(scattered, world, depth - 1);
-            }
-
-            return dvec3(0);
+        if (spheres->Hit(ray, 0.001, 1000000, record)) {
+            Ray scattered{vec3(0), vec3(1)};
+            vec3 attenuation;
+            Scatter(ray, record, attenuation, scattered);
+            return attenuation * GetRayColor(scattered, spheres, depth - 1);
         }
 
         // Sky rendering
-        const dvec3 unit_direction = normalize(ray.get_direction());
-        const auto a = 0.5 * (unit_direction.z + 1);
-        return (1.0 - a) * dvec3(0.8, 0.9, 1.0) + a * dvec3(0.4, 0.8, 1.0);
+        return skyColor(ray);
+    }
+
+    static vec3 skyColor(const Ray &rayIn) {
+        const vec3 unit_direction = normalize(rayIn.get_direction());
+        const auto a = 0.5f * (unit_direction.z + 1);
+        const auto bottom_color = vec3(0, 0, 0);
+        const auto top_color = vec3(1, 1, 1);
+        return ((1.0f - a) * bottom_color) + (a * top_color);
+    }
+
+    static bool Scatter(const Ray &rayIn, const HitRecord &record, vec3 &attenuation, Ray &scattered) {
+        vec3 direction = record.get_normal() + random_unit_vector();
+
+        // Fix possible bug
+        if (is_near_zero(direction))
+            direction = record.get_normal();
+
+        scattered = Ray(record.get_point(), direction);
+        attenuation = record.get_color().get_color();
+
+        return true;
     }
 
     // Getters and setters

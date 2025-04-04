@@ -1,172 +1,101 @@
 #ifndef SPHERE_H
 #define SPHERE_H
-#include <glm/gtx/norm.hpp>
-#include "Hittable.h"
-
+#include <Utils/Headers.h>
+#include "HitRecord.h"
 
 /**
  * Sphere object.
- *
  * Use this to render perfectly spherical objects.
  */
-class Sphere final : public Hittable {
-    /// Position of sphere over frame beginning to frame ending.
-    Ray center{};
+class Sphere final {
+    /// Position of the position of the sphere.
+    vec3 position{infinity, infinity, infinity};
 
     /// Radius of sphere.
-    double radius{};
+    float radius{infinity};
 
-    /// Pointer to the sphere material.
-    shared_ptr<Material> material;
-
-    /// Bounding box of the sphere.
-    AABB bounding_box;
+    /// Color of the sphere
+    Color color{0, 0, 0};
 
 public:
     // Constructors
     /**
      * Makes a new stationary sphere.
-     *
-     * @param center Position of sphere.
+     * @param position Position of sphere.
      * @param radius Radius of sphere.
-     * @param material Pointer to material.
-     */
-    Sphere(const dvec3 &center, const double radius, const shared_ptr<Material> &material) {
-        set_center(Ray(center, dvec3(0)));
-        set_radius(radius);
-        set_material(material);
-
-        // Sets bounding box of stationary sphere.
-        auto rvec = dvec3(radius);
-        set_bounding_box(AABB(get_center().get_origin() - rvec, get_center().get_origin() + rvec));
-    }
-
-    /**
-     * Makes a new moving sphere.
+     * @param color Color of the sphere.
      *
-     * @param center1 Position of the sphere at frame beginning.
-     * @param center2 Position of the sphere at frame ending.
-     * @param radius Radius of sphere.
-     * @param material Pointer to material.
+     * @note Test Cases: Constructor follows all setter qualifications. Just plug those values into the constructor.
      */
-    Sphere(const dvec3 &center1, const dvec3 &center2, const double radius, const shared_ptr<Material> &material) {
-        set_center(Ray(center1, center2 - center1));
-        set_radius(radius);
-        set_material(material);
-
-        // Sets bounding box of moving sphere.
-        auto rvec = dvec3(radius);
-        AABB box1(get_center().At(0) - rvec, get_center().At(0) + rvec);
-        AABB box2(get_center().At(1) - rvec, get_center().At(1) + rvec);
-        set_bounding_box(AABB(box1, box2));
-    }
+    Sphere(const vec3 &position, float radius, const Color &color);
 
     // Methods
-    bool Hit(const Ray &ray, const Interval &rayTime, HitRecord &record) const override {
-        dvec3 current_center = get_center().At(ray.get_time());
-        dvec3 oc = current_center - ray.get_origin();
-        auto a = length2(ray.get_direction());
-        auto h = dot(ray.get_direction(), oc);
-        auto c = length2(oc) - get_radius() * get_radius();
-
-        auto discriminant = h * h - a * c;
-        if (discriminant < 0)
-            return false;
-
-        auto sqrtd = std::sqrt(discriminant);
-
-        // Find the nearest root that lies in the acceptable range.
-        auto root = (h - sqrtd) / a;
-        if (!rayTime.surrounds(root)) {
-            root = (h + sqrtd) / a;
-            if (!rayTime.surrounds(root))
-                return false;
-        }
-
-        record.set_time(root);
-        record.set_point(ray.At(record.get_time()));
-        const dvec3 outward_normal = (record.get_point() - current_center) / get_radius();
-        record.SetFaceNormal(ray, outward_normal);
-        record.set_material(get_material());
-
-        return true;
-    }
-
-    [[nodiscard]] AABB BoundingBox() const override {
-        return get_bounding_box();
-    };
+    /**
+     * Determines whether the incoming ray intersects the sphere or not.
+     * If so, record the information in hitRecord and return true.
+     * @param ray Ray that could possibly be intersecting the sphere.
+     * @param tStart Minimum t value to begin checking.
+     * @param tEnd Maximum t value to finish checking.
+     * @param hitRecord Hit information if the ray intersects the sphere.
+     * @return True if ray intersects sphere and logs information in hitRecord. False if there is no intersection.
+     *
+     * @note Test Cases:
+     * Buckle up! You will need to check true / false. You can also check the hitRecord if you'd like.
+     * auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1))
+     * auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0))
+     * auto hitRecord = HitRecord()
+     * s1.Hit(ray, 0, 10000, hitRecord) -> true
+     * ray.set_direction(0, -1, 0)
+     * s1.Hit(ray, 0, 10000, hitRecord) -> false
+     * s1.Hit(ray, 10000, 0, hitRecord) -> ERROR: will throw a SphereException (tStart is greater than tEnd)
+     * s1.Hit(ray, -infinity, infinity, hitRecord) -> ERROR: will throw a SphereException (tStart and tEnd must be finite)
+     */
+    bool Hit(const Ray &ray, float tStart, float tEnd, HitRecord &hitRecord) const;
 
     // Getters
-    /**
-     * Gets center.
-     *
-     * @return Position of sphere.
-     */
-    [[nodiscard]] Ray get_center() const {
-        return center;
-    }
+    /// Gets the position of the center of the sphere.
+    [[nodiscard]] vec3 get_position() const { return position; }
 
-    /**
-     * Gets radius.
-     *
-     * @return Radius of sphere.
-     */
-    [[nodiscard]] double get_radius() const {
-        return radius;
-    }
+    /// Gets the radius of the sphere.
+    [[nodiscard]] float get_radius() const { return radius; }
 
-    /**
-     * Gets pointer to material.
-     * @return Pointer to material.
-     */
-    [[nodiscard]] shared_ptr<Material> get_material() const {
-        return material;
-    }
-
-    /**
-     * Gets the bounding box.
-     * @return Bounding box surrounding the sphere.
-     */
-    [[nodiscard]] AABB get_bounding_box() const {
-        return bounding_box;
-    }
+    /// Gets the color of the sphere.
+    [[nodiscard]] Color get_color() const { return color; }
 
     // Setters
     /**
-     * Sets center.
+     * Sets the center position of the sphere.
+     * @param position Center position of the sphere.
      *
-     * @param center Position of sphere.
+     * @note Test Cases:
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
+     * s1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)
+     * s1.set_position(vec3(infinity, infinity, infinity)) -> ERROR: will throw a SphereException (position is not finite)
      */
-    void set_center(const Ray &center) {
-        this->center = center;
-    }
+    void set_position(const vec3 &position);
 
     /**
-     * Sets radius.
+     * Sets the radius of the sphere.
+     * @param radius Radius of the sphere.
      *
-     * @param radius Radius of sphere.
+     * @note Test Cases:
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
+     * s1.set_radius(1) -> radius should be 1
+     * s1.set_radius(0) -> ERROR: will throw a SphereException (radius should be greater than zero)
+     * s1.set_radius(-1) -> ERROR: will throw a SphereException (radius should be greater than zero)
+     * s1.set_radius(infinity) -> ERROR: will throw a SphereException (radius should be finite)
      */
-    void set_radius(const double radius) {
-        this->radius = radius;
-    }
+    void set_radius(float radius);
 
     /**
-     * Sets pointer to material.
+     * Sets the color of the sphere.
+     * @param color Color of the sphere.
      *
-     * @param material Pointer to material.
+     * @note Test Cases:
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
+     * s1.set_color(Color(0.5, 0.5, 0.5)) -> color should be (0.5, 0.5, 0.5)
      */
-    void set_material(const shared_ptr<Material> &material) {
-        this->material = material;
-    }
-
-    /**
-     * Sets the bounding box.
-     *
-     * @param bounding_box Bounding box surrounding the sphere.
-     */
-    void set_bounding_box(const AABB &bounding_box) {
-        this->bounding_box = bounding_box;
-    }
+    void set_color(const Color &color);
 };
 
 

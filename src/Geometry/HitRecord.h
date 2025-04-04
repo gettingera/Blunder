@@ -1,31 +1,23 @@
 #ifndef HITRECORD_H
 #define HITRECORD_H
-
-
-/// Forward declaration of Material for compatibility
-class Material;
-
+#include <Utils/Headers.h>
 
 /**
  * Stores information from ray-hittable intersections.
- *
  * This is useful for avoiding lengthy parameter lists.
  */
 class HitRecord {
     /// Point of intersection.
-    dvec3 point{};
+    vec3 point{infinity, infinity, infinity};
 
     /// Surface normal at the intersection.
-    dvec3 normal{};
+    vec3 normal{infinity, infinity, infinity};
 
-    /// Material of the intersected object.
-    shared_ptr<Material> material{};
+    /// Color of point of intersection
+    Color color{0, 0, 0};
 
-    /// Ray parameter at intersection.
-    double time{};
-
-    /// Whether the intersection was from inside or outside.
-    bool front_face{};
+    /// Ray parameter t at point of intersection.
+    double t{infinity};
 
 public:
     // Constructors
@@ -34,109 +26,64 @@ public:
      */
     HitRecord() = default;
 
-    // Methods
-    /**
-     * Computes intersection normal direction based on ray and surface normal.
-     *
-     * @param ray The incoming ray.
-     * @param outwardNormal The outward-facing surface normal.
-     */
-    void SetFaceNormal(const Ray &ray, const dvec3 &outwardNormal) {
-        set_front_face(dot(ray.get_direction(), outwardNormal) < 0);
-        set_normal(get_front_face() ? outwardNormal : -outwardNormal);
-    }
-
     // Getters
-    /**
-     * Gets the intersection point.
-     *
-     * @return Point of intersection.
-     */
-    [[nodiscard]] dvec3 get_point() const {
-        return point;
-    }
+    /// Gets the intersection point.
+    [[nodiscard]] vec3 get_point() const { return point; }
 
-    /**
-     * Gets the surface normal.
-     *
-     * @return Surface normal at the intersection.
-     */
-    [[nodiscard]] dvec3 get_normal() const {
-        return normal;
-    }
+    /// Gets the surface normal.
+    [[nodiscard]] vec3 get_normal() const { return normal; }
 
-    /**
-     * Gets the material.
-     *
-     * @return Material of the intersected object.
-     */
-    [[nodiscard]] shared_ptr<Material> get_material() const {
-        return material;
-    }
+    /// Gets the color of the point of intersection.
+    [[nodiscard]] Color get_color() const { return color; }
 
-    /**
-     * Gets the ray parameter.
-     *
-     * @return Ray parameter at intersection.
-     */
-    [[nodiscard]] double get_time() const {
-        return time;
-    }
-
-    /**
-     * Gets the intersection orientation.
-     *
-     * @return Whether the intersection was from inside or outside.
-     */
-    [[nodiscard]] bool get_front_face() const {
-        return front_face;
-    }
+    /// Gets the ray parameter t.
+    [[nodiscard]] double get_t() const { return t; }
 
     // Setters
     /**
      * Sets the intersection point.
-     *
      * @param point Point of intersection.
+     *
+     * @note Test Cases:
+     * auto hr1 = HitRecord()
+     * hr1.set_point(vec3(0, 0, 0)) -> point should be (0, 0, 0)
+     * hr1.set_point(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (point is not finite)
      */
-    void set_point(const dvec3 &point) {
-        this->point = point;
-    }
+    void set_point(const vec3 &point);
 
     /**
      * Sets the surface normal.
-     *
      * @param normal Surface normal at the intersection.
+     *
+     * @note Test Cases:
+     * auto hr1 = HitRecord()
+     * hr1.set_normal(vec3(1, 1, 1)) -> point should be normalize((1, 1, 1))
+     * hr1.set_normal(vec3(0, 0, 0)) -> ERROR: will throw a HitRecordException (normal cannot be a zero vector)
+     * hr1.set_normal(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (normal is not finite)
      */
-    void set_normal(const dvec3 &normal) {
-        this->normal = normal;
-    }
+    void set_normal(const vec3 &normal);
 
     /**
-     * Sets the material.
+     * Sets the color of the point of intersection.
+     * @param color Color at the point of intersection.
      *
-     * @param material Material of the intersected object.
+     * @note Test Cases:
+     * auto hr1 = HitRecord()
+     * hr1.set_color(Color(0.5, 0.5, 0.5)) -> color should be Color(0.5, 0.5, 0.5)
      */
-    void set_material(const shared_ptr<Material> &material) {
-        this->material = material;
-    }
+    void set_color(const Color &color);
 
     /**
      * Sets the ray parameter.
+     * @param t Ray parameter at intersection.
      *
-     * @param time Ray parameter at intersection.
+     * @note Test Cases:
+     * auto hr1 = HitRecord()
+     * hr1.set_t(1) -> t should be 1
+     * hr1.set_t(0) -> t should be 0
+     * hr1.set_t(infinity) -> ERROR: will throw a HitRecordException (t is not finite)
      */
-    void set_time(const double time) {
-        this->time = time;
-    }
-
-    /**
-     * Sets the intersection orientation.
-     *
-     * @param front_face Whether the intersection was from inside or outside.
-     */
-    void set_front_face(const bool front_face) {
-        this->front_face = front_face;
-    }
+    void set_t(double t);
 };
 
 

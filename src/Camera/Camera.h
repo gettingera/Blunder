@@ -22,7 +22,7 @@ class Camera {
 public:
     // Constructors
     /**
-     *
+     * Creates a new camera.
      * @param position Position of the camera in the world.
      * @param look_at Position the camera is looking at in the world.
      *
