@@ -16,19 +16,19 @@ void SphereList::Add(const shared_ptr<Sphere> &sphere) {
 bool SphereList::Hit(const Ray &ray, const float tStart, const float tEnd, HitRecord &record) const {
     // Ensure tStart is finite
     if (!is_finite(tStart))
-        throw SphereListException("SphereList::Hit(): tStart is not finite");
+        throw SphereListException("SphereList::Hit(): tStart should be finite");
 
     // Ensure tEnd is finite
     if (!is_finite(tEnd))
-        throw SphereListException("SphereList::Hit(): tEnd is not finite");
+        throw SphereListException("SphereList::Hit(): tEnd should be finite");
 
     // Ensure tStart is lesser than tEnd
     if (tStart >= tEnd)
-        throw SphereListException("SphereList::Hit(): tStart is greater than or equal to tEnd");
+        throw SphereListException("SphereList::Hit(): tStart should be lesser than tEnd");
 
     // Ensure tStart, tEnd greater than zero
     if (tStart < 0)
-        throw SphereListException("SphereList::Hit(): tStart (and possible tEnd) is negative");
+        throw SphereListException("SphereList::Hit(): tStart (and possible tEnd) should not be negative");
 
     // Begin intersection code
     HitRecord tempRecord{};

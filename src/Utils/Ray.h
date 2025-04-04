@@ -22,9 +22,9 @@ public:
      * @param position Position.
      * @param direction Direction.
      *
-     * @note Test Cases:
-     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1)) -> position should be (0, 0, 0), direction should be (1, 1, 1)
-     * auto r2 = Ray(vec3(1, 1, 1), vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction vector should be non-zero)
+     * @note Test Cases:\n
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1)) -> position should be (0, 0, 0), direction should be (1, 1, 1)\n
+     * auto r2 = Ray(vec3(1, 1, 1), vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction vector should be non-zero)\n
      */
     Ray(const vec3 &position, const vec3 &direction);
 
@@ -34,12 +34,12 @@ public:
      * @param t Finite, real valued parameter.
      * @return Point on ray at t. (using the equation: position + t*direction)
      *
-     * @note Test Cases:
-     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
-     * r1.at(0) -> should be equal to r1.position
-     * r1.at(1) -> should be equal to r1.position + r1.direction
-     * r1.at(infinity) -> ERROR: will throw a RayException (t must be finite)
-     * r1.at(NAN) -> ERROR: will throw a RayException (t must be finite)
+     * @note Test Cases:\n
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))\n
+     * r1.at(0) -> should be equal to r1.position\n
+     * r1.at(1) -> should be equal to r1.position + r1.direction\n
+     * r1.at(infinity) -> ERROR: will throw a RayException (t must be finite)\n
+     * r1.at(NAN) -> ERROR: will throw a RayException (t must be finite)\n
      */
     [[nodiscard]] vec3 at(float t) const;
 
@@ -55,9 +55,9 @@ public:
      * Sets position.
      * @param position Starting position of the ray.
      *
-     * @notes Test Cases:
-     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
-     * r1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)
+     * @note Test Cases:\n
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))\n
+     * r1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)\n
      */
     void set_position(const vec3 &position);
 
@@ -65,10 +65,10 @@ public:
      * Sets direction.
      * @param direction Direction the ray travels.
      *
-    * * @notes Test Cases:
-     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))
-     * r1.set_direction(vec3(2, 2, 2)) -> direction should be (2, 2, 2)
-     * r1.set_direction(vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction cannot be a zero vector)
+     * @note Test Cases:
+     * auto r1 = Ray(vec3(0, 0, 0), vec3(1, 1, 1))\n
+     * r1.set_direction(vec3(2, 2, 2)) -> direction should be (2, 2, 2)\n
+     * r1.set_direction(vec3(0, 0, 0)) -> ERROR: will throw a RayException (direction cannot be a zero vector)\n
      */
     void set_direction(const vec3 &direction);
 };

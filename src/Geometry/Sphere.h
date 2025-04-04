@@ -39,16 +39,16 @@ public:
      * @param hitRecord Hit information if the ray intersects the sphere.
      * @return True if ray intersects sphere and logs information in hitRecord. False if there is no intersection.
      *
-     * @note Test Cases:
-     * Buckle up! You will need to check true / false. You can also check the hitRecord if you'd like.
-     * auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1))
-     * auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0))
-     * auto hitRecord = HitRecord()
-     * s1.Hit(ray, 0, 10000, hitRecord) -> true
-     * ray.set_direction(0, -1, 0)
-     * s1.Hit(ray, 0, 10000, hitRecord) -> false
-     * s1.Hit(ray, 10000, 0, hitRecord) -> ERROR: will throw a SphereException (tStart is greater than tEnd)
-     * s1.Hit(ray, -infinity, infinity, hitRecord) -> ERROR: will throw a SphereException (tStart and tEnd must be finite)
+     * @note Test Cases:\n
+     * Buckle up! You will need to check true / false. You can also check the hitRecord if you'd like.\n
+     * auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1))\n
+     * auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0))\n
+     * auto hitRecord = HitRecord()\n
+     * s1.Hit(ray, 0, 10000, hitRecord) -> true\n
+     * ray.set_direction(0, -1, 0)\n
+     * s1.Hit(ray, 0, 10000, hitRecord) -> false\n
+     * s1.Hit(ray, 10000, 0, hitRecord) -> ERROR: will throw a SphereException (tStart is greater than tEnd)\n
+     * s1.Hit(ray, -infinity, infinity, hitRecord) -> ERROR: will throw a SphereException (tStart and tEnd must be finite)\n
      */
     bool Hit(const Ray &ray, float tStart, float tEnd, HitRecord &hitRecord) const;
 
@@ -67,10 +67,10 @@ public:
      * Sets the center position of the sphere.
      * @param position Center position of the sphere.
      *
-     * @note Test Cases:
-     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
-     * s1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)
-     * s1.set_position(vec3(infinity, infinity, infinity)) -> ERROR: will throw a SphereException (position is not finite)
+     * @note Test Cases:\n
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))\n
+     * s1.set_position(vec3(1, 1, 1)) -> position should be (1, 1, 1)\n
+     * s1.set_position(vec3(infinity, infinity, infinity)) -> ERROR: will throw a SphereException (position is not finite)\n
      */
     void set_position(const vec3 &position);
 
@@ -78,12 +78,12 @@ public:
      * Sets the radius of the sphere.
      * @param radius Radius of the sphere.
      *
-     * @note Test Cases:
-     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
-     * s1.set_radius(1) -> radius should be 1
-     * s1.set_radius(0) -> ERROR: will throw a SphereException (radius should be greater than zero)
-     * s1.set_radius(-1) -> ERROR: will throw a SphereException (radius should be greater than zero)
-     * s1.set_radius(infinity) -> ERROR: will throw a SphereException (radius should be finite)
+     * @note Test Cases:\n
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))\n
+     * s1.set_radius(1) -> radius should be 1\n
+     * s1.set_radius(0) -> ERROR: will throw a SphereException (radius should be greater than zero)\n
+     * s1.set_radius(-1) -> ERROR: will throw a SphereException (radius should be greater than zero)\n
+     * s1.set_radius(infinity) -> ERROR: will throw a SphereException (radius should be finite)\n
      */
     void set_radius(float radius);
 
@@ -91,9 +91,9 @@ public:
      * Sets the color of the sphere.
      * @param color Color of the sphere.
      *
-     * @note Test Cases:
-     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))
-     * s1.set_color(Color(0.5, 0.5, 0.5)) -> color should be (0.5, 0.5, 0.5)
+     * @note Test Cases:\n
+     * auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1))\n
+     * s1.set_color(Color(0.5, 0.5, 0.5)) -> color should be (0.5, 0.5, 0.5)\n
      */
     void set_color(const Color &color);
 };

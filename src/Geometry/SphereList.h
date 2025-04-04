@@ -37,10 +37,10 @@ public:
      * @return True if ray intersects spheres and logs closest sphere intersection information in hitRecord.
      * False if there is no intersection between all the spheres in the list.
      *
-     * @note Test Cases:
-     * I know this looks scary: Here's what I would do.
-     * Simply add your sphere from the previous test code to this list and make sure you still get the same result.
-     * For advanced testing, set the pointer to nullptr and run it again. You should catch a SphereListException.
+     * @note Test Cases:\n
+     * I know this looks scary: Here's what I would do.\n
+     * Simply add your sphere from the previous test code to this list and make sure you still get the same result.\n
+     * For advanced testing, set the pointer to nullptr and run it again. You should catch a SphereListException.\n
      */
     bool Hit(const Ray &ray, float tStart, float tEnd, HitRecord &hitRecord) const;
 };

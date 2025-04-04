@@ -4,117 +4,77 @@
 #include <utility>
 
 /**
- * Camera-specific exceptions useful for debugging and unit testing.
+ * A simplified BaseException class that provides an easier interface for registering custom exceptions.
  */
-class CameraException final : public std::exception {
+class BaseException : public std::exception {
     /// Custom error message the exception may choose to set upon throwing.
     std::string message;
 
 public:
-    /// Creates the new exception with a custom error message.
-    explicit CameraException(std::string message) : message(std::move(message)) {}
+    /// Sets the message
+    explicit BaseException(const std::string& what) : message(std::move(what)) {}
 
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
+    /// Function that returns the error message
+    const char* what() const noexcept override {
         return message.c_str();
     }
 };
 
 /**
+ * Camera-specific exceptions useful for debugging and unit testing.
+ */
+class CameraException final : public BaseException {
+public:
+    explicit CameraException(std::string message) : BaseException(std::move(message)) {};
+};
+
+/**
  * Ray-specific exceptions useful for debugging and unit testing.
  */
-class RayException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+class RayException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit RayException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit RayException(std::string message) : BaseException(std::move(message)) {};
 };
 
 /**
  * Color-specific exceptions useful for debugging and unit testing.
  * Ensures proper color standards are utilized throughout.
  */
-class ColorException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+class ColorException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit ColorException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit ColorException(std::string message) : BaseException(std::move(message)) {};
 };
 
 /**
  * RenderTarget-specific exceptions useful for debugging and unit testing.
  */
-class RenderTargetException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+class RenderTargetException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit RenderTargetException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit RenderTargetException(std::string message) : BaseException(std::move(message)) {};
 };
 
 /**
  * Sphere-specific exceptions useful for debugging and unit testing.
  */
-class SphereException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+class SphereException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit SphereException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit SphereException(std::string message) : BaseException(std::move(message)) {};
 };
 
-class SphereListException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+/**
+ * SphereList-specific exceptions useful for debugging and unit testing.
+ */
+class SphereListException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit SphereListException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit SphereListException(std::string message) : BaseException(std::move(message)) {};
 };
 
-class HitRecordException final : public std::exception {
-    /// Custom error message the exception may choose to set upon throwing.
-    std::string message;
-
+/**
+ * HitRecord-specific exceptions useful for debugging and unit testing.
+ */
+class HitRecordException final : public BaseException {
 public:
-    /// Creates the new exception with a custom error message.
-    explicit HitRecordException(std::string message) : message(std::move(message)) {}
-
-    /// Use the new error message when throwing the exception.
-    [[nodiscard]] const char *what() const noexcept override {
-        return message.c_str();
-    }
+    explicit HitRecordException(std::string message) : BaseException(std::move(message)) {};
 };
 
 #endif //EXCEPTIONS_H

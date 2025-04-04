@@ -22,7 +22,7 @@ class HitRecord {
 public:
     // Constructors
     /**
-     * Creates a new HitRecord.
+     * Creates a new empty HitRecord.
      */
     HitRecord() = default;
 
@@ -44,10 +44,10 @@ public:
      * Sets the intersection point.
      * @param point Point of intersection.
      *
-     * @note Test Cases:
-     * auto hr1 = HitRecord()
-     * hr1.set_point(vec3(0, 0, 0)) -> point should be (0, 0, 0)
-     * hr1.set_point(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (point is not finite)
+     * @note Test Cases:\n
+     * auto hr1 = HitRecord()\n
+     * hr1.set_point(vec3(0, 0, 0)) -> point should be (0, 0, 0)\n
+     * hr1.set_point(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (point is not finite)\n
      */
     void set_point(const vec3 &point);
 
@@ -55,11 +55,11 @@ public:
      * Sets the surface normal.
      * @param normal Surface normal at the intersection.
      *
-     * @note Test Cases:
-     * auto hr1 = HitRecord()
-     * hr1.set_normal(vec3(1, 1, 1)) -> point should be normalize((1, 1, 1))
-     * hr1.set_normal(vec3(0, 0, 0)) -> ERROR: will throw a HitRecordException (normal cannot be a zero vector)
-     * hr1.set_normal(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (normal is not finite)
+     * @note Test Cases:\n
+     * auto hr1 = HitRecord()\n
+     * hr1.set_normal(vec3(1, 1, 1)) -> point should be normalize((1, 1, 1))\n
+     * hr1.set_normal(vec3(0, 0, 0)) -> ERROR: will throw a HitRecordException (normal cannot be a zero vector)\n
+     * hr1.set_normal(vec3(infinity, infinity, infinity)) -> ERROR: will throw a HitRecordException (normal is not finite)\n
      */
     void set_normal(const vec3 &normal);
 
@@ -67,9 +67,9 @@ public:
      * Sets the color of the point of intersection.
      * @param color Color at the point of intersection.
      *
-     * @note Test Cases:
-     * auto hr1 = HitRecord()
-     * hr1.set_color(Color(0.5, 0.5, 0.5)) -> color should be Color(0.5, 0.5, 0.5)
+     * @note Test Cases:\n
+     * auto hr1 = HitRecord()\n
+     * hr1.set_color(Color(0.5, 0.5, 0.5)) -> color should be Color(0.5, 0.5, 0.5)\n
      */
     void set_color(const Color &color);
 
@@ -77,11 +77,12 @@ public:
      * Sets the ray parameter.
      * @param t Ray parameter at intersection.
      *
-     * @note Test Cases:
-     * auto hr1 = HitRecord()
-     * hr1.set_t(1) -> t should be 1
-     * hr1.set_t(0) -> t should be 0
-     * hr1.set_t(infinity) -> ERROR: will throw a HitRecordException (t is not finite)
+     * @note Test Cases:\n
+     * auto hr1 = HitRecord()\n
+     * hr1.set_t(1) -> t should be 1\n
+     * hr1.set_t(0) -> t should be 0\n
+     * hr1.set_t(-1) -> ERROR: will throw a HitRecordException (t is negative)\n
+     * hr1.set_t(infinity) -> ERROR: will throw a HitRecordException (t is not finite)\n
      */
     void set_t(double t);
 };

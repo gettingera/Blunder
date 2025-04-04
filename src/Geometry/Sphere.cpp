@@ -9,19 +9,19 @@ Sphere::Sphere(const vec3 &position, const float radius, const Color &color) {
 bool Sphere::Hit(const Ray &ray, const float tStart, const float tEnd, HitRecord &hitRecord) const {
     // Ensure tStart is finite
     if (!is_finite(tStart))
-        throw SphereException("Sphere::Hit(): tStart is not finite");
+        throw SphereException("Sphere::Hit(): tStart should be finite");
 
     // Ensure tEnd is finite
     if (!is_finite(tEnd))
-        throw SphereException("Sphere::Hit(): tEnd is not finite");
+        throw SphereException("Sphere::Hit(): tEnd should be finite");
 
     // Ensure tStart is lesser than tEnd
     if (tStart >= tEnd)
-        throw SphereException("Sphere::Hit(): tStart is greater than or equal to tEnd");
+        throw SphereException("Sphere::Hit(): tStart should be lesser than tEnd");
 
     // Ensure tStart, tEnd greater than zero
     if (tStart < 0)
-        throw SphereException("Sphere::Hit(): tStart (and possible tEnd) is negative");
+        throw SphereException("Sphere::Hit(): tStart (and possibly tEnd) should not be negative");
 
     // BEGIN CALCULATION CODE
     vec3 oc = ray.get_position() - get_position();
@@ -57,7 +57,7 @@ bool Sphere::Hit(const Ray &ray, const float tStart, const float tEnd, HitRecord
 void Sphere::set_position(const vec3 &position) {
     // Ensure position is finite
     if (!is_finite(position))
-        throw SphereException("Sphere::set_position(): position is not finite");
+        throw SphereException("Sphere::set_position(): position should be finite");
 
     // Set position
     this->position = position;
@@ -66,11 +66,11 @@ void Sphere::set_position(const vec3 &position) {
 void Sphere::set_radius(const float radius) {
     // Ensure radius is finite
     if (!is_finite(radius))
-        throw SphereException("Sphere::set_radius(): radius is not finite");
+        throw SphereException("Sphere::set_radius(): radius should be finite");
 
     // Ensure radius is positive
     if (radius <= 0)
-        throw SphereException("Sphere::set_radius(): radius must be greater than zero");
+        throw SphereException("Sphere::set_radius(): radius should be greater than zero");
 
     this->radius = radius;
 }

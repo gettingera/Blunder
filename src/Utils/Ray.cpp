@@ -8,7 +8,7 @@ Ray::Ray(const vec3 &position, const vec3 &direction) {
 vec3 Ray::at(const float t) const {
     // Ensure t is finite
     if (!is_finite(t)) {
-        throw RayException("Ray::at(): t is not finite");
+        throw RayException("Ray::at(): t should be finite");
     }
 
     // Calculate result
@@ -16,7 +16,7 @@ vec3 Ray::at(const float t) const {
 
     // Ensure result is finite before returning
     if (!is_finite(result)) {
-        throw RayException("Ray::at(): result is not finite");
+        throw RayException("Ray::at(): result should be finite");
     }
 
     // Return result
@@ -26,7 +26,7 @@ vec3 Ray::at(const float t) const {
 void Ray::set_position(const vec3 &position) {
     // Ensure position is finite
     if (!is_finite(position)) {
-        throw RayException("Ray::set_position(): position is not finite");
+        throw RayException("Ray::set_position(): position should be finite");
     }
 
     // Set position
@@ -36,12 +36,12 @@ void Ray::set_position(const vec3 &position) {
 void Ray::set_direction(const vec3 &direction) {
     // Ensure direction is finite
     if (!is_finite(direction)) {
-        throw RayException("Ray::set_direction(): direction is not finite");
+        throw RayException("Ray::set_direction(): direction should be finite");
     }
 
     // Ensure direction is not a zero vector
     if (is_near_zero(direction)) {
-        throw RayException("Ray::set_direction(): direction is equal to zero");
+        throw RayException("Ray::set_direction(): direction should not be equal to zero");
     }
 
     // Set direction

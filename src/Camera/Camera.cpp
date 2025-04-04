@@ -8,7 +8,7 @@ Camera::Camera(const vec3 &position, const vec3 &look_at) {
 void Camera::set_position(const vec3 &position) {
     // Check if incoming position is valid
     if (!is_finite(position)) {
-        throw CameraException("Camera::set_position(): position is not finite");
+        throw CameraException("Camera::set_position(): position should be finite");
     }
 
     // Check if position is identical to look_at
@@ -23,7 +23,7 @@ void Camera::set_position(const vec3 &position) {
 void Camera::set_look_at(const vec3 &look_at) {
     // Check if incoming look_at is valid
     if (!is_finite(look_at)) {
-        throw CameraException("Camera::set_look_at(): look_at is not finite");
+        throw CameraException("Camera::set_look_at(): look_at should be finite");
     }
 
     // Check if look_at is identical to position
@@ -38,12 +38,12 @@ void Camera::set_look_at(const vec3 &look_at) {
 void Camera::set_up_direction(const vec3 &up_direction) {
     // Check if incoming up_direction is valid
     if (!is_finite(up_direction)) {
-        throw CameraException("Camera::set_up_direction(): up_direction is not finite");
+        throw CameraException("Camera::set_up_direction(): up_direction should be finite");
     }
 
     // Check if up_direction is a zero vector
     if (is_near_zero(up_direction)) {
-        throw CameraException("Camera::set_up_direction(): up_direction is a zero vector");
+        throw CameraException("Camera::set_up_direction(): up_direction should not be a zero vector");
     }
 
     // Set up_direction
@@ -53,7 +53,7 @@ void Camera::set_up_direction(const vec3 &up_direction) {
 void Camera::set_fov(const double fov) {
     // Check if incoming fov is valid
     if (!is_finite(fov)) {
-        throw CameraException("Camera::set_fov(): fov is not finite");
+        throw CameraException("Camera::set_fov(): fov should be finite");
     }
 
     // Ensure fov is within a proper range
