@@ -61,7 +61,7 @@
 - Assist with creating diagrams
 
 ### Week 2
-- Implement further features to ray tracer and draw out interactions between the ray tracer and the gui
+- Implement downscaling of raytracer
 - Refactor code heavily to support better naming conventions and structure
 - Support multithreaded rendering
 - Reorder codebase for C++ best conventions, break functions apart into helpers for better unit testing and security
@@ -70,7 +70,7 @@
 - Deploy code documentation to GitHub Pages for web interaction.
 
 ### Week 3
-- Identify any final issues with the ray tracer and merge the gui and ray tracer together
+- Identify any final issues with the ray tracer
 - Commit to finding and fixing bugs
 - Generating final documentation
 - Assist with the final presentation and any other deliverables
