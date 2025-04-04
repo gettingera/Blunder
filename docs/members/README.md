@@ -14,12 +14,13 @@
 -	Assist with creating main README.md file
 
 ### Week 2
-- Assist with raycaster extensions coding
+- Coordinate raycaster rescaling
+- Update milestones and timeline
+- Update user stories
 - Coordinate tasks and commmunicate with team members
 - Keep track of team progress on GitHub
 
 ### Week 3
--	Assist with GUI coding
 -	Coordinate tasks and commmunicate with team members
 - Keep track of team progress on GitHub
 - Create final project presentation
