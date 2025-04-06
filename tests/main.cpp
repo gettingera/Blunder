@@ -18,46 +18,46 @@
 #include <Utils/Ray.h>
 
 // Camera Tests
-bool TestCamera();
-bool TestCameraPosition();
-bool TestCameraLookingAt();
-bool TestCameraSetPosition();
-bool TestCameraSetLookAt();
-bool TestCameraSetUpDirection();
-bool TestCameraSetFov();
+void TestCamera();
+void TestCameraPosition();
+void TestCameraLookingAt();
+void TestCameraSetPosition();
+void TestCameraSetLookAt();
+void TestCameraSetUpDirection();
+void TestCameraSetFov();
 
 //Geometry Tests
-bool TestHitRecordSetPoint();
-bool TestHitRecordSetNormal();
-bool TestHitRecordSetColor();
-bool TestHitRecordSetT();
+void TestHitRecordSetPoint();
+void TestHitRecordSetNormal();
+void TestHitRecordSetColor();
+void TestHitRecordSetT();
 
-bool TestSphereHit();
-bool TestSphereSetPosition();
-bool TestSphereSetRadius();
-bool TestSphereSetColor();
+void TestSphereHit();
+void TestSphereSetPosition();
+void TestSphereSetRadius();
+void TestSphereSetColor();
 
-bool TestSphereListHit();
-bool TestSphereListSetPosition();
-bool TestSphereListSetRadius();
-bool TestSphereListSetColor();
+void TestSphereListHit();
+void TestSphereListSetPosition();
+void TestSphereListSetRadius();
+void TestSphereListSetColor();
 
 // Utils Tests
-bool TestColorColor();
-bool TestColorSetColor();
+void TestColorColor();
+void TestColorSetColor();
 
-bool TestHeadersValueFinite();
-bool TestHeadersVectorFinite();
-bool TestHeadersValueNearZero();
-bool TestHeadersVectorNearZero();
-bool TestHeadersVectorsEqual();
-bool TestHeadersValueWithinClosedRange();
-bool TestHeadersVectorsWithinClosedRange();
+void TestHeadersValueFinite();
+void TestHeadersVectorFinite();
+void TestHeadersValueNearZero();
+void TestHeadersVectorNearZero();
+void TestHeadersVectorsEqual();
+void TestHeadersValueWithinClosedRange();
+void TestHeadersVectorsWithinClosedRange();
 
-bool TestRayPosition();
-bool TestRayDirection();
-bool TestRaySetPosition();
-bool TestRaySetDirection();
+void TestRayPosition();
+void TestRayDirection();
+void TestRaySetPosition();
+void TestRaySetDirection();
 
 
 // Main Function
@@ -165,18 +165,17 @@ int main() {
 
 }
 
-bool TestCamera() {
+void TestCamera() {
     // Pass Case
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
 
     // Fail Case
     //auto c2 = Camera(vec3(0, 0, 0), vec3(0, 0, 0));
 
-    return true;
 }
 
 // Camera Tests
-bool TestCameraPosition() {
+void TestCameraPosition() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     assert(c1.get_position() == vec3(0, 0, 0));
@@ -184,21 +183,18 @@ bool TestCameraPosition() {
     // Fail Case
     // assert(c1.get_position() == vec3(1, 1, 1));
 
-    return true;
 }
 
-bool TestCameraLookingAt() {
+void TestCameraLookingAt() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     assert(c1.get_look_at() == vec3(1, 1, 1));
 
     // Fail Case
     // assert(c1.get_look_at() == vec3(0, 0, 0));
-
-    return true;
 }
 
-bool TestCameraSetPosition() {
+void TestCameraSetPosition() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     c1.set_position(vec3(2, 2, 2));
@@ -206,10 +202,9 @@ bool TestCameraSetPosition() {
     // Fail Case
     // c1.set_position(vec3(1, 1, 1));
 
-    return true;
 }
 
-bool TestCameraSetLookAt() {
+void TestCameraSetLookAt() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     c1.set_look_at(vec3(2, 2, 2));
@@ -217,21 +212,20 @@ bool TestCameraSetLookAt() {
     // Fail Case
     // c1.set_look_at(vec3(0, 0, 0));
 
-    return true;
 }
 
 
-bool TestCameraSetUpDirection() {
+void TestCameraSetUpDirection() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     c1.set_up_direction(vec3(1, 2, 3));
 
     // Fail Case
     // c1.set_up_direction(vec3(0, 0, 0));
-    return true;
+
 }
 
-bool TestCameraSetFov() {
+void TestCameraSetFov() {
     auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
     // Pass Case
     c1.set_fov(45);
@@ -241,52 +235,112 @@ bool TestCameraSetFov() {
     // c1.set_fov(180);
     // c1.set_fov(-1);
     // c1.set_fov(181);
-    return true;
 }
 
 // Geometry Tests
-bool TestHitRecordSetPoint() {
-    return true;
+void TestHitRecordSetPoint() {
+    auto hr1 = HitRecord();
+    // Pass Case
+    hr1.set_point(vec3(0, 0, 0));
+
+    // Fail Case
+    // hr1.set_point(vec3(infinity, infinity, infinity));
+
 }
 
-bool TestHitRecordSetNormal() {
-    return true;
+void TestHitRecordSetNormal() {
+    auto hr1 = HitRecord();
+    // Pass Case
+    hr1.set_normal(vec3(1, 1, 1));
+
+    // Fail Case
+    // hr1.set_normal(vec3(0, 0, 0));
+
 }
 
-bool TestHitRecordSetColor() {
-    return true;
+void TestHitRecordSetColor() {
+    auto hr1 = HitRecord();
+    // Pass Case
+    hr1.set_color(Color(0.5, 0.5, 0.5));
+
+    // Fail Case
+    // hr1.set_color(Color(2, 2,2));
+
 }
 
-bool TestHitRecordSetT() {
-    return true;
+void TestHitRecordSetT() {
+    auto hr1 = HitRecord();
+    // Pass Case
+    hr1.set_t(1);
+    hr1.set_t(0);
+
+    // Fail Case
+    // hr1.set_t(-1);
+    // hr1.set_t(infinity);
+
 }
 
-bool TestSphereHit() {
-    return true;
-}
-bool TestSphereSetPosition() {
-    return true;
-}
-bool TestSphereSetRadius() {
-    return true;
+void TestSphereHit() {
+    auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1));
+    auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0));
+    auto hitRecord = HitRecord();
+    // Pass Case
+    s1.Hit(ray, 0, 10000, hitRecord);
+
+    // Fail Case
+    // s1.Hit(ray, 10000, 0, hitRecord);
+    // s1.Hit(ray, -infinity, infinity, hitRecord);
+
 }
 
-bool TestSphereSetColor() {
-    return true;
+void TestSphereSetPosition() {
+    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
+    // Pass Case
+    s1.set_position(vec3(1, 1, 1));
+
+    // Fail Case
+    // s1.set_position(vec3(infinity, infinity, infinity));
 }
 
-bool TestSphereListHit() {
-    return true;
+void TestSphereSetRadius() {
+    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
+    // Pass Case
+    s1.set_radius(1);
+
+    // Fail Case
+    // s1.set_radius(0);
+    // s1.set_radius(-1);
+    // s1.set_radius(infinity);
 }
 
-bool TestSphereListSetPosition() {
-    return true;
+void TestSphereSetColor() {
+    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
+    // Pass Case
+    s1.set_color(Color(0.5, 0.5, 0.5));
+
+    // Fail Case
+    // s1.set_color(Color(2, 2, 2));
 }
 
-bool TestSphereListSetRadius() {
-    return true;
+void TestSphereListHit() {
+    auto s1 = make_shared<Sphere>(vec3(0, 0, 0), 1, Color(1, 1, 1));
+    auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0));
+    auto hitRecord = HitRecord();
+
+    const auto spheres = make_shared<SphereList>();
+
+    spheres->Add(s1);
+
 }
 
-bool TestSphereListSetColor() {
-    return true;
+void TestSphereListSetPosition() {
+    printf("");
+}
+
+void TestSphereListSetRadius() {
+    printf("");
+}
+
+void TestSphereListSetColor() {
+    printf("");
 }
