@@ -319,7 +319,7 @@ void TestSphereSetColor() {
     s1.set_color(Color(0.5, 0.5, 0.5));
 
     // Fail Case
-    // s1.set_color(Color(2, 2, 2));
+    // s1.set_color(Color(2, 2, 2))
 }
 
 void TestSphereListHit() {
