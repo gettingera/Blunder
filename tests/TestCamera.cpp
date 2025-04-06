@@ -14,7 +14,7 @@ namespace {
         } catch (CameraException &e) {
             assert(true);
         } catch (...) {
-            assert(true);
+            assert(false);
         }
     }
 
