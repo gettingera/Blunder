@@ -17,7 +17,7 @@ class HitRecord {
     Color color{0, 0, 0};
 
     /// Ray parameter t at point of intersection.
-    double t{infinity};
+    float t{infinity};
 
 public:
     // Constructors
@@ -37,7 +37,7 @@ public:
     [[nodiscard]] Color get_color() const { return color; }
 
     /// Gets the ray parameter t.
-    [[nodiscard]] double get_t() const { return t; }
+    [[nodiscard]] float get_t() const { return t; }
 
     // Setters
     /**
@@ -84,7 +84,7 @@ public:
      * hr1.set_t(-1) -> ERROR: will throw a HitRecordException (t is negative)\n
      * hr1.set_t(infinity) -> ERROR: will throw a HitRecordException (t is not finite)\n
      */
-    void set_t(double t);
+    void set_t(float t);
 };
 
 

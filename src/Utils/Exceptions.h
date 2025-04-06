@@ -12,10 +12,10 @@ class BaseException : public std::exception {
 
 public:
     /// Sets the message
-    explicit BaseException(const std::string& what) : message(std::move(what)) {}
+    explicit BaseException(std::string what) : message(std::move(what)) {}
 
     /// Function that returns the error message
-    const char* what() const noexcept override {
+    [[nodiscard]] const char* what() const noexcept override {
         return message.c_str();
     }
 };

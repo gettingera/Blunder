@@ -17,7 +17,7 @@ class Camera {
     vec3 up_direction{0, 0, 1};
 
     /// Vertical FOV for zooming the camera in and out.
-    double fov{45};
+    float fov{45};
 
 public:
     // Constructors
@@ -44,7 +44,7 @@ public:
     [[nodiscard]] vec3 get_up_direction() const { return up_direction; }
 
     /// Gets the vertical field of view of the camera.
-    [[nodiscard]] double get_fov() const { return fov; }
+    [[nodiscard]] float get_fov() const { return fov; }
 
     // Setters
     /**
@@ -92,7 +92,7 @@ public:
      * c1.set_fov(-1) -> ERROR: will throw a CameraException (-1 is not in (0, 180))\n
      * c1.set_fov(181) -> ERROR: will throw a CameraException (181 is not in (0, 180))\n
      */
-    void set_fov(double fov);
+    void set_fov(float fov);
 };
 
 #endif //CAMERA_H

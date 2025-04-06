@@ -27,7 +27,7 @@ void HitRecord::set_color(const Color &color) {
     this->color = color;
 }
 
-void HitRecord::set_t(const double t) {
+void HitRecord::set_t(const float t) {
     // Ensure t is finite
     if (!is_finite(t))
         throw HitRecordException("HitRecord::set_t(): t should be finite");

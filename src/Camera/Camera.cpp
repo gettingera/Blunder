@@ -50,7 +50,7 @@ void Camera::set_up_direction(const vec3 &up_direction) {
     this->up_direction = up_direction;
 }
 
-void Camera::set_fov(const double fov) {
+void Camera::set_fov(const float fov) {
     // Check if incoming fov is valid
     if (!is_finite(fov)) {
         throw CameraException("Camera::set_fov(): fov should be finite");
