@@ -161,9 +161,7 @@ public:
      * @note Test Cases:\n
      * auto r1 = Renderer(10, 10)\n
      * ...\n
-     * r1.scatter(ray, hit_record, scattered_ray) -> returns true, modifies scattered_ray (no need to test)\n
-     * r1.scatter(ray, hit_record, scattered_ray) -> returns false, doesn't modify scattered_ray (no need to test)\n
-     *
+     * r1.scatter(hit_record, scattered_ray) -> returns true, modifies scattered_ray (no need to test)\n
      */
     static bool scatter(const HitRecord &hit_record, Ray &scattered_ray);
 

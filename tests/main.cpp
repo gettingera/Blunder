@@ -41,23 +41,18 @@ void TestColorConstructor();
 void TestColorSetColor();
 void TestColorAll();
 
-void TestHeadersValueFinite();
-void TestHeadersVectorFinite();
-void TestHeadersValueNearZero();
-void TestHeadersVectorNearZero();
-void TestHeadersVectorsEqual();
-void TestHeadersValueWithinClosedRange();
-void TestHeadersVectorsWithinClosedRange();
-void TestHeadersAll();
-
 #include "TestRay.cpp"
 #include "TestCamera.cpp"
+#include "TestHeaders.cpp"
+#include "TestRenderer.cpp"
 
 // Main Function
 int main() {
     // Example Test Ray
     TestRayAll();
     TestCameraAll();
+    TestHeadersAll();
+    TestRendererAll();
 }
 
 // Geometry Tests
