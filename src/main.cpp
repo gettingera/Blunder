@@ -4,7 +4,7 @@
 #include <Renderer/RenderTarget.h>
 #include <Geometry/Sphere.h>
 #include "Geometry/SphereList.h"
-#include "Renderer/Raytracer.h"
+#include "Renderer/Renderer.h"
 
 // Main method
 int main() {
@@ -23,8 +23,8 @@ int main() {
     spheres->Add(s2);
     spheres->Add(s3);
 
-    constexpr Raytracer raytracer;
-    raytracer.Render(spheres, c1, rt1);
+    Renderer raytracer(100, 100);
+    raytracer.render(spheres, c1, rt1);
 
     rt1->writeToFile("render");
 

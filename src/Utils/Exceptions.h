@@ -54,6 +54,14 @@ public:
 };
 
 /**
+ * Renderer-specific exceptions useful for debugging and unit testing.
+ */
+class RendererException final : public BaseException {
+public:
+    explicit RendererException(std::string message) : BaseException(std::move(message)) {};
+};
+
+/**
  * Sphere-specific exceptions useful for debugging and unit testing.
  */
 class SphereException final : public BaseException {

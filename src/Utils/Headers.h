@@ -154,7 +154,6 @@ inline bool is_inside_closed_range(const vec3 &vec1, const float min, const floa
             is_inside_closed_range(vec1.z, min, max);
 }
 
-
 /**
  * Converts linear color space to gamma corrected color space.
  *
@@ -267,6 +266,14 @@ inline vec3 random_in_unit_disk() {
         if (length2(p) < 1)
             return p;
     }
+}
+
+/**
+ * Gets a random point on the unit square, centered at (0, 0).
+ * @return Random point on the unit square.
+ */
+[[nodiscard]] static vec3 sampleSquare() {
+    return {random_float() - 0.5, random_float() - 0.5, 0};
 }
 
 // Common custom headers
