@@ -18,33 +18,37 @@
 #include <Utils/Ray.h>
 
 // Camera Tests
-void TestCamera();
-void TestCameraPosition();
-void TestCameraLookingAt();
+void TestCameraConstructor();
 void TestCameraSetPosition();
 void TestCameraSetLookAt();
 void TestCameraSetUpDirection();
 void TestCameraSetFov();
+void TestCameraAll();
 
 //Geometry Tests
 void TestHitRecordSetPoint();
 void TestHitRecordSetNormal();
 void TestHitRecordSetColor();
 void TestHitRecordSetT();
+void TestHitRecordAll();
 
+void TestSphereConstructor();
 void TestSphereHit();
 void TestSphereSetPosition();
 void TestSphereSetRadius();
 void TestSphereSetColor();
+void TestSphereAll();
 
 void TestSphereListHit();
 void TestSphereListSetPosition();
 void TestSphereListSetRadius();
 void TestSphereListSetColor();
+void TestSphereListAll();
 
 // Utils Tests
-void TestColorColor();
+void TestColorConstructor();
 void TestColorSetColor();
+void TestColorAll();
 
 void TestHeadersValueFinite();
 void TestHeadersVectorFinite();
@@ -53,116 +57,14 @@ void TestHeadersVectorNearZero();
 void TestHeadersVectorsEqual();
 void TestHeadersValueWithinClosedRange();
 void TestHeadersVectorsWithinClosedRange();
+void TestHeadersAll();
 
-void TestRayPosition();
-void TestRayDirection();
-void TestRaySetPosition();
-void TestRaySetDirection();
-
+#include "TestRay.cpp"
 
 // Main Function
 int main() {
-    // Test Camera
-    printf("-----Testing Camera-----\n");
-
-    // Camera
-    printf("Test Camera: ");
-    TestCamera();
-    printf("Test Passed\n");
-
-    // Position
-    printf("Test Position: ");
-    TestCameraPosition();
-    printf("Test Passed\n");
-
-    // Looking_at
-    printf("Test Looking_at: ");
-    TestCameraLookingAt();
-    printf("Test Passed\n");
-
-    // Set Position
-    printf("Test Set Position: ");
-    TestCameraSetPosition();
-    printf("Test Passed\n");
-
-    // Set Looking at
-    printf("Test Set Looking at: ");
-    TestCameraSetLookAt();
-    printf("Test Passed\n");
-
-    // Set Up Direction
-    printf("Test Set Up Direction: ");
-    TestCameraSetUpDirection();
-    printf("Test Passed\n");
-
-    // Set Fov
-    printf("Test Set Fov: ");
-    TestCameraSetFov();
-    printf("Test Passed\n");
-
-    // Test Geometry
-    printf("\n-----Testing Geometry-----\n");
-
-    // Hit Record Set Point
-    printf("Test Hit Record Set Point: ");
-    TestHitRecordSetPoint();
-    printf("Test Passed\n");
-
-    // Hit Record Set Normal
-    printf("Test Hit Record Set Normal: ");
-    TestHitRecordSetNormal();
-    printf("Test Passed\n");
-
-    // Hit Record Set Color
-    printf("Test Hit Record Set Color: ");
-    TestHitRecordSetColor();
-    printf("Test Passed\n");
-
-    // Hit Record Set T
-    printf("Test Hit Record Set T: ");
-    TestHitRecordSetT();
-    printf("Test Passed\n");
-
-    // Sphere Hit
-    printf("\nTest Sphere Hit: ");
-    TestSphereHit();
-    printf("Test Passed\n");
-
-    // Sphere Set Position
-    printf("Test Sphere Set Position: ");
-    TestSphereSetPosition();
-    printf("Test Passed\n");
-
-    // Sphere Set Radius
-    printf("Test Sphere Set Radius: ");
-    TestSphereSetRadius();
-    printf("Test Passed\n");
-
-    // Sphere Set Color
-    printf("Test Sphere Set Color: ");
-    TestSphereSetColor();
-    printf("Test Passed\n");
-
-    // Sphere Set T
-    printf("\nTest Sphere Set T: ");
-    TestSphereListHit();
-    printf("Test Passed\n");
-
-    // Sphere Set Sphere List Position
-    printf("Test Sphere List Set Position: ");
-    TestSphereListSetPosition();
-    printf("Test Passed\n");
-
-    // Sphere Set Sphere List Radius
-    printf("Test Sphere List Set Radius: ");
-    TestSphereListSetRadius();
-    printf("Test Passed\n");
-
-    // Sphere Set Sphere List Color
-    printf("Test Sphere List Set Color: ");
-    TestSphereListSetColor();
-    printf("Test Passed\n");
-
+    // Example Test Ray
+    TestRayAll();
 }
 
 void TestCamera() {
