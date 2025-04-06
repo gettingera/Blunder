@@ -3,26 +3,26 @@
 #include <cstdio>
 
 // Camera
-#include "Camera/Camera.h"
+#include <Camera/Camera.h>
 
 // Geometry
 #include <Geometry/Sphere.h>
 #include <Geometry/HitRecord.h>
 #include <Geometry/SphereList.h>
 
+// Renderer
 
-// Macros
-
-// Structures
-
-// Prototypes
+// Utils
+#include <Utils/Color.h>
+#include <Utils/Headers.h>
+#include <Utils/Ray.h>
 
 // Camera Tests
+bool TestCamera();
 bool TestCameraPosition();
 bool TestCameraLookingAt();
 bool TestCameraSetPosition();
 bool TestCameraSetLookAt();
-bool TestCameraSetLookingAt();
 bool TestCameraSetUpDirection();
 bool TestCameraSetFov();
 
@@ -42,12 +42,34 @@ bool TestSphereListSetPosition();
 bool TestSphereListSetRadius();
 bool TestSphereListSetColor();
 
+// Utils Tests
+bool TestColorColor();
+bool TestColorSetColor();
+
+bool TestHeadersValueFinite();
+bool TestHeadersVectorFinite();
+bool TestHeadersValueNearZero();
+bool TestHeadersVectorNearZero();
+bool TestHeadersVectorsEqual();
+bool TestHeadersValueWithinClosedRange();
+bool TestHeadersVectorsWithinClosedRange();
+
+bool TestRayPosition();
+bool TestRayDirection();
+bool TestRaySetPosition();
+bool TestRaySetDirection();
 
 
 // Main Function
 int main() {
     // Test Camera
     printf("-----Testing Camera-----\n");
+
+    // Camera
+    printf("Test Camera: ");
+    TestCamera();
+    printf("Test Passed\n");
+
     // Position
     printf("Test Position: ");
     TestCameraPosition();
@@ -141,36 +163,84 @@ int main() {
     TestSphereListSetColor();
     printf("Test Passed\n");
 
+}
 
+bool TestCamera() {
+    // Pass Case
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
 
+    // Fail Case
+    //auto c2 = Camera(vec3(0, 0, 0), vec3(0, 0, 0));
+
+    return true;
 }
 
 // Camera Tests
 bool TestCameraPosition() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    assert(c1.get_position() == vec3(0, 0, 0));
+
+    // Fail Case
+    // assert(c1.get_position() == vec3(1, 1, 1));
+
     return true;
 }
 
 bool TestCameraLookingAt() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    assert(c1.get_look_at() == vec3(1, 1, 1));
+
+    // Fail Case
+    // assert(c1.get_look_at() == vec3(0, 0, 0));
+
     return true;
 }
 
 bool TestCameraSetPosition() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    c1.set_position(vec3(2, 2, 2));
+
+    // Fail Case
+    // c1.set_position(vec3(1, 1, 1));
+
     return true;
 }
 
 bool TestCameraSetLookAt() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    c1.set_look_at(vec3(2, 2, 2));
+
+    // Fail Case
+    // c1.set_look_at(vec3(0, 0, 0));
+
     return true;
 }
 
-bool TestCameraSetLookingAt() {
-    return true;
-}
 
 bool TestCameraSetUpDirection() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    c1.set_up_direction(vec3(1, 2, 3));
+
+    // Fail Case
+    // c1.set_up_direction(vec3(0, 0, 0));
     return true;
 }
 
 bool TestCameraSetFov() {
+    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
+    // Pass Case
+    c1.set_fov(45);
+
+    // Fail Cases
+    // c1.set_fov(0);
+    // c1.set_fov(180);
+    // c1.set_fov(-1);
+    // c1.set_fov(181);
     return true;
 }
 
