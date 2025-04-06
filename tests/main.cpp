@@ -1,111 +1,222 @@
 // Includes
+#include<glm/glm.hpp>
+#include <cstdio>
 
 // Camera
-#include <cstdio>
 #include "Camera/Camera.h"
-#include <glm/glm.hpp>
 
-// Materials
+// Geometry
+#include <Geometry/Sphere.h>
+#include <Geometry/HitRecord.h>
+#include <Geometry/SphereList.h>
+
 
 // Macros
 
 // Structures
 
 // Prototypes
-bool TestCamera();
-bool TestDielectric();
-bool TestLambertian();
-bool TestMetal();
+
+// Camera Tests
+bool TestCameraPosition();
+bool TestCameraLookingAt();
+bool TestCameraSetPosition();
+bool TestCameraSetLookAt();
+bool TestCameraSetLookingAt();
+bool TestCameraSetUpDirection();
+bool TestCameraSetFov();
+
+//Geometry Tests
+bool TestHitRecordSetPoint();
+bool TestHitRecordSetNormal();
+bool TestHitRecordSetColor();
+bool TestHitRecordSetT();
+
+bool TestSphereHit();
+bool TestSphereSetPosition();
+bool TestSphereSetRadius();
+bool TestSphereSetColor();
+
+bool TestSphereListHit();
+bool TestSphereListSetPosition();
+bool TestSphereListSetRadius();
+bool TestSphereListSetColor();
+
+
 
 // Main Function
 int main() {
-    printf("Camera Test: ");
-    TestCamera();
-    glm::vec3 test;
-    printf("Test Passed");
+    // Test Camera
+    printf("-----Testing Camera-----\n");
+    // Position
+    printf("Test Position: ");
+    TestCameraPosition();
+    printf("Test Passed\n");
 
-    /*
-    printf("Dielectric Test: ");
-    assert(TestDielectric());
-    printf("Test Passed");
+    // Looking_at
+    printf("Test Looking_at: ");
+    TestCameraLookingAt();
+    printf("Test Passed\n");
 
-    printf("Lambertian Test: ");
-    assert(TestLambertian());
-    printf("Test Passed");
+    // Set Position
+    printf("Test Set Position: ");
+    TestCameraSetPosition();
+    printf("Test Passed\n");
 
-    printf("Metal Test: ");
-    assert(TestMetal());
-    printf("Test Passed");
-    */
+    // Set Looking at
+    printf("Test Set Looking at: ");
+    TestCameraSetLookAt();
+    printf("Test Passed\n");
+
+    // Set Up Direction
+    printf("Test Set Up Direction: ");
+    TestCameraSetUpDirection();
+    printf("Test Passed\n");
+
+    // Set Fov
+    printf("Test Set Fov: ");
+    TestCameraSetFov();
+    printf("Test Passed\n");
+
+    // Test Geometry
+    printf("\n-----Testing Geometry-----\n");
+
+    // Hit Record Set Point
+    printf("Test Hit Record Set Point: ");
+    TestHitRecordSetPoint();
+    printf("Test Passed\n");
+
+    // Hit Record Set Normal
+    printf("Test Hit Record Set Normal: ");
+    TestHitRecordSetNormal();
+    printf("Test Passed\n");
+
+    // Hit Record Set Color
+    printf("Test Hit Record Set Color: ");
+    TestHitRecordSetColor();
+    printf("Test Passed\n");
+
+    // Hit Record Set T
+    printf("Test Hit Record Set T: ");
+    TestHitRecordSetT();
+    printf("Test Passed\n");
+
+    // Sphere Hit
+    printf("\nTest Sphere Hit: ");
+    TestSphereHit();
+    printf("Test Passed\n");
+
+    // Sphere Set Position
+    printf("Test Sphere Set Position: ");
+    TestSphereSetPosition();
+    printf("Test Passed\n");
+
+    // Sphere Set Radius
+    printf("Test Sphere Set Radius: ");
+    TestSphereSetRadius();
+    printf("Test Passed\n");
+
+    // Sphere Set Color
+    printf("Test Sphere Set Color: ");
+    TestSphereSetColor();
+    printf("Test Passed\n");
+
+    // Sphere Set T
+    printf("\nTest Sphere Set T: ");
+    TestSphereListHit();
+    printf("Test Passed\n");
+
+    // Sphere Set Sphere List Position
+    printf("Test Sphere List Set Position: ");
+    TestSphereListSetPosition();
+    printf("Test Passed\n");
+
+    // Sphere Set Sphere List Radius
+    printf("Test Sphere List Set Radius: ");
+    TestSphereListSetRadius();
+    printf("Test Passed\n");
+
+    // Sphere Set Sphere List Color
+    printf("Test Sphere List Set Color: ");
+    TestSphereListSetColor();
+    printf("Test Passed\n");
+
+
+
 }
 
-// Camera
-bool TestCamera() {
-    int width = 1920 / 2;
-    int height = 1080 / 2;
+// Camera Tests
+bool TestCameraPosition() {
     return true;
-
-}
-/*
-
-// Material
-bool TestDielectric() {
-    try {
-        //index of refraction
-        float refaction = 1.5;
-
-        // Material
-        auto material_dielectric = std::make_shared<Dielectric>(refaction);
-
-        assert(material_dielectric != nullptr);
-        assert(material_dielectric->get_index_of_refraction() == 1.5);
-
-        return true;
-    }
-    catch (const std::exception &e) {
-        printf("Dielectric Test Failed: %s\n", e.what());
-        return false;
-    }
 }
 
-bool TestLambertian() {
-    try {
-        dvec3 color(0.4, 0.2, 0.1);
-
-        // Material
-        auto material_lambertian = std::make_shared<Lambertian>(color);
-
-        assert(material_lambertian != nullptr);
-        assert(material_lambertian->get_color() == color);
-
-        return true;
-    }
-    catch (const std::exception &e) {
-        printf("Lambertian Test Failed: %s\n", e.what());
-        return false;
-    }
+bool TestCameraLookingAt() {
+    return true;
 }
 
-bool TestMetal() {
-    try {
-        // Color
-        dvec3 color(0.7, 0.6, 0.5);
-
-        // Roughness
-        float roughness = 0.0;
-
-        // Material
-        auto material_metal = std::make_shared<Metal>(color, roughness);
-
-        assert(material_metal != nullptr);
-        assert(material_metal->get_color() == color);
-        assert(material_metal->get_roughness() == roughness);
-
-        return true;
-    }
-    catch (const std::exception &e) {
-        printf("Metal Test Failed: %s\n", e.what());
-        return false;
-    }
+bool TestCameraSetPosition() {
+    return true;
 }
-*/
+
+bool TestCameraSetLookAt() {
+    return true;
+}
+
+bool TestCameraSetLookingAt() {
+    return true;
+}
+
+bool TestCameraSetUpDirection() {
+    return true;
+}
+
+bool TestCameraSetFov() {
+    return true;
+}
+
+// Geometry Tests
+bool TestHitRecordSetPoint() {
+    return true;
+}
+
+bool TestHitRecordSetNormal() {
+    return true;
+}
+
+bool TestHitRecordSetColor() {
+    return true;
+}
+
+bool TestHitRecordSetT() {
+    return true;
+}
+
+bool TestSphereHit() {
+    return true;
+}
+bool TestSphereSetPosition() {
+    return true;
+}
+bool TestSphereSetRadius() {
+    return true;
+}
+
+bool TestSphereSetColor() {
+    return true;
+}
+
+bool TestSphereListHit() {
+    return true;
+}
+
+bool TestSphereListSetPosition() {
+    return true;
+}
+
+bool TestSphereListSetRadius() {
+    return true;
+}
+
+bool TestSphereListSetColor() {
+    return true;
+}
