@@ -3,7 +3,6 @@
 #include <cstdio>
 
 // Camera
-#include <Camera/Camera.h>
 
 // Geometry
 #include <Geometry/Sphere.h>
@@ -16,14 +15,6 @@
 #include <Utils/Color.h>
 #include <Utils/Headers.h>
 #include <Utils/Ray.h>
-
-// Camera Tests
-void TestCameraConstructor();
-void TestCameraSetPosition();
-void TestCameraSetLookAt();
-void TestCameraSetUpDirection();
-void TestCameraSetFov();
-void TestCameraAll();
 
 //Geometry Tests
 void TestHitRecordSetPoint();
@@ -60,83 +51,13 @@ void TestHeadersVectorsWithinClosedRange();
 void TestHeadersAll();
 
 #include "TestRay.cpp"
+#include "TestCamera.cpp"
 
 // Main Function
 int main() {
     // Example Test Ray
     TestRayAll();
-}
-
-void TestCamera() {
-    // Pass Case
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-
-    // Fail Case
-    //auto c2 = Camera(vec3(0, 0, 0), vec3(0, 0, 0));
-
-}
-
-// Camera Tests
-void TestCameraPosition() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    assert(c1.get_position() == vec3(0, 0, 0));
-
-    // Fail Case
-    // assert(c1.get_position() == vec3(1, 1, 1));
-
-}
-
-void TestCameraLookingAt() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    assert(c1.get_look_at() == vec3(1, 1, 1));
-
-    // Fail Case
-    // assert(c1.get_look_at() == vec3(0, 0, 0));
-}
-
-void TestCameraSetPosition() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    c1.set_position(vec3(2, 2, 2));
-
-    // Fail Case
-    // c1.set_position(vec3(1, 1, 1));
-
-}
-
-void TestCameraSetLookAt() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    c1.set_look_at(vec3(2, 2, 2));
-
-    // Fail Case
-    // c1.set_look_at(vec3(0, 0, 0));
-
-}
-
-
-void TestCameraSetUpDirection() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    c1.set_up_direction(vec3(1, 2, 3));
-
-    // Fail Case
-    // c1.set_up_direction(vec3(0, 0, 0));
-
-}
-
-void TestCameraSetFov() {
-    auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
-    // Pass Case
-    c1.set_fov(45);
-
-    // Fail Cases
-    // c1.set_fov(0);
-    // c1.set_fov(180);
-    // c1.set_fov(-1);
-    // c1.set_fov(181);
+    TestCameraAll();
 }
 
 // Geometry Tests
