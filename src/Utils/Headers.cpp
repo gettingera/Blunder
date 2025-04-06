@@ -112,12 +112,16 @@ vec3 random_vec3(float min, float max) {
 
 vec3 random_unit_vector() {
     while (true) {
-        auto p = random_vec3(-1, 1);
-        auto len2 = length2(p);
-        if (1e-160 < len2 && len2 <= 1)
-            return p / sqrt(len2);
+        vec3 v = random_vec3(-1.0f, 1.0f);
+        float len = length(v);
+        if (len > 1e-6f) { // Avoid division by near-zero
+            vec3 n = normalize(v);
+            if (abs(length(n) - 1.0f) <= 1e-9f)
+                return n;
+        }
     }
 }
+
 
 vec3 sampleSquare() {
     return {random_float() - 0.5, random_float() - 0.5, 0};

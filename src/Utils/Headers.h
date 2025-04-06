@@ -57,10 +57,10 @@ bool is_finite(const vec3 &vec);
  * @return Whether value is close to zero.
  *
  * @note Test Cases:
- * near_zero(1.0f) -> false
- * near_zero(0.0f) -> true
- * near_zero(1e-8) -> false
- * near_zero(1e-9) -> true
+ * is_near_zero(1.0f) -> false
+ * is_near_zero(0.0f) -> true
+ * is_near_zero(1e-8) -> false
+ * is_near_zero(1e-9) -> true
  */
 bool is_near_zero(float value);
 
@@ -70,10 +70,10 @@ bool is_near_zero(float value);
  * @return Whether vector is near zero.
  *
  * @note Test Cases:
- * near_zero(vec3(1, 1, 1)) -> false
- * near_zero(vec3(0, 0, 0)) -> true
- * near_zero(vec3(1e-8, 1e-8, 1e-8)) -> false
- * near_zero(vec3(1e-9, 1e-9, 1e-9)) -> true
+ * is_near_zero(vec3(1, 1, 1)) -> false
+ * is_near_zero(vec3(0, 0, 0)) -> true
+ * is_near_zero(vec3(1e-8, 1e-8, 1e-8)) -> false
+ * is_near_zero(vec3(1e-9, 1e-9, 1e-9)) -> true
  */
 bool is_near_zero(const vec3 &vec);
 
@@ -103,7 +103,7 @@ bool is_near_equal(const vec3 &v1, const vec3 &v2);
  * is_inside_closed_range(0, 0, 2) -> true
  * is_inside_closed_range(2, 0, 2) -> true
  * NOTE: if min > max, return false.
- * NOTE: if any arguments non-finite, return false
+ * NOTE: if any arguments non-finite, error
  */
 bool is_inside_closed_range(float val, float min, float max);
 
@@ -144,7 +144,6 @@ float linear_to_gamma(float linear_component);
  *
  * @note Test Cases:
  * degrees_to_radians(0) -> should return 0
- * NO EXCEPTIONS
  */
 float degrees_to_radians(float degrees);
 
