@@ -9,7 +9,7 @@ namespace {
         assert(c1.get_look_at() == vec3(1, 1, 1));
 
         try {
-            auto c1 = Camera(vec3(0, 0, 0), vec3(0, 0, 0));
+            auto c2 = Camera(vec3(0, 0, 0), vec3(0, 0, 0));
             assert(false);
         } catch (CameraException &e) {
             assert(true);
