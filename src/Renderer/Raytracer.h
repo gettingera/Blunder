@@ -66,7 +66,7 @@ public:
             }
 
             rendered_rows += 1;
-            std::cout << "Rendering in progress: " << 100 * static_cast<float>(rendered_rows) / render_target->get_height() << "%\n";
+            std::cout << "Rendering in progress: " << 100.0f * static_cast<float>(rendered_rows) / render_target->get_height() << "%\n";
         }
     }
 
@@ -86,8 +86,8 @@ public:
 
         rtc.focal_length = length(rtc.position - rtc.direction);
         rtc.theta = degrees_to_radians(camera->get_fov());
-        rtc.h = std::tan(rtc.theta / 2.0);
-        rtc.viewport_height = 2.0 * rtc.h * rtc.focal_length;
+        rtc.h = std::tan(rtc.theta / 2.0f);
+        rtc.viewport_height = 2.0f * rtc.h * rtc.focal_length;
         rtc.viewport_width = rtc.viewport_height * (
                                  static_cast<float>(render_target->get_width()) / static_cast<float>(render_target->
                                      get_height()));

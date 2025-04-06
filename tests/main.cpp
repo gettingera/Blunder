@@ -21,6 +21,7 @@ bool TestMetal();
 int main() {
     printf("Camera Test: ");
     TestCamera();
+    glm::vec3 test;
     printf("Test Passed");
 
     /*
