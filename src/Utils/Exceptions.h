@@ -85,4 +85,14 @@ public:
     explicit HitRecordException(std::string message) : BaseException(std::move(message)) {};
 };
 
+/**
+ * Header-specific exceptions useful for debugging and unit testing.
+ */
+class HeaderException final : public BaseException {
+public:
+    explicit HeaderException(std::string message) : BaseException(std::move(message)) {};
+};
+
+
+
 #endif //EXCEPTIONS_H

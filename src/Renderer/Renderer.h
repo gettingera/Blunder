@@ -1,10 +1,9 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 #include <Utils/Headers.h>
-
-#include "RenderTarget.h"
-#include "Camera/Camera.h"
-#include "Geometry/SphereList.h"
+#include <Renderer/RenderTarget.h>
+#include <Camera/Camera.h>
+#include <Geometry/SphereList.h>
 
 /**
  * Utility structure to hold necessary camera values and computations for ray tracing.
@@ -113,7 +112,7 @@ public:
     static RT_CAMERA_VALUES initializeRTCamera(const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target);
 
     /**
-     *
+     * Gets the ray from the camera origin through a specified pixel index.
      * @param i Pixel along the width of the camera.
      * @param j Pixel along the height of the camera.
      * @param rt_camera_values Initialized RT_CAMERA_VALUES struct.
