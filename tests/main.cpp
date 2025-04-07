@@ -28,20 +28,12 @@ void TestSphereListSetRadius();
 void TestSphereListSetColor();
 void TestSphereListAll();
 
-void TestHeadersValueFinite();
-void TestHeadersVectorFinite();
-void TestHeadersValueNearZero();
-void TestHeadersVectorNearZero();
-void TestHeadersVectorsEqual();
-void TestHeadersValueWithinClosedRange();
-void TestHeadersVectorsWithinClosedRange();
-void TestHeadersAll();
-
 #include "TestRay.cpp"
 #include "TestCamera.cpp"
 #include "TestSphere.cpp"
 #include "TestRenderer.cpp"
 #include "TestColor.cpp"
+#include "TestHeaders.cpp"
 
 // Main Function
 int main() {
@@ -51,6 +43,7 @@ int main() {
     TestSphereAll();
     TestRendererAll();
     TestColorAll();
+    TestHeadersAll();
 }
 
 // Geometry Tests
