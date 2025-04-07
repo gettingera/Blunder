@@ -1,4 +1,4 @@
-# DEADLINES
+# Deadlines
 
 Each of the tasks listed in the "Sprints 3-5 Tasks" section is expected to be completed by conclusion of the project’s second week. With the rescaling of Blunder’s implementation, we have determined the following items to be completed by their respective due dates:
 
