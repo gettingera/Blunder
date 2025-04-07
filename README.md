@@ -21,7 +21,7 @@ make  # Makes the project, binaries stored in ./bin/
 
 # Index
 ## Prefatory Information
-- [Members and Roles](https://github.com/gettingera/Blunder/blob/main/docs/members/README.md)
+- [Blunder Team Members](https://github.com/gettingera/Blunder/blob/main/docs/members/README.md)
 - [Scope Statement](https://github.com/gettingera/Blunder/blob/main/docs/scope/README.md)
 - [User Stories](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/user_stories/README.md)
 - [Milestones](https://github.com/gettingera/Blunder/blob/main/docs/milestones/README.md)
@@ -40,28 +40,20 @@ make  # Makes the project, binaries stored in ./bin/
 - [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-testing.md)
 - [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-deadlines.md)
 
+## Sprints 3-5
+- [Tasks]()
+- [Deadlines]()
+- [Deliverable Photos]()
+- [Testing/Testing Outcomes]()
+- [Class Diagram]()
+- [Data Flow Diagrams]()
+
 # **The following sections will be completed as the project progresses:**
 
-## Sprint 3
+## Sprints 6-8
 - [Tasks]()
-- [Testing/Testing Outcomes]()
 - [Deadlines]()
-- [*Other Elements*]()
-
-## Sprint 4
-- [Tasks]()
+- [Deliverable Photos]()
 - [Testing/Testing Outcomes]()
-- [Deadlines]()
-- [*Other Elements*]()
-
-## Sprint 5
-- [Tasks]()
-- [Testing/Testing Outcomes]()
-- [Deadlines]()
-- [*Other Elements*]()
-
-## Sprint 6
-- [Tasks]()
-- [Testing/Testing Outcomes]()
-- [Deadlines]()
-- [*Other Elements*]()
+- [Class Diagram]()
+- [Data Flow Diagrams]()
