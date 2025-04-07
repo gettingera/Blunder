@@ -1,6 +1,4 @@
 // Includes
-#include<glm/glm.hpp>
-
 #include "TestRay.cpp"
 #include "TestCamera.cpp"
 #include "TestSphere.cpp"
@@ -8,6 +6,7 @@
 #include "TestColor.cpp"
 #include "TestHeaders.cpp"
 #include "TestSphereList.cpp"
+#include "TestRenderTarget.cpp"
 
 // Main Function
 int main() {
@@ -19,4 +18,5 @@ int main() {
     TestColorAll();
     TestHeadersAll();
     TestSphereListAll();
+    TestRenderTargetAll();
 }
