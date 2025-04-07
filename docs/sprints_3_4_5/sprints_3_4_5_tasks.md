@@ -14,4 +14,4 @@
 - Conduct final security tests
 - Gather final documentation
 
-Go to [Home](https://github.com/gettingera/Blunder/blob/main/README.md)
+Go to [Home](https://github.com/gettingera/Blunder)
