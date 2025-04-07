@@ -80,19 +80,18 @@
 
 ### Week 1
 - Start building out designs for our data flow and class UMLs
-- Heavily research raytracing and create seperate raytracer to learn the intricacies of raytracing
+- Heavily research raytracing and create separate raytracer to learn the intricacies of raytracing
 - Research on ImGui/Vulkan implementation, for Gui with realtime raytracing
 - Begin development of seperate ImGui/Vulkan raytracer
 
 ### Week 2
+- Testing for bugs
 - Update any diagrams that need adjusted for code/structure changes
-- Use ImGui/Vulkan raytracer to make a Gui for our main raytracer
-- Fully implement realtime raytracing with Gui into main project
 
 ### Week 3
-- Implementing final gui features
-- testing for gui bugs
-- finalize any diagrams that have had structural code changes
+- Implementing final features
+- Testing for bugs
+- Finalize any diagrams that have had structural code changes
 
 ## Security Lead: Gavin Sloan
 <img src="https://github.com/gettingera/Blunder/blob/main/docs/members/team_pictures/GavinSloan.jpeg" alt="Gavin Sloan" width="500" height:auto>
