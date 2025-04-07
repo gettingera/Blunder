@@ -15,4 +15,4 @@ Each of the tasks listed in the "Sprints 3-5 Tasks" section is expected to be co
   - Conduct final security tests
   - Gather final documentation
 
-Go to [Home](https://github.com/gettingera/Blunder/blob/main/README.md)
+Go to [Home](https://github.com/gettingera/Blunder)
