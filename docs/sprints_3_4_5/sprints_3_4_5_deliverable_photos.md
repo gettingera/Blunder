@@ -10,4 +10,4 @@ After the program finishes rendering, a file named “render.ppm” is created t
 ![Three Spheres](https://github.com/gettingera/Blunder/blob/main/docs/pictures/week2%20deliverable.png)
 ![Five Spheres](https://github.com/gettingera/Blunder/blob/main/docs/pictures/3.png)
 
-Go to [Home](https://github.com/gettingera/Blunder/blob/main/README.md)
+Go to [Home](https://github.com/gettingera/Blunder)
