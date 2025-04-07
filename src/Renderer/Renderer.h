@@ -94,7 +94,8 @@ public:
      * r1.Render(spheres, camera, render_target) -> should output an image to RenderTarget\n
      * ERROR: will throw a RendererException (will be thrown if any of the above arguments are nullptr)\n
      */
-    void render(const shared_ptr<SphereList> &spheres, const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target) const;
+    void render(const shared_ptr<SphereList> &spheres, const shared_ptr<Camera> &camera,
+                const shared_ptr<RenderTarget> &render_target) const;
 
     // Helpers
     /**
@@ -109,7 +110,8 @@ public:
      * r1.initializeRTCamera(camera, render_target) -> should return an RT_CAMERA_VALUES struct containing values.\n
      * ERROR: will throw a RendererException (thrown if camera, render_target are nullptr)\n
      */
-    static RT_CAMERA_VALUES initializeRTCamera(const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target);
+    static RT_CAMERA_VALUES initializeRTCamera(const shared_ptr<Camera> &camera,
+                                               const shared_ptr<RenderTarget> &render_target);
 
     /**
      * Gets the ray from the camera origin through a specified pixel index.

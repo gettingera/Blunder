@@ -7,16 +7,19 @@
 #include "TestHeaders.cpp"
 #include "TestSphereList.cpp"
 #include "TestRenderTarget.cpp"
+#include "TestHitRecord.cpp"
 
 // Main Function
 int main() {
-    // Example Test Ray
-    TestRayAll();
-    TestCameraAll();
-    TestSphereAll();
-    TestRendererAll();
-    TestColorAll();
-    TestHeadersAll();
-    TestSphereListAll();
-    TestRenderTargetAll();
+    std::cout << "[Unit Test] Beginning unit testing!" << std::endl;
+    BlunderTest::TestHeadersAll();
+    BlunderTest::TestRayAll();
+    BlunderTest::TestCameraAll();
+    BlunderTest::TestSphereAll();
+    BlunderTest::TestRendererAll();
+    BlunderTest::TestColorAll();
+    BlunderTest::TestSphereListAll();
+    BlunderTest::TestRenderTargetAll();
+    BlunderTest::TestHitRecordAll();
+    std::cout << "[Unit Test] All tests pass!" << std::endl;
 }

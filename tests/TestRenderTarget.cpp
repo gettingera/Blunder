@@ -1,14 +1,14 @@
 #include <Utils/Headers.h>
 #include <Renderer/RenderTarget.h>
 
-namespace {
-    void TestRenderTargetInitialize() {
+namespace BlunderTest {
+    static void TestRenderTargetInitialize() {
         std::cout << "\t[RenderTarget] Testing initialize..." << std::endl;
         auto rt1 = RenderTarget(100, 200);
         assert(rt1.get_pixel(20, 20).get_color() == vec3(0));
     }
 
-    void TestRenderTargetGetPixel() {
+    static void TestRenderTargetGetPixel() {
         std::cout << "\t[RenderTarget] Testing get_pixel..." << std::endl;
         auto rt1 = RenderTarget(101, 101);
         assert(rt1.get_pixel(0, 0).get_color() == vec3(0));
@@ -34,7 +34,7 @@ namespace {
         }
     }
 
-    void TestRenderTargetSetPixel() {
+    static void TestRenderTargetSetPixel() {
         std::cout << "\t[RenderTarget] Testing set_pixel..." << std::endl;
         auto rt1 = RenderTarget(101, 101);
         auto white = Color(vec3(1));
@@ -64,7 +64,7 @@ namespace {
         }
     }
 
-    void TestRenderTargetWriteToFile() {
+    static void TestRenderTargetWriteToFile() {
         std::cout << "\t[RenderTarget] Testing writeToFile..." << std::endl;
         auto rt1 = RenderTarget(100, 200);
         auto name = "test";
@@ -86,7 +86,7 @@ namespace {
         }
     }
 
-    void TestRenderTargetSetWidth() {
+    static void TestRenderTargetSetWidth() {
         std::cout << "\t[RenderTarget] Testing set_width..." << std::endl;
         auto rt1 = RenderTarget(100, 200);
         rt1.set_width(1000);
@@ -113,7 +113,7 @@ namespace {
         }
     }
 
-    void TestRenderTargetSetHeight() {
+    static void TestRenderTargetSetHeight() {
         std::cout << "\t[RenderTarget] Testing set_height..." << std::endl;
         auto rt1 = RenderTarget(100, 200);
         rt1.set_height(1000);
@@ -140,7 +140,7 @@ namespace {
         }
     }
 
-    void TestRenderTargetAll() {
+    static void TestRenderTargetAll() {
         std::cout << "[Unit Test] Testing RenderTarget..." << std::endl;
         TestRenderTargetInitialize();
         TestRenderTargetGetPixel();

@@ -36,7 +36,6 @@ bool SphereList::Hit(const Ray &ray, const float tStart, const float tEnd, HitRe
     auto closestSoFar = tEnd;
 
     for (const auto &sphere: spheres) {
-
         if (sphere == nullptr)
             throw SphereListException("SphereList::Hit(): sphere is nullptr, did you forget to initialize a sphere?");
 

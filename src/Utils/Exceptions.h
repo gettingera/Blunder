@@ -12,10 +12,11 @@ class BaseException : public std::exception {
 
 public:
     /// Sets the message
-    explicit BaseException(std::string what) : message(std::move(what)) {}
+    explicit BaseException(std::string what) : message(std::move(what)) {
+    }
 
     /// Function that returns the error message
-    [[nodiscard]] const char* what() const noexcept override {
+    [[nodiscard]] const char *what() const noexcept override {
         return message.c_str();
     }
 };
@@ -25,7 +26,8 @@ public:
  */
 class CameraException final : public BaseException {
 public:
-    explicit CameraException(std::string message) : BaseException(std::move(message)) {};
+    explicit CameraException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -33,7 +35,8 @@ public:
  */
 class RayException final : public BaseException {
 public:
-    explicit RayException(std::string message) : BaseException(std::move(message)) {};
+    explicit RayException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -42,7 +45,8 @@ public:
  */
 class ColorException final : public BaseException {
 public:
-    explicit ColorException(std::string message) : BaseException(std::move(message)) {};
+    explicit ColorException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -50,7 +54,8 @@ public:
  */
 class RenderTargetException final : public BaseException {
 public:
-    explicit RenderTargetException(std::string message) : BaseException(std::move(message)) {};
+    explicit RenderTargetException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -58,7 +63,8 @@ public:
  */
 class RendererException final : public BaseException {
 public:
-    explicit RendererException(std::string message) : BaseException(std::move(message)) {};
+    explicit RendererException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -66,7 +72,8 @@ public:
  */
 class SphereException final : public BaseException {
 public:
-    explicit SphereException(std::string message) : BaseException(std::move(message)) {};
+    explicit SphereException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -74,7 +81,8 @@ public:
  */
 class SphereListException final : public BaseException {
 public:
-    explicit SphereListException(std::string message) : BaseException(std::move(message)) {};
+    explicit SphereListException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -82,7 +90,8 @@ public:
  */
 class HitRecordException final : public BaseException {
 public:
-    explicit HitRecordException(std::string message) : BaseException(std::move(message)) {};
+    explicit HitRecordException(std::string message) : BaseException(std::move(message)) {
+    };
 };
 
 /**
@@ -90,9 +99,9 @@ public:
  */
 class HeaderException final : public BaseException {
 public:
-    explicit HeaderException(std::string message) : BaseException(std::move(message)) {};
+    explicit HeaderException(std::string message) : BaseException(std::move(message)) {
+    };
 };
-
 
 
 #endif //EXCEPTIONS_H

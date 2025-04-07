@@ -1,8 +1,8 @@
 #include <Utils/Headers.h>
 #include <Camera/Camera.h>
 
-namespace {
-    void TestCameraConstructor() {
+namespace BlunderTest {
+    static void TestCameraConstructor() {
         std::cout << "\t[Camera] Testing Constructor..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         assert(c1.get_position() == vec3(0, 0, 0));
@@ -18,7 +18,7 @@ namespace {
         }
     }
 
-    void TestCameraPosition() {
+    static void TestCameraPosition() {
         std::cout << "\t[Camera] Testing Position..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         assert(c1.get_position() == vec3(0, 0, 0));
@@ -33,7 +33,7 @@ namespace {
         }
     }
 
-    void TestCameraLookAt() {
+    static void TestCameraLookAt() {
         std::cout << "\t[Camera] Testing Look At..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         assert(c1.get_look_at() == vec3(1, 1, 1));
@@ -46,9 +46,9 @@ namespace {
         } catch (...) {
             assert(false);
         }
-      }
+    }
 
-    void TestCameraSetPosition() {
+    static void TestCameraSetPosition() {
         std::cout << "\t[Camera] Testing SetPosition..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         c1.set_position(vec3(2, 2, 2));
@@ -65,7 +65,7 @@ namespace {
         }
     }
 
-    void TestCameraSetLookAt() {
+    static void TestCameraSetLookAt() {
         std::cout << "\t[Camera] Testing SetLookAt..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         c1.set_look_at(vec3(2, 2, 2));
@@ -82,8 +82,8 @@ namespace {
         }
     }
 
-    void TestCameraSetUpDirection() {
-      std::cout << "\t[Camera] Testing SetUpDirection..." << std::endl;
+    static void TestCameraSetUpDirection() {
+        std::cout << "\t[Camera] Testing SetUpDirection..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         c1.set_up_direction(vec3(1, 2, 3));
         assert(c1.get_up_direction() == vec3(1, 2, 3));
@@ -97,9 +97,9 @@ namespace {
         } catch (...) {
             assert(false);
         }
-      }
+    }
 
-    void TestCameraSetFov() {
+    static void TestCameraSetFov() {
         std::cout << "\t[Camera] Testing SetFov..." << std::endl;
         auto c1 = Camera(vec3(0, 0, 0), vec3(1, 1, 1));
         c1.set_fov(45);
@@ -119,7 +119,7 @@ namespace {
         }
     }
 
-    void TestCameraAll() {
+    static void TestCameraAll() {
         std::cout << "[Unit Testing] Testing Camera..." << std::endl;
         TestCameraConstructor();
         TestCameraPosition();

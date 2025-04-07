@@ -1,9 +1,8 @@
 #include <Utils/Headers.h>
 #include <Renderer/Renderer.h>
 
-namespace {
-
-    void TestRendererConstructor() {
+namespace BlunderTest {
+    static void TestRendererConstructor() {
         std::cout << "\t[Renderer] Testing Constructor..." << std::endl;
         auto r1 = Renderer(10, 20);
         assert(r1.get_samples() == 10);
@@ -28,7 +27,7 @@ namespace {
         }
     }
 
-    void TestRendererRender() {
+    static void TestRendererRender() {
         std::cout << "\t[Renderer] Testing render..." << std::endl;
         auto r1 = Renderer(10, 20);
         auto sl = make_shared<SphereList>();
@@ -74,7 +73,7 @@ namespace {
         }
     }
 
-    void TestRendererInitializeRTCamera() {
+    static void TestRendererInitializeRTCamera() {
         std::cout << "\t[Renderer] Testing initializeRTCamera..." << std::endl;
         auto r1 = Renderer(10, 20);
         auto camera = make_shared<Camera>(vec3(0), vec3(1));
@@ -105,10 +104,9 @@ namespace {
         } catch (...) {
             assert(false);
         }
-
     }
 
-    void TestRendererGetRayAtPixel() {
+    static void TestRendererGetRayAtPixel() {
         std::cout << "\t[Renderer] Testing getRayAtPixel..." << std::endl;
         auto r1 = Renderer(10, 20);
         auto camera = make_shared<Camera>(vec3(0), vec3(1));
@@ -131,7 +129,7 @@ namespace {
         }
     }
 
-    void TestRendererGetRayColor() {
+    static void TestRendererGetRayColor() {
         std::cout << "\t[Renderer] Testing getRayColor..." << std::endl;
         auto r1 = Renderer(10, 20);
         auto ray = Ray(vec3(0), vec3(1));
@@ -156,12 +154,12 @@ namespace {
         }
     }
 
-    void TestRendererGetSkyColor() {
+    static void TestRendererGetSkyColor() {
         std::cout << "\t[Renderer] Testing getSkyColor..." << std::endl;
         auto color = Renderer::getSkyColor(Ray(vec3(0), vec3(1)));
     }
 
-    void TestRendererScatter() {
+    static void TestRendererScatter() {
         std::cout << "\t[Renderer] Testing scatter..." << std::endl;
         auto hit_record = HitRecord{};
         auto ray = Ray(vec3(0), vec3(1));
@@ -169,7 +167,7 @@ namespace {
         assert(r1.scatter(hit_record, ray) == true);
     }
 
-    void TestRendererSetSamples() {
+    static void TestRendererSetSamples() {
         std::cout << "\t[Renderer] Testing set_samples..." << std::endl;
         auto r1 = Renderer(10, 10);
         r1.set_samples(20);
@@ -196,7 +194,7 @@ namespace {
         }
     }
 
-    void TestRendererSetMaxDepth() {
+    static void TestRendererSetMaxDepth() {
         std::cout << "\t[Renderer] Testing set_max_depth..." << std::endl;
         auto r1 = Renderer(10, 10);
         r1.set_max_depth(20);
@@ -223,7 +221,7 @@ namespace {
         }
     }
 
-    void TestRendererAll() {
+    static void TestRendererAll() {
         std::cout << "[Unit Test] Testing Renderer..." << std::endl;
         TestRendererConstructor();
         TestRendererRender();
@@ -234,5 +232,4 @@ namespace {
         TestRendererSetSamples();
         TestRendererSetMaxDepth();
     }
-
 }

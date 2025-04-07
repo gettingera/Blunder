@@ -1,8 +1,8 @@
 #include <Utils/Headers.h>
 #include <Utils/Color.h>
 
-namespace {
-    void TestColor() {
+namespace BlunderTest {
+    static void TestColor() {
         std::cout << "\t[Color] Testing Color..." << std::endl;
         auto c1 = Color(vec3(0, 0, 0));
         assert(c1.get_color() == Color(0, 0, 0).get_color());
@@ -21,7 +21,7 @@ namespace {
         }
     }
 
-    void TestSetColor() {
+    static void TestSetColor() {
         std::cout << "\t[Color] Testing SetColor..." << std::endl;
         auto c1 = Color(vec3(0, 0, 0));
         c1.set_color(vec3(1, 1, 1));
@@ -38,7 +38,7 @@ namespace {
         }
     }
 
-    void TestColorAll() {
+    static void TestColorAll() {
         std::cout << "[Unit Testing] Testing Color..." << std::endl;
         TestColor();
         TestSetColor();

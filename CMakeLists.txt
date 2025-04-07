@@ -1,5 +1,5 @@
 # ChatGPT generated. CMakeLists.txt is EDITED but not WRITTEN by us.
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.18)
 project(Blunder LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)

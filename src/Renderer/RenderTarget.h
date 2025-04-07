@@ -15,7 +15,7 @@ class RenderTarget {
     int height{1};
 
     /// Two dimensional array of pixels.
-    std::vector<std::vector<Color>> colors;
+    std::vector<std::vector<Color> > colors;
 
 public:
     // Constructors

@@ -52,9 +52,9 @@ bool is_inside_closed_range(float val, float min, float max) {
 
 bool is_inside_closed_range(const vec3 &vec1, float min, float max) {
     // Min, max finite-ness checked by is_inside_closed_range(float, float, float) function overload
-    return  is_inside_closed_range(vec1.x, min, max) &&
-            is_inside_closed_range(vec1.y, min, max) &&
-            is_inside_closed_range(vec1.z, min, max);
+    return is_inside_closed_range(vec1.x, min, max) &&
+           is_inside_closed_range(vec1.y, min, max) &&
+           is_inside_closed_range(vec1.z, min, max);
 }
 
 float linear_to_gamma(float linear_component) {
@@ -114,7 +114,8 @@ vec3 random_unit_vector() {
     while (true) {
         vec3 v = random_vec3(-1.0f, 1.0f);
         float len = length(v);
-        if (len > 1e-6f) { // Avoid division by near-zero
+        if (len > 1e-6f) {
+            // Avoid division by near-zero
             vec3 n = normalize(v);
             if (abs(length(n) - 1.0f) <= 1e-9f)
                 return n;

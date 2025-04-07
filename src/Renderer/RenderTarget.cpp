@@ -67,7 +67,8 @@ void RenderTarget::writeToFile(const std::string &filename) const {
         // Close file
         file.close();
     } catch (const std::exception &e) {
-        throw RenderTargetException("RenderTarget::WriteToFile(): system error writing to file: " + std::string(e.what()));
+        throw RenderTargetException(
+            "RenderTarget::WriteToFile(): system error writing to file: " + std::string(e.what()));
     }
 }
 

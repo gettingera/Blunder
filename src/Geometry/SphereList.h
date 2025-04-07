@@ -10,7 +10,7 @@
  */
 class SphereList final {
     /// List of pointers to hittable spheres.
-    std::vector<shared_ptr<Sphere>> spheres{};
+    std::vector<shared_ptr<Sphere> > spheres{};
 
 public:
     // Constructors

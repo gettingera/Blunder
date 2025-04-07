@@ -5,7 +5,8 @@ Renderer::Renderer(const int samples, const int max_depth) {
     set_max_depth(max_depth);
 }
 
-void Renderer::render(const shared_ptr<SphereList> &spheres, const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target) const {
+void Renderer::render(const shared_ptr<SphereList> &spheres, const shared_ptr<Camera> &camera,
+                      const shared_ptr<RenderTarget> &render_target) const {
     // Ensure spheres is not nullptr
     if (spheres == nullptr)
         throw RendererException("Renderer::render(): spheres cannot be nullptr");
@@ -38,11 +39,13 @@ void Renderer::render(const shared_ptr<SphereList> &spheres, const shared_ptr<Ca
         }
 
         rendered_rows += 1;
-        std::cout << "Rendering in progress: " << 100.0f * static_cast<float>(rendered_rows) / static_cast<float>(render_target->get_height()) << "%\n";
+        std::cout << "Rendering in progress: " << 100.0f * static_cast<float>(rendered_rows) / static_cast<float>(
+            render_target->get_height()) << "%\n";
     }
 }
 
-RT_CAMERA_VALUES Renderer::initializeRTCamera(const shared_ptr<Camera> &camera, const shared_ptr<RenderTarget> &render_target) {
+RT_CAMERA_VALUES Renderer::initializeRTCamera(const shared_ptr<Camera> &camera,
+                                              const shared_ptr<RenderTarget> &render_target) {
     // Ensure camera is not nullptr
     if (camera == nullptr)
         throw RendererException("Renderer::initializeRTCamera(): camera cannot be nullptr");
@@ -124,8 +127,7 @@ Color Renderer::getRayColor(Ray ray, const shared_ptr<SphereList> &spheres) cons
             scatter(record, ray);
             attenuation *= record.get_color().get_color();
             depth--;
-        }
-        else {
+        } else {
             color += attenuation * getSkyColor(ray).get_color();
             depth = 0;
         }

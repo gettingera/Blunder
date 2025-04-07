@@ -1,9 +1,8 @@
 #include <Utils/Headers.h>
 #include <Geometry/Sphere.h>
 
-namespace {
-
-    void TestSphereHit() {
+namespace BlunderTest {
+    static void TestSphereHit() {
         std::cout << "\t[Sphere] Testing Sphere Hit..." << std::endl;
         auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1));
         auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0));
@@ -21,7 +20,7 @@ namespace {
         }
     }
 
-    void TestSphereSetPosition() {
+    static void TestSphereSetPosition() {
         std::cout << "\t[Sphere] Testing SetPosition..." << std::endl;
         auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1));
         s1.set_position(vec3(1, 1, 1));
@@ -37,7 +36,7 @@ namespace {
         }
     }
 
-    void TestSphereSetRadius() {
+    static void TestSphereSetRadius() {
         std::cout << "\t[Sphere] Testing SetRadius..." << std::endl;
         auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1));
         s1.set_radius(1);
@@ -55,7 +54,7 @@ namespace {
         }
     }
 
-    void TestSphereSetColor() {
+    static void TestSphereSetColor() {
         std::cout << "\t[Sphere] Testing SetColor..." << std::endl;
         auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
         s1.set_color(Color(0.5, 0.5, 0.5));
@@ -71,7 +70,7 @@ namespace {
         }
     }
 
-    void TestSphereAll() {
+    static void TestSphereAll() {
         std::cout << "[Unit Testing] Testing Sphere..." << std::endl;
         TestSphereHit();
         TestSphereSetPosition();

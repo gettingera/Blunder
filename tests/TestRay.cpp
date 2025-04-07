@@ -1,8 +1,8 @@
 #include <Utils/Headers.h>
 #include <Utils/Ray.h>
 
-namespace {
-    void TestRayConstructor() {
+namespace BlunderTest {
+    static void TestRayConstructor() {
         std::cout << "\t[Ray] Testing Constructor..." << std::endl;
         auto r1 = Ray(vec3(0), vec3(1));
         assert(r1.get_position() == vec3(0));
@@ -18,7 +18,7 @@ namespace {
         }
     }
 
-    void TestRayAt() {
+    static void TestRayAt() {
         std::cout << "\t[Ray] Testing at..." << std::endl;
         auto r1 = Ray(vec3(0), vec3(1));
         assert(r1.at(0) == r1.get_position());
@@ -34,14 +34,14 @@ namespace {
         }
     }
 
-    void TestRaySetPosition() {
+    static void TestRaySetPosition() {
         std::cout << "\t[Ray] Testing set_position..." << std::endl;
         auto r1 = Ray(vec3(0), vec3(1));
         r1.set_position(vec3(1));
         assert(r1.get_position() == vec3(1));
     }
 
-    void TestRaySetDirection() {
+    static void TestRaySetDirection() {
         std::cout << "\t[Ray] Testing set_direction..." << std::endl;
         auto r1 = Ray(vec3(0), vec3(1));
         r1.set_direction(vec3(2));
@@ -57,7 +57,7 @@ namespace {
         }
     }
 
-    void TestRayAll() {
+    static void TestRayAll() {
         std::cout << "[Unit Testing] Testing Ray..." << std::endl;
         TestRayConstructor();
         TestRayAt();

@@ -1,8 +1,8 @@
 #include <complex>
 #include <Utils/Headers.h>
 
-namespace {
-    void TestHeadersIsFiniteFloat() {
+namespace BlunderTest {
+    static void TestHeadersIsFiniteFloat() {
         std::cout << "\t[Headers] Testing is_finite(float)..." << std::endl;
         assert(is_finite(0) == true);
         assert(is_finite(infinity) == false);
@@ -10,7 +10,7 @@ namespace {
         assert(is_finite(NAN) == false);
     }
 
-    void TestHeadersIsFiniteVec3() {
+    static void TestHeadersIsFiniteVec3() {
         std::cout << "\t[Headers] Testing is_finite(vec3)..." << std::endl;
         assert(is_finite(vec3(0)) == true);
         assert(is_finite(vec3(infinity)) == false);
@@ -18,7 +18,7 @@ namespace {
         assert(is_finite(vec3(NAN)) == false);
     }
 
-    void TestHeadersIsNearZeroFloat() {
+    static void TestHeadersIsNearZeroFloat() {
         std::cout << "\t[Headers] Testing is_near_zero(float)..." << std::endl;
         assert(is_near_zero(0) == true);
         assert(is_near_zero(1) == false);
@@ -29,7 +29,7 @@ namespace {
         assert(is_near_zero(NAN) == false);
     }
 
-    void TestHeadersIsNearZeroVec3() {
+    static void TestHeadersIsNearZeroVec3() {
         std::cout << "\t[Headers] Testing is_near_zero(vec3)..." << std::endl;
         assert(is_near_zero(vec3(0)) == true);
         assert(is_near_zero(vec3(1)) == false);
@@ -40,7 +40,7 @@ namespace {
         assert(is_near_zero(vec3(1e-9)) == true);
     }
 
-    void TestHeadersIsNearEqual() {
+    static void TestHeadersIsNearEqual() {
         std::cout << "\t[Headers] Testing is_near_equal(vec3, vec3)..." << std::endl;
         assert(is_near_equal(vec3(0), vec3(0)) == true);
         assert(is_near_equal(vec3(1), vec3(0)) == false);
@@ -48,7 +48,7 @@ namespace {
         assert(is_near_equal(vec3(1e-9), vec3(0)) == true);
     }
 
-    void TestHeadersIsInsideClosedRangeFloat() {
+    static void TestHeadersIsInsideClosedRangeFloat() {
         std::cout << "\t[Headers] Testing is_inside_closed_range(float, float, float)..." << std::endl;
         assert(is_inside_closed_range(1, 0, 2) == true);
         assert(is_inside_closed_range(-1, 0, 2) == false);
@@ -66,7 +66,7 @@ namespace {
         }
     }
 
-    void TestHeadersIsInsideClosedRangeVec3() {
+    static void TestHeadersIsInsideClosedRangeVec3() {
         std::cout << "\t[Headers] Testing is_inside_closed_range(vec3, float, float)..." << std::endl;
         assert(is_inside_closed_range(vec3(1), 0, 2) == true);
         assert(is_inside_closed_range(vec3(-1), 0, 2) == false);
@@ -84,7 +84,7 @@ namespace {
         }
     }
 
-    void TestHeadersLinearToGamma() {
+    static void TestHeadersLinearToGamma() {
         std::cout << "\t[Headers] Testing linear_to_gamma(float)..." << std::endl;
         assert(linear_to_gamma(0) == 0);
         assert(linear_to_gamma(1) == 1);
@@ -100,18 +100,18 @@ namespace {
         }
     }
 
-    void TestHeadersDegreesToRadians() {
+    static void TestHeadersDegreesToRadians() {
         std::cout << "\t[Headers] Testing degrees_to_radians(float)..." << std::endl;
         assert(degrees_to_radians(0) == 0);
     }
 
-    void TestHeadersRandomFloatNoArgs() {
+    static void TestHeadersRandomFloatNoArgs() {
         std::cout << "\t[Headers] Testing random_float()..." << std::endl;
         auto rand_float = random_float();
         assert(0 <= rand_float && rand_float <= 1);
     }
 
-    void TestHeadersRandomFloatFloat() {
+    static void TestHeadersRandomFloatFloat() {
         std::cout << "\t[Headers] Testing random_float(float)..." << std::endl;
         auto rand_float = random_float(0, 1);
         assert(0 <= rand_float && rand_float <= 1);
@@ -135,7 +135,7 @@ namespace {
         }
     }
 
-    void TestHeadersRandomVec3NoArgs() {
+    static void TestHeadersRandomVec3NoArgs() {
         std::cout << "\t[Headers] Testing random_vec3()..." << std::endl;
         auto rvec3 = random_vec3();
         assert(0 <= rvec3.x && rvec3.x <= 1);
@@ -143,7 +143,7 @@ namespace {
         assert(0 <= rvec3.z && rvec3.z <= 1);
     }
 
-    void TestHeadersRandomVec3Float() {
+    static void TestHeadersRandomVec3Float() {
         std::cout << "\t[Headers] Testing random_vec3(float, float)..." << std::endl;
         auto rvec3 = random_vec3(0, 1);
         assert(0 <= rvec3.x && rvec3.x <= 1);
@@ -169,13 +169,13 @@ namespace {
         }
     }
 
-    void TestHeadersRandomUnitVector() {
+    static void TestHeadersRandomUnitVector() {
         std::cout << "\t[Headers] Testing random_unit_vector()..." << std::endl;
         auto random_unit = random_unit_vector();
         assert(is_near_zero(length(random_unit) - 1.0f));
     }
 
-    void TestHeadersSampleSquare() {
+    static void TestHeadersSampleSquare() {
         std::cout << "\t[Headers] Testing sample_square()..." << std::endl;
         auto sample = sampleSquare();
         assert(sample.x >= -0.5f && sample.x <= 0.5f);
@@ -183,7 +183,7 @@ namespace {
         assert(sample.z == 0);
     }
 
-    void TestHeadersAll() {
+    static void TestHeadersAll() {
         std::cout << "[Unit Testing] Testing Headers..." << std::endl;
         TestHeadersIsFiniteFloat();
         TestHeadersIsFiniteVec3();
