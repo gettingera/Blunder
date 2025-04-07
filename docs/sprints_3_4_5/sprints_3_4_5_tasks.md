@@ -1,4 +1,4 @@
-# SPRINTS 3-5 TASKS 
+# Sprints 3-5 Tasks 
 ## Sprint 3 Tasks
 - Create prototype raycaster extensions
 - Conduct security tests
