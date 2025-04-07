@@ -1,9 +1,17 @@
 # Source Code
+
 The code structure for Blunder follows OOP (Object-Oriented Programming) design principles.
-User-generated code can be made in the files described in the executable code section of this document.
-Class directories are linked below the executable code section.
+Classes that have logical relations are grouped in similar folders.
+
+The project files follow a strict header-implementation structure. Class definitions and interfaces are defined in the
+header (.h) files, whereas the code implementations are found in the source (.cpp) files.
+
+# Tests
+
+Tests can be found in the [tests folder](../tests).
 
 # Documentation
+
 General project documentation may be found in the [documentation folder](../docs).
 
 For general code documentation, refer to the links at the bottom of the page.
@@ -12,14 +20,17 @@ For specific code documentation (specifically doxygen-generated documentation), 
 index.html file generated in the [documentation folder](../docs).
 
 # Executable Code
-- [main.cpp](./main.cpp) -> Program entry point.
+
+[main.cpp](./main.cpp) -> Program entry point.
 
 # Classes
-- [Camera](./Camera) -> 3D Camera.
-- [Geometry](./Geometry) -> Abstract Hittable class and all scene objects.
-- [Materials](./Materials) -> Abstract Material class and all scene materials.
-- [Renderer](./Renderer) -> Abstract Renderer class and all project render engines.
-- [Scene](./Scene) -> Scene structure.
-- [Utils](./Utils) -> Utility classes and functions.
+
+[Camera](./Camera) -> 3D Camera.
+
+[Geometry](./Geometry) -> Sphere class and all related objects.
+
+[Renderer](./Renderer) -> Renderer class encapsulating the ray tracing logic.
+
+[Utils](./Utils) -> Utility classes and functions.
 
 

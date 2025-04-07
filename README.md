@@ -1,5 +1,5 @@
 # Blunder
-An interactive, innovative raytracer for the modern world.
+An interactive, innovative spherical raytracer for the modern world.
 
 # Getting Started
 ## Linux Compilation

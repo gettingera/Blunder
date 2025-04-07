@@ -138,7 +138,7 @@ Color Renderer::getRayColor(Ray ray, const shared_ptr<SphereList> &spheres) cons
 
 Color Renderer::getSkyColor(const Ray &ray) {
     const vec3 unit_direction = normalize(ray.get_direction());
-    const auto a = 0.5f * (unit_direction.z + 1);
+    auto a = 0.5f * (unit_direction.z + 1);
     const auto bottom_color = vec3(0);
     const auto top_color = vec3(1);
     return Color(((1.0f - a) * bottom_color) + (a * top_color));
