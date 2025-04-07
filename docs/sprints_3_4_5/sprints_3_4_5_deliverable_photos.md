@@ -9,3 +9,5 @@ Upon starting the Blunder program, its rendering status is updated in real time 
 After the program finishes rendering, a file named “render.ppm” is created to display the outcome. Two example deliverables are shown below: 
 ![Three Spheres](https://github.com/gettingera/Blunder/blob/main/docs/pictures/week2%20deliverable.png)
 ![Five Spheres](https://github.com/gettingera/Blunder/blob/main/docs/pictures/3.png)
+
+Go to [Home](https://github.com/gettingera/Blunder/blob/main/README.md)
