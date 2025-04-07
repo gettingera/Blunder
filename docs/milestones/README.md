@@ -1,12 +1,13 @@
 # Milestones
 
-**Week 1**: Sprints 1 and 2 will fulfill the following milestone: 
-- Finalized raycaster 
+## Initial Milestones
+- **Week 1**: Finalized raycaster 
+- **Week 2**: Finalized raytracer extensions 
+- **Week 3**: Finalized raycaster GUI
 
-**Week 2**: Sprints 3 and 4 will fulfill the following milestone: 
-- Finalized raytracer extensions 
-
-**Week 3**: Sprints 5 and 6 will fulfill the following milestone:
-- Finalized raycaster GUI
+## Rescaled Milestones
+- **Week 1:** Working raytracer
+- **Week 2:** Scaled raytracer
+- **Week 3:** Finalized raytracer
 
 Go to [Home](https://github.com/gettingera/Blunder)
