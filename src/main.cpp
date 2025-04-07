@@ -8,8 +8,8 @@
 
 // Main method
 int main() {
-    const auto c1 = make_shared<Camera>(vec3(3, -1, -1), vec3(0, 0, 0));
-    c1->set_fov(45);
+    const auto c1 = make_shared<Camera>(vec3(0.4, -1.9, -.2), vec3(0, 0, 0));
+    c1->set_fov(75);
     const auto rt1 = make_shared<RenderTarget>(800, 400);
     auto red = Color(1.0, 0.2, 0.2);
     auto white = Color(1.0, 1.0, 1.0);
@@ -28,7 +28,7 @@ int main() {
     spheres->Add(s4);
     spheres->Add(s5);
 
-    Renderer raytracer(100, 10);
+    Renderer raytracer(100, 3);
     raytracer.render(spheres, c1, rt1);
 
     rt1->writeToFile("render");
