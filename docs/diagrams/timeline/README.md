@@ -1,5 +1,9 @@
-# Blunder Project Milestone Timeline
+# Blunder Project Timeline
 
-![Blunder Timeline](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/timeline/scaledtimeline1.jpg)
+## Initial Timeline
+![Initial Timeline](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/timeline/blundertimeline.jpg)
+
+## Rescaled Timeline
+![Rescaled Timeline](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/timeline/scaledtimeline1.jpg)
 
 Go to [Home](https://github.com/gettingera/Blunder)
