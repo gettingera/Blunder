@@ -18,5 +18,6 @@ index.html file generated in the [documentation folder](../docs).
 - [Test Sphere](./TestSphere.cpp) -> Sphere Testing
 - [Test Renderer](./TestRenderer.cpp) -> Renderer Testing
 - [Test Color](./TestColor.cpp) -> Color Testing
-- [TestHeaders](./TestHeaders.cpp) -> Headers Testing
-- [TestSphereList](./TestSphereList.cpp) -> SphereList Testing
+- [Test Headers](./TestHeaders.cpp) -> Headers Testing
+- [Test SphereList](./TestSphereList.cpp) -> SphereList Testing
+- [Test RenderTarget](./TestRenderTarget.cpp) -> RenderTarget Testing
