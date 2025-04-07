@@ -41,12 +41,12 @@ make  # Makes the project, binaries stored in ./bin/
 - [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-deadlines.md)
 
 ## Sprints 3-5
-- [Tasks]()
-- [Deadlines]()
-- [Deliverable Photos]()
-- [Testing/Testing Outcomes]()
-- [Class Diagram]()
-- [Data Flow Diagrams]()
+- [Tasks](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_tasks.md)
+- [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_deadlines.md)
+- [Deliverable Photos](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_deliverable_photos.md)
+- [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_testing_and_testing_outcomes.md)
+- [Class Diagram](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_class_diagram.md)
+- [Data Flow Diagrams](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_dfds.md)
 
 # **The following sections will be completed as the project progresses:**
 
