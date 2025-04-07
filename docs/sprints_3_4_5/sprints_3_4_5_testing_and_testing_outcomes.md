@@ -972,4 +972,4 @@ Today’s computing environment poses countless challenges in the realm of cyber
         }
     }
 
-Go to [Home](https://github.com/gettingera/Blunder/blob/main/README.md)
+Go to [Home](https://github.com/gettingera/Blunder)
