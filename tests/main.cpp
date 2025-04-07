@@ -5,7 +5,6 @@
 // Camera
 
 // Geometry
-#include <Geometry/Sphere.h>
 #include <Geometry/HitRecord.h>
 #include <Geometry/SphereList.h>
 
@@ -23,23 +22,11 @@ void TestHitRecordSetColor();
 void TestHitRecordSetT();
 void TestHitRecordAll();
 
-void TestSphereConstructor();
-void TestSphereHit();
-void TestSphereSetPosition();
-void TestSphereSetRadius();
-void TestSphereSetColor();
-void TestSphereAll();
-
 void TestSphereListHit();
 void TestSphereListSetPosition();
 void TestSphereListSetRadius();
 void TestSphereListSetColor();
 void TestSphereListAll();
-
-// Utils Tests
-void TestColorConstructor();
-void TestColorSetColor();
-void TestColorAll();
 
 void TestHeadersValueFinite();
 void TestHeadersVectorFinite();
@@ -52,12 +39,18 @@ void TestHeadersAll();
 
 #include "TestRay.cpp"
 #include "TestCamera.cpp"
+#include "TestSphere.cpp"
+#include "TestRenderer.cpp"
+#include "TestColor.cpp"
 
 // Main Function
 int main() {
     // Example Test Ray
     TestRayAll();
     TestCameraAll();
+    TestSphereAll();
+    TestRendererAll();
+    TestColorAll();
 }
 
 // Geometry Tests
@@ -101,48 +94,6 @@ void TestHitRecordSetT() {
     // hr1.set_t(-1);
     // hr1.set_t(infinity);
 
-}
-
-void TestSphereHit() {
-    auto s1 = Sphere(vec3(0, 0, 0), 1, Color(1, 1, 1));
-    auto ray = Ray(vec3(0, -1, 0), vec3(0, 1, 0));
-    auto hitRecord = HitRecord();
-    // Pass Case
-    s1.Hit(ray, 0, 10000, hitRecord);
-
-    // Fail Case
-    // s1.Hit(ray, 10000, 0, hitRecord);
-    // s1.Hit(ray, -infinity, infinity, hitRecord);
-
-}
-
-void TestSphereSetPosition() {
-    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
-    // Pass Case
-    s1.set_position(vec3(1, 1, 1));
-
-    // Fail Case
-    // s1.set_position(vec3(infinity, infinity, infinity));
-}
-
-void TestSphereSetRadius() {
-    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
-    // Pass Case
-    s1.set_radius(1);
-
-    // Fail Case
-    // s1.set_radius(0);
-    // s1.set_radius(-1);
-    // s1.set_radius(infinity);
-}
-
-void TestSphereSetColor() {
-    auto s1 = Sphere(vec3(0, 0, 0), 10, Color(1, 1, 1));
-    // Pass Case
-    s1.set_color(Color(0.5, 0.5, 0.5));
-
-    // Fail Case
-    // s1.set_color(Color(2, 2, 2))
 }
 
 void TestSphereListHit() {
