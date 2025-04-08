@@ -103,5 +103,14 @@ public:
     };
 };
 
+/**
+ * Header-specific exceptions useful for debugging and unit testing.
+ */
+class ImporterException final : public BaseException {
+public:
+    explicit ImporterException(std::string message) : BaseException(std::move(message)) {
+    };
+};
+
 
 #endif //EXCEPTIONS_H

@@ -11,6 +11,8 @@ class Color {
 
 public:
     // Constructors
+    /// Default constructor for compatibility with importer.
+    Color() = default;
     /**
      * Creates a new color.
      * @param color Vector containing color component information to be stored in a color.

@@ -40,7 +40,7 @@ void RenderTarget::writeToFile(const std::string &filename) const {
 
     // Attempt to write to file, throw a RenderTargetException if any system errors occur
     try {
-        std::ofstream file(filename + ".ppm");
+        std::ofstream file(filename);
 
         // PPM Header
         file << "P3\n" << get_width() << " " << get_height() << "\n255\n";

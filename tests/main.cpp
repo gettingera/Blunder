@@ -8,6 +8,7 @@
 #include "TestSphereList.cpp"
 #include "TestRenderTarget.cpp"
 #include "TestHitRecord.cpp"
+#include "TestImporter.cpp"
 
 // Main Function
 int main() {
@@ -21,5 +22,6 @@ int main() {
     BlunderTest::TestSphereListAll();
     BlunderTest::TestRenderTargetAll();
     BlunderTest::TestHitRecordAll();
+    BlunderTest::TestImporterAll();
     std::cout << "[Unit Test] All tests pass!" << std::endl;
 }

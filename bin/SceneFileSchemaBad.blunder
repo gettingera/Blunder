@@ -1,0 +1,23 @@
+#BLUNDERBAD
+
+#SETTINGS
+screen_width 1
+screen_height 1
+samples 1
+bounces 5
+
+#CAMERA
+position 0 -10 5
+look_at 0 0 0
+fov 25
+up_direction 0 0 1
+
+#COLORS
+red 1 0 0
+green 0 1 0
+blue 0 0 1
+
+#SPHERES
+-2 0 0 red 1
+0 0 0 green 1
+2 0 0 blue 1
