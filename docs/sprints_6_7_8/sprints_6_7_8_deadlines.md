@@ -1,4 +1,4 @@
-# DEADLINES
+# Deadlines
 
 Each of the tasks listed above is expected to be completed by the conclusion of the project’s third and final week. With the rescaling of Blunder’s implementation, we have determined the following items that will be completed by their respective due dates.
 
