@@ -37,3 +37,12 @@ function required modification to remain compliant.
 
 This function was the case BlunderTest::TestHeadersRandomUnitVector(). A rewrite was in order to generate unit vectors
 whose length fell within compliance of the 1e-9 epsilon threshold.
+
+## Tuesday, April 8th, 2025
+
+All tests pass on the current codebas.
+
+Tests run include:
+
+- All previous unit tests
+- BlunderTest::ImporterTestAll()
