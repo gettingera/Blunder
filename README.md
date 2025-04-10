@@ -33,7 +33,6 @@ make  # Makes the project, binaries stored in ./bin/
 - [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/docs/sprint-one/sprint-one-testing.md)
 - [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprint-one/sprint-one-deadlines.md)
 - [Class Diagrams](https://github.com/gettingera/Blunder/blob/main/docs/diagrams/class_diagrams/README.md)
-- [UML Diagrams (not finished)]()
 
 ## Sprint 2
 - [Tasks](https://github.com/gettingera/Blunder/blob/main/docs/sprint-two/sprint-two-tasks.md)
