@@ -35,7 +35,7 @@ These tests were all developed according to the specifications highlighted in th
 This sprint was heavy on testing as all cases had to be rigorously tested. Throughout the entire codebase, only one
 function required modification to remain compliant.
 
-This function was the case BlunderTest::TestHeadersRandomUnitVector(). A rewrite was in order to generate unit vectors
+This function was the case BlunderTest::TestHeadersRandomUnitVector(). A rewriting was ordered to generate unit vectors
 whose length fell within compliance of the 1e-9 epsilon threshold.
 
 ## Tuesday, April 8th, 2025
