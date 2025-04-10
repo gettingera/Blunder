@@ -48,12 +48,8 @@ make  # Makes the project, binaries stored in ./bin/
 - [Class Diagram](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_class_diagram.md)
 - [Data Flow Diagrams](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_dfds.md)
 
-# **The following sections will be completed as the project progresses:**
-
 ## Sprints 6-8
-- [Tasks]()
-- [Deadlines]()
-- [Deliverable Photos]()
-- [Testing/Testing Outcomes]()
-- [Class Diagram]()
-- [Data Flow Diagrams]()
+- [Tasks](https://github.com/gettingera/Blunder/blob/main/docs/sprints_6_7_8/sprints_6_7_8_tasks.md)
+- [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprints_6_7_8/sprints_6_7_8_deadlines.md)
+- [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/tests/test_results.md)
+- [Data Flow Diagrams](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_dfds.md)
