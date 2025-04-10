@@ -1,4 +1,4 @@
-# Sprint 6-8 Tasks
+# Sprints 6-8 Tasks
 
 ## Sprint 6 Tasks
 - Create level 1 data flow diagram
