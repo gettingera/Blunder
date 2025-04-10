@@ -40,7 +40,7 @@ whose length fell within compliance of the 1e-9 epsilon threshold.
 
 ## Tuesday, April 8th, 2025
 
-All tests pass on the current codebas.
+All tests pass on the current codebase.
 
 Tests run include:
 
