@@ -52,3 +52,6 @@ make  # Makes the project, binaries stored in ./bin/
 - [Deadlines](https://github.com/gettingera/Blunder/blob/main/docs/sprints_6_7_8/sprints_6_7_8_deadlines.md)
 - [Testing/Testing Outcomes](https://github.com/gettingera/Blunder/blob/main/tests/test_results.md)
 - [Data Flow Diagrams](https://github.com/gettingera/Blunder/blob/main/docs/sprints_3_4_5/sprints_3_4_5_dfds.md)
+
+## Final Presentation
+- [Final Presentation Slides](https://github.com/gettingera/Blunder/blob/main/docs/final_presentation/Blunder%20Final%20Presentation.pdf)
