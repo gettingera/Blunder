@@ -1,4 +1,4 @@
-# SPRINT 2 TASKS 
+# Sprint 2 Tasks
 
 The following outcomes must be met prior to stating the end of the second sprint: 
 
