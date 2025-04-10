@@ -1,5 +1,5 @@
 # Test Code
-Tests are run through main.cpp, directories are linked below the executable code section
+Tests are run through main.cpp, directories are linked below the executable code section.
 
 # Documentation
 General project documentation may be found in the [documentation folder](../docs).
@@ -11,6 +11,9 @@ index.html file generated in the [documentation folder](../docs).
 
 # Executable Code
 - [main.cpp](./main.cpp) -> Program entry point
+
+# Test Results
+- [Test Results](https://github.com/gettingera/Blunder/blob/main/tests/test_results.md)
 
 # Test Files
 - [Test Ray](./TestRay.cpp) -> Ray Testing
